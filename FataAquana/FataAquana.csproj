@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProjectGuid>{C68BBD5D-FB6F-4415-AE6D-937DEC430EE5}</ProjectGuid>
+    <ProjectTypeGuids>{A3F8F2AB-B479-4A4A-A458-A89E7DC349F1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>FataAquana</RootNamespace>
+    <AssemblyName>Fata Aquana</AssemblyName>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <TargetFrameworkIdentifier>Xamarin.Mac</TargetFrameworkIdentifier>
+    <MonoMacResourcePrefix>Resources</MonoMacResourcePrefix>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <EnableCodeSigning>false</EnableCodeSigning>
+    <CodeSigningKey>Mac Developer</CodeSigningKey>
+    <CreatePackage>false</CreatePackage>
+    <EnablePackageSigning>false</EnablePackageSigning>
+    <IncludeMonoRuntime>false</IncludeMonoRuntime>
+    <UseSGen>true</UseSGen>
+    <UseRefCounting>true</UseRefCounting>
+    <Profiling>true</Profiling>
+    <PlatformTarget>x86</PlatformTarget>
+    <PackageSigningKey>3rd Party Mac Developer Installer</PackageSigningKey>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <EnableCodeSigning>true</EnableCodeSigning>
+    <CodeSigningKey>Developer ID Application</CodeSigningKey>
+    <CreatePackage>true</CreatePackage>
+    <EnablePackageSigning>false</EnablePackageSigning>
+    <IncludeMonoRuntime>true</IncludeMonoRuntime>
+    <UseSGen>true</UseSGen>
+    <UseRefCounting>true</UseRefCounting>
+    <LinkMode>SdkOnly</LinkMode>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="Xamarin.Mac" />
+    <Reference Include="System.Data" />
+    <Reference Include="Mono.Data.Sqlite" />
+  </ItemGroup>
+  <ItemGroup>
+    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\FataAquana_16x16.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\FataAquana_16x16%402x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\FataAquana_32x32.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\FataAquana_32x32%402x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\FataAquana_128x128.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\FataAquana_128x128%402x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\FataAquana_256x256.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\FataAquana_256x256%402x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\FataAquana_512x512.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\FataAquana_512x512%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\" />
+    <Folder Include="Enum\" />
+    <Folder Include="GroepLijst\" />
+    <Folder Include="Personen\" />
+    <Folder Include="Opleidingen\" />
+    <Folder Include="Model\" />
+    <Folder Include="Apparaten\" />
+    <Folder Include="Clubs\" />
+    <Folder Include="Persoon\" />
+    <Folder Include="Apparaat\" />
+    <Folder Include="Persoon\GevolgdeOpleiding\" />
+    <Folder Include="Classes\" />
+    <Folder Include="Club\" />
+    <Folder Include="Opleiding\" />
+    <Folder Include="Persoon\Aankoop\" />
+    <Folder Include="Persoon\Lidmaatschap\" />
+    <Folder Include="Persoon\Onderhoud\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Info.plist" />
+    <None Include="Entitlements.plist" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Main.cs" />
+    <Compile Include="AppDelegate.cs" />
+    <Compile Include="Enum\GroepObjecten.cs" />
+    <Compile Include="GroepLijst\GroepLijstView.cs" />
+    <Compile Include="GroepLijst\GroepLijstDataSource.cs" />
+    <Compile Include="GroepLijst\GroepLijstDelegate.cs" />
+    <Compile Include="GroepLijst\GroepLijstItem.cs" />
+    <Compile Include="Personen\PersonenController.cs" />
+    <Compile Include="Personen\PersonenController.designer.cs">
+      <DependentUpon>PersonenController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Personen\PersonenView.cs" />
+    <Compile Include="Personen\PersonenView.designer.cs">
+      <DependentUpon>PersonenView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Opleidingen\OpleidingenController.cs" />
+    <Compile Include="Opleidingen\OpleidingenController.designer.cs">
+      <DependentUpon>OpleidingenController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Model\AankoopModel.cs" />
+    <Compile Include="Model\ApparaatModel.cs" />
+    <Compile Include="Model\BedrijfModel.cs" />
+    <Compile Include="Model\ClublidmaatschapModel.cs" />
+    <Compile Include="Model\ClubModel.cs" />
+    <Compile Include="Model\GevolgdeOpleidingModel.cs" />
+    <Compile Include="Model\InOnderhoudModel.cs" />
+    <Compile Include="Model\OpleidingModel.cs" />
+    <Compile Include="Model\PersoonModel.cs" />
+    <Compile Include="Model\WerkPeriodeModel.cs" />
+    <Compile Include="AppDelegate.designer.cs">
+      <DependentUpon>AppDelegate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Personen\PersonenDelegate.cs" />
+    <Compile Include="Personen\PersonenDS.cs" />
+    <Compile Include="Opleidingen\OpleidingenDS.cs" />
+    <Compile Include="Opleidingen\OpleidingenDelegate.cs" />
+    <Compile Include="Opleidingen\OpleidingenView.cs" />
+    <Compile Include="Opleidingen\OpleidingenView.designer.cs">
+      <DependentUpon>OpleidingenView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Apparaten\ApparatenController.cs" />
+    <Compile Include="Apparaten\ApparatenController.designer.cs">
+      <DependentUpon>ApparatenController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Apparaten\ApparatenDelegate.cs" />
+    <Compile Include="Apparaten\ApparatenDS.cs" />
+    <Compile Include="Apparaten\ApparatenView.cs" />
+    <Compile Include="Apparaten\ApparatenView.designer.cs">
+      <DependentUpon>ApparatenView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Clubs\ClubsController.cs" />
+    <Compile Include="Clubs\ClubsController.designer.cs">
+      <DependentUpon>ClubsController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Clubs\ClubsDelegate.cs" />
+    <Compile Include="Clubs\ClubsDS.cs" />
+    <Compile Include="Clubs\ClubsView.cs" />
+    <Compile Include="Clubs\ClubsView.designer.cs">
+      <DependentUpon>ClubsView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WindowsController.cs" />
+    <Compile Include="WindowsController.designer.cs">
+      <DependentUpon>WindowsController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ActivatableItem.cs" />
+    <Compile Include="Apparaat\ApparaatEditSheet.cs" />
+    <Compile Include="Apparaat\ApparaatEditSheet.designer.cs" />
+    <Compile Include="Apparaat\ApparaatEditorSheetController.cs" />
+    <Compile Include="Persoon\GevolgdeOpleiding\GevolgdeOpleidingEditSheetController.cs" />
+    <Compile Include="Persoon\GevolgdeOpleiding\GevolgdeOpleidingEditSheet.cs" />
+    <Compile Include="Persoon\GevolgdeOpleiding\GevolgdeOpleidingEditSheet.designer.cs" />
+    <Compile Include="Persoon\GevolgdeOpleidingenDS.cs" />
+    <Compile Include="Enum\GroepObjecten %28copy%29.cs" />
+    <Compile Include="SplitViewController.cs" />
+    <Compile Include="SplitViewController.designer.cs">
+      <DependentUpon>SplitViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RightViewController.cs" />
+    <Compile Include="RightViewController.designer.cs">
+      <DependentUpon>RightViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LeftViewController.cs" />
+    <Compile Include="LeftViewController.designer.cs">
+      <DependentUpon>LeftViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\ReplaceViewSegue.cs" />
+    <Compile Include="Club\ClubEditorSheetController.cs" />
+    <Compile Include="Club\ClubEditSheet.cs" />
+    <Compile Include="Club\ClubEditSheet.designer.cs" />
+    <Compile Include="Opleiding\OpleidingEditorSheetController.cs" />
+    <Compile Include="Opleiding\OpleidingEditSheet.cs" />
+    <Compile Include="Opleiding\OpleidingEditSheet.designer.cs" />
+    <Compile Include="Persoon\GevolgdeOpleidingenDelegate.cs" />
+    <Compile Include="MainWindowApp.cs" />
+    <Compile Include="MainWindowApp.designer.cs">
+      <DependentUpon>MainWindowApp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Club\ClubController.cs" />
+    <Compile Include="Club\ClubController.designer.cs">
+      <DependentUpon>ClubController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Persoon\PersoonController.cs" />
+    <Compile Include="Persoon\PersoonController.designer.cs">
+      <DependentUpon>PersoonController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Persoon\AankopenDS.cs" />
+    <Compile Include="Persoon\AankopenDelegate.cs" />
+    <Compile Include="Persoon\OnderhoudDS.cs" />
+    <Compile Include="Persoon\OnderhoudDelegate.cs" />
+    <Compile Include="Persoon\LidmaatschappenDS.cs" />
+    <Compile Include="Persoon\LidmaatschappenDelegate.cs" />
+    <Compile Include="Persoon\GevolgdeOpleiding\GevolgdeOpleidingController.cs" />
+    <Compile Include="Persoon\GevolgdeOpleiding\GevolgdeOpleidingController.designer.cs">
+      <DependentUpon>GevolgdeOpleidingController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Persoon\Aankoop\AankoopController.cs" />
+    <Compile Include="Persoon\Aankoop\AankoopController.designer.cs">
+      <DependentUpon>AankoopController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Persoon\Lidmaatschap\LidmaatschapController.cs" />
+    <Compile Include="Persoon\Lidmaatschap\LidmaatschapController.designer.cs">
+      <DependentUpon>LidmaatschapController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Persoon\Onderhoud\OnderhoudController.cs" />
+    <Compile Include="Persoon\Onderhoud\OnderhoudController.designer.cs">
+      <DependentUpon>OnderhoudController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OpleidingController.cs" />
+    <Compile Include="OpleidingController.designer.cs">
+      <DependentUpon>OpleidingController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ApparaatController.cs" />
+    <Compile Include="ApparaatController.designer.cs">
+      <DependentUpon>ApparaatController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Persoon\GevolgdeOpleiding\OpleidingenComboDS.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <InterfaceDefinition Include="Main.storyboard" />
+    <InterfaceDefinition Include="Resources\subviewPersonen.xib" />
+    <InterfaceDefinition Include="Personen\subviewPersonen.xib" />
+    <InterfaceDefinition Include="Opleidingen\subviewOpleidingen.xib" />
+    <InterfaceDefinition Include="Apparaten\subviewApparaten.xib" />
+    <InterfaceDefinition Include="Clubs\subviewClubs.xib" />
+    <InterfaceDefinition Include="Apparaat\ApparaatEditSheet.xib" />
+    <InterfaceDefinition Include="Persoon\GevolgdeOpleiding\GevolgdeOpleidingEditSheet.xib" />
+    <InterfaceDefinition Include="Club\ClubEditSheet.xib" />
+    <InterfaceDefinition Include="Opleiding\OpleidingEditSheet.xib" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\apparatuur.png" />
+    <BundleResource Include="Resources\blackboard.png" />
+    <BundleResource Include="Resources\users2.png" />
+    <BundleResource Include="Resources\user1.png" />
+    <BundleResource Include="Resources\.DS_Store" />
+    <BundleResource Include="Resources\folder_document.png" />
+    <BundleResource Include="Resources\icons\FataAquana_128x128.png" />
+    <BundleResource Include="Resources\icons\FataAquana_128x128%402x.png" />
+    <BundleResource Include="Resources\icons\FataAquana_16x16.png" />
+    <BundleResource Include="Resources\icons\FataAquana_16x16%402x.png" />
+    <BundleResource Include="Resources\icons\FataAquana_256x256.png" />
+    <BundleResource Include="Resources\icons\FataAquana_256x256%402x.png" />
+    <BundleResource Include="Resources\icons\FataAquana_32x32.png" />
+    <BundleResource Include="Resources\icons\FataAquana_32x32%402x.png" />
+    <BundleResource Include="Resources\icons\FataAquana_512x512.png" />
+    <BundleResource Include="Resources\icons\FataAquana_512x512%402x.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\Mac\Xamarin.Mac.CSharp.targets" />
+</Project>

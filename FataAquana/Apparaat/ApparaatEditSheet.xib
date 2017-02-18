@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11762"/>
+        <capability name="box content view" minToolsVersion="7.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="ApparaatEditSheet">
+            <connections>
+                <outlet property="CancelButton" destination="6J8-lz-Iz5" id="WIZ-c7-MnK"/>
+                <outlet property="window" destination="4UF-aK-Jgb" id="OND-dn-aJB"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <window title="Apparaat Editor" allowsToolTipsWhenApplicationIsInactive="NO" restorable="NO" deferred="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="4UF-aK-Jgb" userLabel="Window" customClass="ApparaatEditSheet">
+            <windowStyleMask key="styleMask" titled="YES" utility="YES" documentModal="YES"/>
+            <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+            <rect key="contentRect" x="196" y="112" width="546" height="208"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
+            <view key="contentView" misplaced="YES" id="HNA-as-tDk">
+                <rect key="frame" x="0.0" y="0.0" width="546" height="208"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <box misplaced="YES" boxType="custom" titlePosition="noTitle" id="A1J-Wm-WKJ">
+                        <rect key="frame" x="0.0" y="0.0" width="546" height="208"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <view key="contentView" id="alj-H5-542">
+                            <rect key="frame" x="1" y="1" width="544" height="206"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <subviews>
+                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" id="Q8z-Ja-mgz">
+                                    <rect key="frame" x="18" y="169" width="118" height="17"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Apparaatnaam:" id="D6i-c2-uV8">
+                                        <font key="font" metaFont="system"/>
+                                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                    </textFieldCell>
+                                </textField>
+                                <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" id="Eju-nI-eF3">
+                                    <rect key="frame" x="135" y="167" width="389" height="22"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="left" drawsBackground="YES" id="Qj5-NJ-hTX">
+                                        <font key="font" metaFont="system"/>
+                                        <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                    </textFieldCell>
+                                    <connections>
+                                        <binding destination="-2" name="value" keyPath="self.Apparaat.ApparaatNaam" id="6Qn-mW-zxD">
+                                            <dictionary key="options">
+                                                <bool key="NSContinuouslyUpdatesValue" value="YES"/>
+                                            </dictionary>
+                                        </binding>
+                                    </connections>
+                                </textField>
+                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" id="S7W-lY-10C">
+                                    <rect key="frame" x="18" y="134" width="118" height="17"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Omschrijving:" id="SRk-Vp-zXK">
+                                        <font key="font" metaFont="system"/>
+                                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                    </textFieldCell>
+                                </textField>
+                                <textField verticalHuggingPriority="750" misplaced="YES" allowsCharacterPickerTouchBarItem="NO" id="7qd-27-hP5">
+                                    <rect key="frame" x="135" y="49" width="389" height="105"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="left" drawsBackground="YES" id="OeP-sa-kTI">
+                                        <font key="font" metaFont="system"/>
+                                        <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                    </textFieldCell>
+                                    <connections>
+                                        <binding destination="-2" name="value" keyPath="self.Apparaat.Omschrijving" id="CjQ-tR-mNZ">
+                                            <dictionary key="options">
+                                                <bool key="NSContinuouslyUpdatesValue" value="YES"/>
+                                            </dictionary>
+                                        </binding>
+                                    </connections>
+                                </textField>
+                                <button verticalHuggingPriority="750" misplaced="YES" id="5eW-MD-tls">
+                                    <rect key="frame" x="365" y="13" width="82" height="32"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                    <buttonCell key="cell" type="push" title="OK" bezelStyle="rounded" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="UYZ-Qi-EhH">
+                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                        <font key="font" metaFont="system"/>
+                                        <string key="keyEquivalent" base64-UTF8="YES">
+DQ
+</string>
+                                    </buttonCell>
+                                    <connections>
+                                        <action selector="OkAction:" target="-2" id="ocl-vl-el0"/>
+                                    </connections>
+                                </button>
+                                <button verticalHuggingPriority="750" misplaced="YES" id="6J8-lz-Iz5">
+                                    <rect key="frame" x="447" y="13" width="83" height="32"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                    <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="H6o-iH-Kuf">
+                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                        <font key="font" metaFont="system"/>
+                                        <string key="keyEquivalent" base64-UTF8="YES">
+Gw
+</string>
+                                    </buttonCell>
+                                    <connections>
+                                        <action selector="CancelAction:" target="-2" id="1xy-3a-uRg"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                        </view>
+                        <color key="fillColor" red="0.40000000600000002" green="1" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
+                    </box>
+                </subviews>
+            </view>
+            <point key="canvasLocation" x="327" y="284"/>
+        </window>
+        <userDefaultsController representsSharedInstance="YES" id="o1N-Pp-dCE"/>
+    </objects>
+</document>
