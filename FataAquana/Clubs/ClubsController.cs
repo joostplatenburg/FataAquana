@@ -14,13 +14,13 @@ namespace FataAquana
 
 		#region Computed Properties
 		// Strongly typed view accessor
-		public new ClubsView View
-		{
-			get
-			{
-				return (ClubsView)base.View;
-			}
-		}
+		//public new ClubsView View
+		//{
+		//	get
+		//	{
+		//		return (ClubsView)base.View;
+		//	}
+		//}
 		#endregion
 
 		#region Constructors
@@ -70,25 +70,25 @@ namespace FataAquana
 		#region Custom Methods
 		partial void ClubAddClicked(NSButton sender)
 		{
-			var newClub = new ClubModel();
+			//var newClub = new ClubModel();
 
-			var sheet = new ClubEditorSheetController(newClub, true);
-			// Wire-up
-			sheet.ClubModified += (club) =>
-			{
-				// Save club to database
-				club.Create(AppDelegate.Conn);
+			//var sheet = new ClubEditorSheetController(newClub, true);
+			//// Wire-up
+			//sheet.ClubModified += (club) =>
+			//{
+			//	// Save club to database
+			//	club.Create(AppDelegate.Conn);
 
-				if (ClubsTable != null)
-				{
-					ds.AddClub(club);
+			//	if (ClubsTable != null)
+			//	{
+			//		ds.AddClub(club);
 
-					ReloadTable();
-				}
-			};
+			//		ReloadTable();
+			//	}
+			//};
 
-			// Display sheet
-			sheet.ShowSheet(NSApplication.SharedApplication.KeyWindow);
+			//// Display sheet
+			//sheet.ShowSheet(NSApplication.SharedApplication.KeyWindow);
 		}
 
 		partial void ClubRemoveClicked(NSButton sender)
@@ -111,27 +111,27 @@ namespace FataAquana
 		[Export("RowDoubleClicked:")]
 		public void RowDoubleClicked(NSObject sender)
 		{
-			SelectedClub = ds.Clubs[(int)ClubsTable.SelectedRow] as ClubModel;
+			//SelectedClub = ds.Clubs[(int)ClubsTable.SelectedRow] as ClubModel;
 
-			Debug.WriteLine("Clicked: " + SelectedClub.ID + "|" + SelectedClub.ClubNaam);
+			//Debug.WriteLine("Clicked: " + SelectedClub.ID + "|" + SelectedClub.ClubNaam);
 
-			//PerformSegue("ClubSeque", this);
+			////PerformSegue("ClubSeque", this);
 
-			var sheet = new ClubEditorSheetController(SelectedClub, true);
-			// Wire-up
-			sheet.ClubModified += (club) =>
-			{
-				// Save club to database
-				club.Update(AppDelegate.Conn);
+			//var sheet = new ClubEditorSheetController(SelectedClub, true);
+			//// Wire-up
+			//sheet.ClubModified += (club) =>
+			//{
+			//	// Save club to database
+			//	club.Update(AppDelegate.Conn);
 
-				if (ClubsTable != null)
-				{
-					ReloadTable();
-				}
-			};
+			//	if (ClubsTable != null)
+			//	{
+			//		ReloadTable();
+			//	}
+			//};
 
-			// Display sheet
-			sheet.ShowSheet(NSApplication.SharedApplication.KeyWindow);
+			//// Display sheet
+			//sheet.ShowSheet(NSApplication.SharedApplication.KeyWindow);
 		}
 		#endregion
 	}

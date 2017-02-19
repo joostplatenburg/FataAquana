@@ -14,8 +14,6 @@ namespace FataAquana
 
 		public static SplitViewController MainView = null;
 
-		public static PersoonModel SelectedPersoon = null;
-
 		public AppDelegate()
 		{
 			//

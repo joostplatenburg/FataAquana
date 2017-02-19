@@ -93,12 +93,12 @@ namespace FataAquana
 
 		public override bool SelectionShouldChange(NSTableView tableView)
 		{
-			Debug.WriteLine("Start: AankopenDelegate.SelectionShouldChange");
-			//base.SelectionShouldChange(tableView);
+			//Debug.WriteLine("Start: AankopenDelegate.SelectionShouldChange");
+			////base.SelectionShouldChange(tableView);
 
-			Debug.WriteLine("Selection row: " + tableView.SelectedRow);
+			//Debug.WriteLine("Selection row: " + tableView.SelectedRow);
 
-			Debug.WriteLine("Einde: AankopenDelegate.SelectionShouldChange");
+			//Debug.WriteLine("Einde: AankopenDelegate.SelectionShouldChange");
 
 			return true;
 		}

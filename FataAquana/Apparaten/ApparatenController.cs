@@ -14,13 +14,13 @@ namespace FataAquana
 
 		#region Computed Properties
 		// Strongly typed view accessor
-		public new ApparatenView View
-		{
-			get
-			{
-				return (ApparatenView)base.View;
-			}
-		}
+		//public new ApparatenView View
+		//{
+		//	get
+		//	{
+		//		return (ApparatenView)base.View;
+		//	}
+		//}
 		#endregion
 
 		#region Constructors
@@ -69,23 +69,23 @@ namespace FataAquana
 		#region Custom Methods
 		partial void ApparaatAddClicked(NSButton sender)
 		{
-			var newApparaat = new ApparaatModel();
-			var sheet = new ApparaatEditorSheetController(newApparaat, true);
-			// Wire-up
-			sheet.ApparaatModified += (apparaat) =>
-			{
-				// Save person to database
-				apparaat.Create(AppDelegate.Conn);
+			//var newApparaat = new ApparaatModel();
+			//var sheet = new ApparaatEditorSheetController(newApparaat, true);
+			//// Wire-up
+			//sheet.ApparaatModified += (apparaat) =>
+			//{
+			//	// Save person to database
+			//	apparaat.Create(AppDelegate.Conn);
 
-				if (ApparatenTable != null)
-				{
-					ds.AddApparaat(apparaat);
-					ReloadTable();
-				}
-			};
+			//	if (ApparatenTable != null)
+			//	{
+			//		ds.AddApparaat(apparaat);
+			//		ReloadTable();
+			//	}
+			//};
 
-			// Display sheet
-			sheet.ShowSheet(NSApplication.SharedApplication.KeyWindow);
+			//// Display sheet
+			//sheet.ShowSheet(NSApplication.SharedApplication.KeyWindow);
 		}
 
 		partial void ApparaatRemoveClicked(NSButton sender)
@@ -106,27 +106,27 @@ namespace FataAquana
 		[Export("RowDoubleClicked:")]
 		public void RowDoubleClicked(NSObject sender)
 		{
-			var tableView = sender as NSTableView;
+			//var tableView = sender as NSTableView;
 
-			var selectedApparaat = ds.Apparaten[(int)ApparatenTable.SelectedRow] as ApparaatModel;
+			//var selectedApparaat = ds.Apparaten[(int)ApparatenTable.SelectedRow] as ApparaatModel;
 
-			Debug.WriteLine("Clicked: " + selectedApparaat.ID + "|" + selectedApparaat.ApparaatNaam);
+			//Debug.WriteLine("Clicked: " + selectedApparaat.ID + "|" + selectedApparaat.ApparaatNaam);
 
-			var sheet = new ApparaatEditorSheetController(selectedApparaat, true);
-			// Wire-up
-			sheet.ApparaatModified += (apparaat) =>
-			{
-				// Save person to database
-				apparaat.Update(AppDelegate.Conn);
+			//var sheet = new ApparaatEditorSheetController(selectedApparaat, true);
+			//// Wire-up
+			//sheet.ApparaatModified += (apparaat) =>
+			//{
+			//	// Save person to database
+			//	apparaat.Update(AppDelegate.Conn);
 
-				if (ApparatenTable != null)
-				{
-					ReloadTable();
-				}
-			};
+			//	if (ApparatenTable != null)
+			//	{
+			//		ReloadTable();
+			//	}
+			//};
 
-			// Display sheet
-			sheet.ShowSheet(NSApplication.SharedApplication.KeyWindow);
+			//// Display sheet
+			//sheet.ShowSheet(NSApplication.SharedApplication.KeyWindow);
 		}
 		#endregion
 	}

@@ -11,12 +11,18 @@ namespace FataAquana
 	public partial class PersoonController : NSViewController
 	{
 		#region private variables
+		private PersonenController _parentController;
 		private PersoonModel _persoon;
 
 		private GevolgdeOpleidingenDS dsGevolgdeOpleidingen = null;
 		private AankopenDS dsAankopen = null;
 		private OnderhoudDS dsOnderhoud = null;
 		private LidmaatschappenDS dsLidmaatschappen = null;
+
+		public GevolgdeOpleidingModel SelectedGevolgdeOpleiding;
+		public AankoopModel SelectedAankoop;
+		public InOnderhoudModel SelectedOnderhoud;
+		public ClublidmaatschapModel SelectedLidmaatschap;
 		#endregion
 
 		#region Constructors
@@ -25,54 +31,26 @@ namespace FataAquana
 		}
 		#endregion
 
-		internal void LoadTables()
-		{
-			Debug.WriteLine("Start: PersoonController.LoadTables");
-
-			dsGevolgdeOpleidingen = new GevolgdeOpleidingenDS(AppDelegate.Conn, Persoon);
-			if (GevolgdeOpleidingenTable != null)
-			{
-				// Populate the Product Table
-				GevolgdeOpleidingenTable.DataSource = dsGevolgdeOpleidingen;
-				GevolgdeOpleidingenTable.Delegate = new GevolgdeOpleidingenDelegate(dsGevolgdeOpleidingen);
-			}
-		
-			dsAankopen = new AankopenDS(AppDelegate.Conn, Persoon);
-			if (AankopenTable != null)
-			{
-				// Populate the Product Table
-				AankopenTable.DataSource = dsAankopen;
-				AankopenTable.Delegate = new AankopenDelegate(dsAankopen);
-			}
-
-			dsOnderhoud = new OnderhoudDS(AppDelegate.Conn, Persoon);
-			if (OnderhoudTable != null)
-			{
-				// Populate the Product Table
-				OnderhoudTable.DataSource = dsOnderhoud;
-				OnderhoudTable.Delegate = new OnderhoudDelegate(dsOnderhoud);
-			}
-
-			dsLidmaatschappen = new LidmaatschappenDS(AppDelegate.Conn, Persoon);
-			if (LidmaatschappenTable != null)
-			{
-				// Populate the Product Table
-				LidmaatschappenTable.DataSource = dsLidmaatschappen;
-				LidmaatschappenTable.Delegate = new LidmaatschappenDelegate(dsLidmaatschappen);
-			}
-
-			Debug.WriteLine("Einde: PersoonController.LoadTables");
-		}
-
 		public override void AwakeFromNib()
 		{
 			Debug.WriteLine("Start: PersoonController.AwakeFromNib");
 
 			base.AwakeFromNib();
 
-			Persoon = AppDelegate.SelectedPersoon;
+			_parentController = this.PresentingViewController as PersonenController;
+			if (_parentController != null)
+			{
+				Persoon = _parentController.SelectedPersoon;
 
-			LoadTables();
+				if (Persoon != null)
+				{
+					LoadTables();
+				}
+				else
+				{
+					Persoon = new PersoonModel();
+				}
+			}
 
 			Debug.WriteLine("Einde: PersoonController.AwakeFromNib");
 		}
@@ -87,6 +65,29 @@ namespace FataAquana
 				_persoon = value;
 				DidChangeValue("Persoon");
 			}
+		}
+
+		partial void SaveButton(NSButton sender)
+		{
+			Debug.WriteLine("Start: PersoonController.CancelButton");
+
+			if (_parentController.SelectedPersoon != null)
+			{
+				Persoon.Update(AppDelegate.Conn);
+			}
+			else
+			{
+				Persoon.Create(AppDelegate.Conn);
+			}
+
+			if (_parentController != null)
+			{
+				_parentController.ReloadTable();
+			}
+
+			DismissController(this);
+
+			Debug.WriteLine("Einde: PersoonController.CancelButton");
 		}
 
 		partial void CancelButton(NSButton sender)
@@ -122,12 +123,11 @@ namespace FataAquana
 			}
 		}
 
+		#region Gevolgde Opleidingen
 		[Action("GevolgdeOpleidingAddClicked:")]
 		public void GevolgdeOpleidingAddClicked(Foundation.NSObject sender)
 		{
 			Debug.WriteLine("Start: PersoonController.GevolgdeOpleidingAddClicked");
-
-			var newGevolgdeOpleiding = new GevolgdeOpleidingModel();
 
 			PerformSegue("GevolgdeOpleidingSegue", this);
 
@@ -139,12 +139,79 @@ namespace FataAquana
 		{
 			Debug.WriteLine("Start: PersoonController.GevolgdeOpleidingRemoveClicked");
 
-			//var selectedRowIndex = PersonenTable.SelectedRow;
-			//var selectedPerson = ds.Personen[(int)selectedRowIndex] as PersoonModel;
-			//selectedPerson.Delete(AppDelegate.Conn);
-			//ReloadTable();
+			var selectedRowIndex = (int)GevolgdeOpleidingenTable.SelectedRow;
+			if (selectedRowIndex >= 0)
+			{
+				SelectedGevolgdeOpleiding = dsGevolgdeOpleidingen.GevolgdeOpleidingen[selectedRowIndex] as GevolgdeOpleidingModel;
+				SelectedGevolgdeOpleiding.Delete(AppDelegate.Conn);
+
+				LoadTables();
+			}
+
+			Debug.WriteLine("Einde: PersoonController.GevolgdeOpleidingRemoveClicked");
 		}
 
+		[Export("GevolgdeOpleidingDoubleClicked:")]
+		public void GevolgdeOpleidingDoubleClicked(NSObject sender)
+		{
+			Debug.WriteLine("Start: PersoonController.GevolgdeOpleidingDoubleClicked");
+
+			var selectedRowIndex = (int)GevolgdeOpleidingenTable.SelectedRow;
+			if (selectedRowIndex >= 0)
+			{
+				SelectedGevolgdeOpleiding = dsGevolgdeOpleidingen.GevolgdeOpleidingen[selectedRowIndex] as GevolgdeOpleidingModel;
+
+				PerformSegue("GevolgdeOpleidingSegue", this);
+			}
+			Debug.WriteLine("Einde: PersoonController.GevolgdeOpleidingDoubleClicked");
+		}
+
+		#endregion Gevolgde Opleidingen
+
+		#region Aankopen
+		[Action("AankoopAddClicked:")]
+		public void AankoopAddClicked(Foundation.NSObject sender)
+		{
+			Debug.WriteLine("Start: PersoonController.AankoopAddClicked");
+
+			PerformSegue("AankoopSegue", this);
+
+			Debug.WriteLine("Einde: PersoonController.AankoopAddClicked");
+		}
+
+		[Action("AankoopRemoveClicked:")]
+		public void AankoopRemoveClicked(Foundation.NSObject sender)
+		{
+			Debug.WriteLine("Start: PersoonController.AankoopRemoveClicked");
+
+			var selectedRowIndex = (int)AankopenTable.SelectedRow;
+			if (selectedRowIndex >= 0)
+			{
+				SelectedAankoop = dsAankopen.Aankopen[selectedRowIndex] as AankoopModel;
+				SelectedAankoop.Delete(AppDelegate.Conn);
+
+				LoadTables();
+			}
+
+			Debug.WriteLine("Einde: PersoonController.AankoopRemoveClicked");
+		}
+
+		[Export("AankoopDoubleClicked:")]
+		public void AankoopDoubleClicked(NSObject sender)
+		{
+			Debug.WriteLine("Start: PersoonController.AankoopDoubleClicked");
+
+			var selectedRowIndex = (int)AankopenTable.SelectedRow;
+			if (selectedRowIndex >= 0)
+			{
+				SelectedAankoop = dsAankopen.Aankopen[selectedRowIndex] as AankoopModel;
+
+				PerformSegue("AankoopSegue", this);
+			}
+			Debug.WriteLine("Einde: PersoonController.AankoopDoubleClicked");
+		}
+
+		#endregion Aankopen
 		#endregion
 
 		#region Events
@@ -156,7 +223,64 @@ namespace FataAquana
 			Debug.WriteLine("Start: PersoonController.RaisePersonModified");
 
 			if (this.PersonModified != null) this.PersonModified(persoon);
+		
+			Debug.WriteLine("Einde: PersoonController.RaisePersonModified");
 		}
 		#endregion
+
+		internal void LoadTables()
+		{
+			Debug.WriteLine("Start: PersoonController.LoadTables");
+
+			if (dsGevolgdeOpleidingen != null)
+			{
+				dsGevolgdeOpleidingen.GevolgdeOpleidingen.Clear();
+			}
+			dsGevolgdeOpleidingen = new GevolgdeOpleidingenDS(AppDelegate.Conn, Persoon);
+			if (GevolgdeOpleidingenTable != null)
+			{
+				// Populate the Product Table
+				GevolgdeOpleidingenTable.DataSource = dsGevolgdeOpleidingen;
+				GevolgdeOpleidingenTable.Delegate = new GevolgdeOpleidingenDelegate(dsGevolgdeOpleidingen);
+			}
+
+			if (dsAankopen != null)
+			{
+				dsAankopen.Aankopen.Clear();
+			}
+			dsAankopen = new AankopenDS(AppDelegate.Conn, Persoon);
+			if (AankopenTable != null)
+			{
+				// Populate the Product Table
+				AankopenTable.DataSource = dsAankopen;
+				AankopenTable.Delegate = new AankopenDelegate(dsAankopen);
+			}
+
+			if (dsOnderhoud != null)
+			{
+				dsOnderhoud.Onderhoud.Clear();
+			}
+			dsOnderhoud = new OnderhoudDS(AppDelegate.Conn, Persoon);
+			if (OnderhoudTable != null)
+			{
+				// Populate the Product Table
+				OnderhoudTable.DataSource = dsOnderhoud;
+				OnderhoudTable.Delegate = new OnderhoudDelegate(dsOnderhoud);
+			}
+
+			if (dsLidmaatschappen != null)
+			{
+				dsLidmaatschappen.Lidmaatschappen.Clear();
+			}
+			dsLidmaatschappen = new LidmaatschappenDS(AppDelegate.Conn, Persoon);
+			if (LidmaatschappenTable != null)
+			{
+				// Populate the Product Table
+				LidmaatschappenTable.DataSource = dsLidmaatschappen;
+				LidmaatschappenTable.Delegate = new LidmaatschappenDelegate(dsLidmaatschappen);
+			}
+
+			Debug.WriteLine("Einde: PersoonController.LoadTables");
+		}
 	}
 }

@@ -49,7 +49,14 @@ namespace FataAquana
 
 		public override NSObject ObjectValueForItem(NSComboBox comboBox, nint index)
 		{
-			return NSObject.FromObject(Opleidingen[(int)index]);
+			if (index >= 0)
+			{
+				return NSObject.FromObject(Opleidingen[(int)index].OpleidingNaam);
+			}
+			else
+			{
+				return null;
+			}
 		}
 			                
 		void LoadOpleidingen(SqliteConnection conn)

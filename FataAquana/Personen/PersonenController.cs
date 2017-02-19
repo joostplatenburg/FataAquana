@@ -12,15 +12,10 @@ namespace FataAquana
 	{
 		private PersonenDS ds = null;
 
+		public PersoonModel SelectedPersoon = null;
+
 		#region Computed Properties
-		// Strongly typed view accessor
-		public new PersonenView View
-		{
-			get
-			{
-				return (PersonenView)base.View;
-			}
-		}
+
 		#endregion
 
 		#region Constructors
@@ -69,38 +64,25 @@ namespace FataAquana
 		#region Custom Methods
 		partial void PersoonAddClicked(Foundation.NSObject sender)
 		{
-			var newPersoon = new PersoonModel();
-			/*
-			var sheet = new PersoonEditorSheetController(newPersoon, true);
-			// Wire-up
-			sheet.PersonModified += (persoon) =>
-			{
-				// Save person to database
-				persoon.Create(AppDelegate.Conn);
+			Debug.WriteLine("Start: PersonenController.PersoonAddClicked");
 
-				if (PersonenTable != null)
-				{
-					ds.AddPersoon(persoon);
-					ReloadTable();
-				}
-			};
+			SelectedPersoon = null;
 
-			// Display sheet
-			sheet.ShowSheet(NSApplication.SharedApplication.KeyWindow);
-			*/
+			PerformSegue("PersoonSegue", this);
+
+			Debug.WriteLine("Einde: PersonenController.PersoonAddClicked");
 		}
 
 		partial void PersoonRemoveClicked(Foundation.NSObject sender)
 		{
+			Debug.WriteLine("Start: PersonenController.PersoonRemoveClicked");
+
 			var selectedRowIndex = PersonenTable.SelectedRow;
 			var selectedPerson = ds.Personen[(int)selectedRowIndex] as PersoonModel;
 			selectedPerson.Delete(AppDelegate.Conn);
 			ReloadTable();
-		}
-
-		public void ReloadTable()
-		{
-			PersonenTable.ReloadData();
+		
+			Debug.WriteLine("Einde: PersonenController.PersoonRemoveClicked");
 		}
 
 		[Export("RowDoubleClicked:")]
@@ -108,33 +90,16 @@ namespace FataAquana
 		{
 			Debug.WriteLine("Start: PersonenController.RowDoubleClicked"); 
 			               
-			var selectedPerson = ds.Personen[(int)PersonenTable.SelectedRow] as PersoonModel;
+			SelectedPersoon = ds.Personen[(int)PersonenTable.SelectedRow] as PersoonModel;
 
-			AppDelegate.SelectedPersoon = selectedPerson;
+			PerformSegue("PersoonSegue", this);
 
-			PerformSegue("PersoonEditSegue", this);
-
-			/*
-			Debug.WriteLine("Clicked: " + selectedPerson.ID + "|" + selectedPerson.Achternaam);
-
-			var sheet = new PersoonEditorSheetController(selectedPerson, true);
-
-			// Wire-up the person modified event
-			sheet.PersonModified += (persoon) =>
-			{
-				// Save person to database
-				persoon.Update(AppDelegate.Conn);
-
-				if (PersonenTable != null)
-				{
-					ReloadTable();
-				}
-			};
-
-			// Display sheet
-			sheet.ShowSheet(NSApplication.SharedApplication.KeyWindow);
-		*/
 			Debug.WriteLine("Einde: PersonenController.RowDoubleClicked");
+		}
+
+		public void ReloadTable()
+		{
+			PersonenTable.ReloadData();
 		}
 		#endregion
 	}

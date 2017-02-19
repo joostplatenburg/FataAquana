@@ -14,9 +14,4 @@ Global
 		{C68BBD5D-FB6F-4415-AE6D-937DEC430EE5}.Release|x86.ActiveCfg = Release|x86
 		{C68BBD5D-FB6F-4415-AE6D-937DEC430EE5}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
-	GlobalSection(MonoDevelopProperties) = preSolution
-		Policies = $0
-		$0.VersionControlPolicy = $1
-		$1.inheritsSet = Mono
-	EndGlobalSection
 EndGlobal

@@ -14,13 +14,13 @@ namespace FataAquana
 
 		#region Computed Properties
 		// Strongly typed view accessor
-		public new OpleidingenView View
-		{
-			get
-			{
-				return (OpleidingenView)base.View;
-			}
-		}
+		//public new OpleidingenView View
+		//{
+		//	get
+		//	{
+		//		return (OpleidingenView)base.View;
+		//	}
+		//}
 		#endregion
 
 		#region Constructors
@@ -71,25 +71,25 @@ namespace FataAquana
 		#region Custom Methods
 		partial void OpleidingAddClicked(NSButton sender)
 		{
-			var newOpleiding = new OpleidingModel();
+			//var newOpleiding = new OpleidingModel();
 
-			var sheet = new OpleidingEditorSheetController(newOpleiding, true);
-			// Wire-up
-			sheet.OpleidingModified += (opleiding) =>
-			{
-				// Save club to database
-				opleiding.Create(AppDelegate.Conn);
+			//var sheet = new OpleidingEditorSheetController(newOpleiding, true);
+			//// Wire-up
+			//sheet.OpleidingModified += (opleiding) =>
+			//{
+			//	// Save club to database
+			//	opleiding.Create(AppDelegate.Conn);
 
-				if (OpleidingenTable != null)
-				{
-					ds.AddOpleiding(opleiding);
+			//	if (OpleidingenTable != null)
+			//	{
+			//		ds.AddOpleiding(opleiding);
 
-					ReloadTable();
-				}
-			};
+			//		ReloadTable();
+			//	}
+			//};
 
-			// Display sheet
-			sheet.ShowSheet(NSApplication.SharedApplication.KeyWindow);
+			//// Display sheet
+			//sheet.ShowSheet(NSApplication.SharedApplication.KeyWindow);
 		}
 
 		partial void OpleidingRemoveClicked(NSButton sender)
@@ -110,25 +110,25 @@ namespace FataAquana
 		[Export("RowDoubleClicked:")]
 		public void RowDoubleClicked(NSObject sender)
 		{
-			var selectedOpleiding = ds.Opleidingen[(int)OpleidingenTable.SelectedRow] as OpleidingModel;
+			//var selectedOpleiding = ds.Opleidingen[(int)OpleidingenTable.SelectedRow] as OpleidingModel;
 
-			Debug.WriteLine("Clicked: " + selectedOpleiding.ID + "|" + selectedOpleiding.OpleidingNaam);
+			//Debug.WriteLine("Clicked: " + selectedOpleiding.ID + "|" + selectedOpleiding.OpleidingNaam);
 
-			var sheet = new OpleidingEditorSheetController(selectedOpleiding, true);
-			// Wire-up
-			sheet.OpleidingModified += (opleiding) =>
-			{
-				// Save club to database
-				opleiding.Update(AppDelegate.Conn);
+			//var sheet = new OpleidingEditorSheetController(selectedOpleiding, true);
+			//// Wire-up
+			//sheet.OpleidingModified += (opleiding) =>
+			//{
+			//	// Save club to database
+			//	opleiding.Update(AppDelegate.Conn);
 
-				if (OpleidingenTable != null)
-				{
-					ReloadTable();
-				}
-			};
+			//	if (OpleidingenTable != null)
+			//	{
+			//		ReloadTable();
+			//	}
+			//};
 
-			// Display sheet
-			sheet.ShowSheet(NSApplication.SharedApplication.KeyWindow);
+			//// Display sheet
+			//sheet.ShowSheet(NSApplication.SharedApplication.KeyWindow);
 		}
 		#endregion
 	}

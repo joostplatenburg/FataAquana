@@ -55,7 +55,7 @@ namespace FataAquana
 
 		public override bool ShouldSelectRow(NSTableView tableView, nint row)
 		{
-			Debug.WriteLine("Selected row: " + row);
+			//Debug.WriteLine("Selected row: " + row);
 
 			//AppDelegate.MainView.RaisePersoonSelected(row);
 

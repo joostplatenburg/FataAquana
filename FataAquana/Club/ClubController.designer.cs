@@ -27,29 +27,35 @@ namespace FataAquana
 		[Action ("CancelAction:")]
 		partial void CancelAction (AppKit.NSButton sender);
 
+		[Action ("CancelButton:")]
+		partial void CancelButton (AppKit.NSButton sender);
+
 		[Action ("OKaction:")]
 		partial void OKaction (AppKit.NSButton sender);
+
+		[Action ("SaveButton:")]
+		partial void SaveButton (AppKit.NSButton sender);
 		
 		void ReleaseDesignerOutlets ()
 		{
-			if (Clubnaam != null) {
-				Clubnaam.Dispose ();
-				Clubnaam = null;
-			}
-
 			if (Clubadres != null) {
 				Clubadres.Dispose ();
 				Clubadres = null;
 			}
 
-			if (Clubpostcode != null) {
-				Clubpostcode.Dispose ();
-				Clubpostcode = null;
+			if (Clubnaam != null) {
+				Clubnaam.Dispose ();
+				Clubnaam = null;
 			}
 
 			if (Clubplaats != null) {
 				Clubplaats.Dispose ();
 				Clubplaats = null;
+			}
+
+			if (Clubpostcode != null) {
+				Clubpostcode.Dispose ();
+				Clubpostcode = null;
 			}
 		}
 	}

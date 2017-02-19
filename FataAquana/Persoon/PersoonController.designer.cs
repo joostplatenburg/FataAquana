@@ -25,9 +25,6 @@ namespace FataAquana
 		AppKit.NSTableColumn Clubnaam { get; set; }
 
 		[Outlet]
-		AppKit.NSTableView LidmaatschappenTable { get; set; }
-
-		[Outlet]
 		AppKit.NSTableColumn GekochtOp { get; set; }
 
 		[Outlet]
@@ -38,6 +35,9 @@ namespace FataAquana
 
 		[Outlet]
 		AppKit.NSTableColumn IngeschrevenOp { get; set; }
+
+		[Outlet]
+		AppKit.NSTableView LidmaatschappenTable { get; set; }
 
 		[Outlet]
 		AppKit.NSTableView OnderhoudTable { get; set; }
@@ -57,12 +57,6 @@ namespace FataAquana
 		[Outlet]
 		AppKit.NSTableColumn VerlopenOp { get; set; }
 
-		[Action ("AankoopAddClicked:")]
-		partial void AankoopAddClicked (Foundation.NSObject sender);
-
-		[Action ("AankoopRemoveClicked:")]
-		partial void AankoopRemoveClicked (Foundation.NSObject sender);
-
 		[Action ("CancelButton:")]
 		partial void CancelButton (AppKit.NSButton sender);
 
@@ -80,6 +74,9 @@ namespace FataAquana
 
 		[Action ("OnderhoudRemoveClicked:")]
 		partial void OnderhoudRemoveClicked (Foundation.NSObject sender);
+
+		[Action ("SaveButton:")]
+		partial void SaveButton (AppKit.NSButton sender);
 		
 		void ReleaseDesignerOutlets ()
 		{
@@ -103,11 +100,6 @@ namespace FataAquana
 				Clubnaam = null;
 			}
 
-			if (LidmaatschappenTable != null) {
-				LidmaatschappenTable.Dispose ();
-				LidmaatschappenTable = null;
-			}
-
 			if (GekochtOp != null) {
 				GekochtOp.Dispose ();
 				GekochtOp = null;
@@ -126,6 +118,11 @@ namespace FataAquana
 			if (IngeschrevenOp != null) {
 				IngeschrevenOp.Dispose ();
 				IngeschrevenOp = null;
+			}
+
+			if (LidmaatschappenTable != null) {
+				LidmaatschappenTable.Dispose ();
+				LidmaatschappenTable = null;
 			}
 
 			if (OnderhoudTable != null) {
