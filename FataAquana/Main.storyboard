@@ -2724,7 +2724,7 @@ DQ
                                     <font key="font" metaFont="system"/>
                                     <tabViewItems>
                                         <tabViewItem label="Opleidingen" identifier="1" id="RlS-1n-Izq">
-                                            <view key="view" id="PVt-si-OXJ">
+                                            <view key="view" ambiguous="YES" id="PVt-si-OXJ">
                                                 <rect key="frame" x="10" y="33" width="607" height="176"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
@@ -2905,7 +2905,7 @@ DQ
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                         <clipView key="contentView" ambiguous="YES" id="Ah4-ap-L9q">
                                                             <rect key="frame" x="1" y="0.0" width="596" height="149"/>
-                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                            <autoresizingMask key="autoresizingMask"/>
                                                             <subviews>
                                                                 <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" headerView="flT-ZU-zhi" viewBased="YES" id="b0h-PD-FH9">
                                                                     <rect key="frame" x="0.0" y="0.0" width="596" height="126"/>
@@ -3042,7 +3042,7 @@ DQ
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                         <clipView key="contentView" ambiguous="YES" id="GSi-e6-mSq">
                                                             <rect key="frame" x="1" y="0.0" width="595" height="149"/>
-                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                            <autoresizingMask key="autoresizingMask"/>
                                                             <subviews>
                                                                 <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" headerView="7nH-5t-Gkl" viewBased="YES" id="7Gd-BP-SwB">
                                                                     <rect key="frame" x="0.0" y="0.0" width="595" height="126"/>
@@ -3198,7 +3198,7 @@ DQ
                                             </view>
                                         </tabViewItem>
                                         <tabViewItem label="Clubs" identifier="" id="Yif-wS-gNP">
-                                            <view key="view" ambiguous="YES" id="MRj-lJ-oGD">
+                                            <view key="view" id="MRj-lJ-oGD">
                                                 <rect key="frame" x="10" y="33" width="607" height="176"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
@@ -3207,7 +3207,7 @@ DQ
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                         <clipView key="contentView" ambiguous="YES" id="Kir-xc-0CR">
                                                             <rect key="frame" x="1" y="0.0" width="595" height="149"/>
-                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                            <autoresizingMask key="autoresizingMask"/>
                                                             <subviews>
                                                                 <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" headerView="ZXY-g9-zKu" viewBased="YES" id="AsB-wb-WEb">
                                                                     <rect key="frame" x="0.0" y="0.0" width="595" height="126"/>
@@ -3376,7 +3376,7 @@ DQ
                                 <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2cb-Fo-v8L">
                                     <rect key="frame" x="557" y="7" width="83" height="32"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                    <buttonCell key="cell" type="push" title="Close" bezelStyle="rounded" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="xIu-VL-Blg">
+                                    <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="xIu-VL-Blg">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                         <font key="font" metaFont="system"/>
                                         <string key="keyEquivalent" base64-UTF8="YES">
@@ -3718,7 +3718,7 @@ Gw
                                         <font key="font" metaFont="system"/>
                                     </buttonCell>
                                     <connections>
-                                        <action selector="GeslaagdOpEnable:" target="GVq-o4-xso" id="Mg8-Pe-2Tp"/>
+                                        <action selector="OntvangenOpEnable:" target="wQg-6c-3SV" id="oii-VD-TP6"/>
                                     </connections>
                                 </button>
                                 <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3bt-QO-bQH">
@@ -3729,7 +3729,7 @@ Gw
                                         <font key="font" metaFont="system"/>
                                     </buttonCell>
                                     <connections>
-                                        <action selector="VerlopenOpEnable:" target="GVq-o4-xso" id="gC9-AU-1LU"/>
+                                        <action selector="RetourOpEnable:" target="wQg-6c-3SV" id="zcV-mQ-Lkc"/>
                                     </connections>
                                 </button>
                                 <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="p9j-2v-sOB">
@@ -3743,7 +3743,7 @@ DQ
 </string>
                                     </buttonCell>
                                     <connections>
-                                        <action selector="SaveButton:" target="GVq-o4-xso" id="iEn-9J-gEb"/>
+                                        <action selector="SaveButton:" target="wQg-6c-3SV" id="N7j-a2-5Vo"/>
                                     </connections>
                                 </button>
                                 <datePicker verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XBz-L7-IMZ">
@@ -3768,7 +3768,7 @@ DQ
                                 <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xvl-Dk-8e6">
                                     <rect key="frame" x="250" y="15" width="80" height="32"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
-                                    <buttonCell key="cell" type="push" title="Close" bezelStyle="rounded" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="DtW-l4-ky8">
+                                    <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="DtW-l4-ky8">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                         <font key="font" metaFont="system"/>
                                         <string key="keyEquivalent" base64-UTF8="YES">
@@ -3776,7 +3776,7 @@ Gw
 </string>
                                     </buttonCell>
                                     <connections>
-                                        <action selector="CloseButton:" target="wQg-6c-3SV" id="S4h-Iz-7Cp"/>
+                                        <action selector="CancelButton:" target="wQg-6c-3SV" id="WBx-c4-bc5"/>
                                     </connections>
                                 </button>
                                 <comboBox verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="NO" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZKN-hX-Lkh">
@@ -3792,6 +3792,13 @@ Gw
                         </view>
                         <color key="fillColor" red="0.40000000600000002" green="1" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
                     </box>
+                    <connections>
+                        <outlet property="OnderhoudCombobox" destination="ZKN-hX-Lkh" id="rC5-fP-ojZ"/>
+                        <outlet property="OntvangenOpButton" destination="U0M-ZJ-LbL" id="CiF-3y-mfq"/>
+                        <outlet property="OntvangenOpDate" destination="XBz-L7-IMZ" id="wVc-0l-Hnr"/>
+                        <outlet property="RetourOpButton" destination="3bt-QO-bQH" id="JCr-w1-kvG"/>
+                        <outlet property="RetourOpDate" destination="3th-Oz-cyL" id="dvL-z2-LnH"/>
+                    </connections>
                 </viewController>
                 <customObject id="vUf-0G-D79" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -3834,7 +3841,7 @@ Gw
                                         <font key="font" metaFont="system"/>
                                     </buttonCell>
                                     <connections>
-                                        <action selector="GeslaagdOpEnable:" target="GVq-o4-xso" id="Poz-Jl-YIf"/>
+                                        <action selector="IngeschrevenOpEnable:" target="xJl-2W-Gew" id="UVI-g8-q1N"/>
                                     </connections>
                                 </button>
                                 <datePicker verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PiH-ie-4Ye">
@@ -3864,7 +3871,7 @@ Gw
                                         <font key="font" metaFont="system"/>
                                     </buttonCell>
                                     <connections>
-                                        <action selector="VerlopenOpEnable:" target="GVq-o4-xso" id="5dj-gv-BPH"/>
+                                        <action selector="UitgeschrevenOpEnable:" target="xJl-2W-Gew" id="kst-Ca-S1f"/>
                                     </connections>
                                 </button>
                                 <datePicker verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Y9R-qD-7OC">
@@ -3889,7 +3896,7 @@ Gw
                                 <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VhA-t2-Qu9">
                                     <rect key="frame" x="250" y="15" width="80" height="32"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
-                                    <buttonCell key="cell" type="push" title="Close" bezelStyle="rounded" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="lk3-vh-l5M">
+                                    <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="lk3-vh-l5M">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                         <font key="font" metaFont="system"/>
                                         <string key="keyEquivalent" base64-UTF8="YES">
@@ -3897,7 +3904,7 @@ Gw
 </string>
                                     </buttonCell>
                                     <connections>
-                                        <action selector="CloseButton:" target="xJl-2W-Gew" id="wye-fg-cLE"/>
+                                        <action selector="CancelButton:" target="xJl-2W-Gew" id="bkU-b1-BZr"/>
                                     </connections>
                                 </button>
                                 <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="13R-5g-xoI">
@@ -3911,13 +3918,20 @@ DQ
 </string>
                                     </buttonCell>
                                     <connections>
-                                        <action selector="SaveButton:" target="GVq-o4-xso" id="gyP-Da-aA8"/>
+                                        <action selector="SaveButton:" target="xJl-2W-Gew" id="AeO-qj-9Bt"/>
                                     </connections>
                                 </button>
                             </subviews>
                         </view>
                         <color key="fillColor" red="1" green="1" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
                     </box>
+                    <connections>
+                        <outlet property="IngeschrevenOpButton" destination="TWc-V7-0S6" id="hNN-Vl-wmh"/>
+                        <outlet property="IngeschrevenOpDate" destination="PiH-ie-4Ye" id="M4N-rd-nhy"/>
+                        <outlet property="LidmaatschapCombobox" destination="T48-2P-cad" id="Ik4-t0-bXk"/>
+                        <outlet property="UitgeschrevenOpButton" destination="dw4-8h-LAP" id="AY9-rj-Ydn"/>
+                        <outlet property="UitgeschrevenOpDate" destination="Y9R-qD-7OC" id="Lok-C9-pH5"/>
+                    </connections>
                 </viewController>
                 <customObject id="HAi-Rx-sn3" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>

@@ -3,10 +3,10 @@ namespace FataAquana
 {
 	public enum GroepObjecten
 	{
-		None,
-		Personen,
-		Opleidingen,
-		Apparaten,
+		All,
+		GevolgdeOpleidingen,
+		Aankopen,
+		Onderhoud,
 		Clubs
 	}
 }

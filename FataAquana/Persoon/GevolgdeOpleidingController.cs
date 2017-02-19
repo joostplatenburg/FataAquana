@@ -110,7 +110,6 @@ namespace FataAquana
 
 				GevolgdeOpleiding.Create(AppDelegate.Conn);
 
-				Debug.WriteLine(string.Format("{0}, {1}, {2}.", GevolgdeOpleiding.ID, GevolgdeOpleiding.PersoonID, GevolgdeOpleiding.OpleidingID));
 				if (_parentController != null)
 				{
 					_parentController.LoadTables();

@@ -41,7 +41,7 @@ namespace FataAquana
 			// Take action based on key
 			switch (key)
 			{
-				case "ApparaatNaam":
+				case "Apparaatnaam":
 					if (ascending)
 					{
 						Aankopen.Sort((x, y) => x.ApparaatNaam.CompareTo(y.ApparaatNaam));

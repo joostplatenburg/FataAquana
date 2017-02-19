@@ -212,6 +212,95 @@ namespace FataAquana
 		}
 
 		#endregion Aankopen
+
+		#region Onderhoud
+		[Action("OnderhoudAddClicked:")]
+		public void OnderhoudAddClicked(Foundation.NSObject sender)
+		{
+			Debug.WriteLine("Start: PersoonController.OnderhoudAddClicked");
+
+			PerformSegue("OnderhoudSegue", this);
+
+			Debug.WriteLine("Einde: PersoonController.OnderhoudAddClicked");
+		}
+
+		[Action("OnderhoudRemoveClicked:")]
+		public void OnderhoudRemoveClicked(Foundation.NSObject sender)
+		{
+			Debug.WriteLine("Start: PersoonController.OnderhoudRemoveClicked");
+
+			var selectedRowIndex = (int)OnderhoudTable.SelectedRow;
+			if (selectedRowIndex >= 0)
+			{
+				SelectedOnderhoud = dsOnderhoud.Onderhoud[selectedRowIndex] as InOnderhoudModel;
+				SelectedOnderhoud.Delete(AppDelegate.Conn);
+
+				LoadTables();
+			}
+
+			Debug.WriteLine("Einde: PersoonController.OnderhoudRemoveClicked");
+		}
+
+		[Export("OnderhoudDoubleClicked:")]
+		public void OnderhoudDoubleClicked(NSObject sender)
+		{
+			Debug.WriteLine("Start: PersoonController.OnderhoudDoubleClicked");
+
+			var selectedRowIndex = (int)OnderhoudTable.SelectedRow;
+			if (selectedRowIndex >= 0)
+			{
+				SelectedOnderhoud = dsOnderhoud.Onderhoud[selectedRowIndex] as InOnderhoudModel;
+
+				PerformSegue("OnderhoudSegue", this);
+			}
+			Debug.WriteLine("Einde: PersoonController.OnderhoudDoubleClicked");
+		}
+
+		#endregion Onderhoud
+
+		#region Lidmaatschap
+		[Action("LidmaatschapAddClicked:")]
+		public void LidmaatschapAddClicked(Foundation.NSObject sender)
+		{
+			Debug.WriteLine("Start: PersoonController.LidmaatschapAddClicked");
+
+			PerformSegue("LidmaatschapSegue", this);
+
+			Debug.WriteLine("Einde: PersoonController.LidmaatschapAddClicked");
+		}
+
+		[Action("LidmaatschapRemoveClicked:")]
+		public void LidmaatschapRemoveClicked(Foundation.NSObject sender)
+		{
+			Debug.WriteLine("Start: PersoonController.LidmaatschapRemoveClicked");
+
+			var selectedRowIndex = (int)LidmaatschappenTable.SelectedRow;
+			if (selectedRowIndex >= 0)
+			{
+				SelectedLidmaatschap = dsLidmaatschappen.Lidmaatschappen[selectedRowIndex] as ClublidmaatschapModel;
+				SelectedLidmaatschap.Delete(AppDelegate.Conn);
+
+				LoadTables();
+			}
+
+			Debug.WriteLine("Einde: PersoonController.LidmaatschapRemoveClicked");
+		}
+
+		[Export("LidmaatschapDoubleClicked:")]
+		public void LidmaatschapDoubleClicked(NSObject sender)
+		{
+			Debug.WriteLine("Start: PersoonController.LidmaatschapDoubleClicked");
+
+			var selectedRowIndex = (int)LidmaatschappenTable.SelectedRow;
+			if (selectedRowIndex >= 0)
+			{
+				SelectedLidmaatschap = dsLidmaatschappen.Lidmaatschappen[selectedRowIndex] as ClublidmaatschapModel;
+
+				PerformSegue("LidmaatschapSegue", this);
+			}
+			Debug.WriteLine("Einde: PersoonController.LidmaatschapDoubleClicked");
+		}
+		#endregion Lidmaatschap
 		#endregion
 
 		#region Events

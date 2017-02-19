@@ -60,20 +60,8 @@ namespace FataAquana
 		[Action ("CancelButton:")]
 		partial void CancelButton (AppKit.NSButton sender);
 
-		[Action ("LidmaatschapAddClicked:")]
-		partial void LidmaatschapAddClicked (Foundation.NSObject sender);
-
-		[Action ("LidmaatschapRemoveClicked:")]
-		partial void LidmaatschapRemoveClicked (Foundation.NSObject sender);
-
 		[Action ("OKButton:")]
 		partial void OKButton (AppKit.NSButton sender);
-
-		[Action ("OnderhoudAddClicked:")]
-		partial void OnderhoudAddClicked (Foundation.NSObject sender);
-
-		[Action ("OnderhoudRemoveClicked:")]
-		partial void OnderhoudRemoveClicked (Foundation.NSObject sender);
 
 		[Action ("SaveButton:")]
 		partial void SaveButton (AppKit.NSButton sender);

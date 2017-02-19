@@ -43,7 +43,7 @@ namespace FataAquana
 			// Setup view based on the column selected
 			switch (tableColumn.Title)
 			{
-				case "ApparaatnaamIO":
+				case "Apparaatnaam":
 					view.StringValue = DataSource.Onderhoud[(int)row].ApparaatNaam;
 					tableColumn.Width = 140;
 					break;

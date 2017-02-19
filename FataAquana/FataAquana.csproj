@@ -139,7 +139,7 @@
     </Compile>
     <Compile Include="ActivatableItem.cs" />
     <Compile Include="Persoon\GevolgdeOpleidingenDS.cs" />
-    <Compile Include="Enum\GroepObjecten %28copy%29.cs" />
+    <Compile Include="Enum\PersoonsTabellen.cs" />
     <Compile Include="SplitViewController.cs" />
     <Compile Include="SplitViewController.designer.cs">
       <DependentUpon>SplitViewController.cs</DependentUpon>
@@ -198,6 +198,7 @@
     <Compile Include="Persoon\OnderhoudController.designer.cs">
       <DependentUpon>OnderhoudController.cs</DependentUpon>
     </Compile>
+    <Compile Include="Clubs\ClubsComboDS.cs" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Main.storyboard" />
