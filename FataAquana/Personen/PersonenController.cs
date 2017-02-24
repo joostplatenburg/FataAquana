@@ -10,9 +10,8 @@ namespace FataAquana
 {
 	public partial class PersonenController : NSViewController
 	{
-		private PersonenDS ds = null;
-
 		public PersoonModel SelectedPersoon = null;
+		public PersonenDS dsPersonen = null;
 
 		#region Computed Properties
 
@@ -50,13 +49,13 @@ namespace FataAquana
 			base.AwakeFromNib();
 
 			// Create the Personen Table Data Source and populate it
-			ds = new PersonenDS(AppDelegate.Conn);
+			dsPersonen = new PersonenDS(AppDelegate.Conn);
 
 			if (PersonenTable != null)
 			{
 				// Populate the Product Table
-				PersonenTable.DataSource = ds;
-				PersonenTable.Delegate = new PersonenDelegate(this, ds);
+				PersonenTable.DataSource = dsPersonen;
+				PersonenTable.Delegate = new PersonenDelegate(this, dsPersonen);
 			}
 		}
 		#endregion
@@ -78,10 +77,29 @@ namespace FataAquana
 			Debug.WriteLine("Start: PersonenController.PersoonRemoveClicked");
 
 			var selectedRowIndex = PersonenTable.SelectedRow;
-			var selectedPerson = ds.Personen[(int)selectedRowIndex] as PersoonModel;
-			selectedPerson.Delete(AppDelegate.Conn);
-			ReloadTable();
-		
+			SelectedPersoon = dsPersonen.Personen[(int)selectedRowIndex] as PersoonModel;
+
+			// Configure alert
+			var alert = new NSAlert()
+			{
+				AlertStyle = NSAlertStyle.Informational,
+				InformativeText = $"Weet je zeker dat je de persoon {SelectedPersoon.Achternaam} wilt verwijderen?\n\nDit kan niet meer ongedaan gemaakt worden.",
+				MessageText = $"Delete {SelectedPersoon.Achternaam}?",
+			};
+			alert.AddButton("Cancel");
+			alert.AddButton("Delete");
+			alert.BeginSheetForResponse(this.View.Window, (result) =>
+			{
+				// Should we delete the requested row?
+				if (result == 1001)
+				{
+					// Remove the given row from the dataset
+					SelectedPersoon.Delete(AppDelegate.Conn);
+					dsPersonen.Personen.Remove(SelectedPersoon);
+					ReloadTable();
+				}
+			});
+
 			Debug.WriteLine("Einde: PersonenController.PersoonRemoveClicked");
 		}
 
@@ -90,7 +108,7 @@ namespace FataAquana
 		{
 			Debug.WriteLine("Start: PersonenController.RowDoubleClicked"); 
 			               
-			SelectedPersoon = ds.Personen[(int)PersonenTable.SelectedRow] as PersoonModel;
+			SelectedPersoon = dsPersonen.Personen[(int)PersonenTable.SelectedRow] as PersoonModel;
 
 			PerformSegue("PersoonSegue", this);
 

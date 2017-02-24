@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11762"/>
+        <plugIn identifier="com.apple.WebKitIBPlugin" version="11762"/>
         <capability name="box content view" minToolsVersion="7.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -789,7 +790,7 @@
                                                                     </constraints>
                                                                     <imageCell key="cell" refusesFirstResponder="YES" imageScaling="proportionallyDown" image="NSActionTemplate" id="RHU-DR-96C"/>
                                                                 </imageView>
-                                                                <textField verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4FN-nu-6t9">
+                                                                <textField verticalHuggingPriority="750" misplaced="YES" allowsCharacterPickerTouchBarItem="NO" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4FN-nu-6t9">
                                                                     <rect key="frame" x="24" y="0.0" width="142" height="18"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="18" id="9hY-t8-4BH"/>
@@ -3936,6 +3937,33 @@ DQ
                 <customObject id="HAi-Rx-sn3" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-2" y="4006"/>
+        </scene>
+        <!--Print Preview Controller-->
+        <scene sceneID="VXV-mD-rg4">
+            <objects>
+                <viewController title="Print Preview Controller" showSeguePresentationStyle="single" id="2VG-o7-i1g" sceneMemberID="viewController">
+                    <view key="view" id="BYW-TM-uwB">
+                        <rect key="frame" x="0.0" y="0.0" width="446" height="581"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <webView maintainsBackForwardList="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FgD-ag-8Aa">
+                                <rect key="frame" x="20" y="20" width="406" height="541"/>
+                                <webPreferences key="preferences" defaultFontSize="16" defaultFixedFontSize="13" minimumFontSize="0" plugInsEnabled="NO" javaEnabled="NO" javaScriptEnabled="NO" javaScriptCanOpenWindowsAutomatically="NO" allowsAnimatedImages="NO" allowsAnimatedImageLooping="NO">
+                                    <nil key="identifier"/>
+                                </webPreferences>
+                            </webView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="FgD-ag-8Aa" secondAttribute="trailing" constant="20" id="9Jt-8W-83j"/>
+                            <constraint firstAttribute="bottom" secondItem="FgD-ag-8Aa" secondAttribute="bottom" constant="20" id="aFA-hd-xXJ"/>
+                            <constraint firstItem="FgD-ag-8Aa" firstAttribute="top" secondItem="BYW-TM-uwB" secondAttribute="top" constant="20" id="swR-Q0-Hay"/>
+                            <constraint firstItem="FgD-ag-8Aa" firstAttribute="leading" secondItem="BYW-TM-uwB" secondAttribute="leading" constant="20" id="xPr-gJ-fAC"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <customObject id="DLJ-6Z-EgS" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="446" y="4211.5"/>
         </scene>
     </scenes>
     <resources>

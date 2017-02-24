@@ -78,6 +78,7 @@ namespace FataAquana
 			else
 			{
 				Persoon.Create(AppDelegate.Conn);
+				_parentController.dsPersonen.AddPersoon(Persoon);
 			}
 
 			if (_parentController != null)
@@ -143,9 +144,28 @@ namespace FataAquana
 			if (selectedRowIndex >= 0)
 			{
 				SelectedGevolgdeOpleiding = dsGevolgdeOpleidingen.GevolgdeOpleidingen[selectedRowIndex] as GevolgdeOpleidingModel;
-				SelectedGevolgdeOpleiding.Delete(AppDelegate.Conn);
 
-				LoadTables();
+				// Configure alert
+				var alert = new NSAlert()
+				{
+					AlertStyle = NSAlertStyle.Informational,
+					InformativeText = $"Weet je zeker dat je de gevolgde opleiding {SelectedGevolgdeOpleiding.OpleidingNaam} wilt verwijderen?\n\nDit kan niet meer ongedaan gemaakt worden.",
+					MessageText = $"Delete {SelectedGevolgdeOpleiding.OpleidingNaam}?",
+				};
+				alert.AddButton("Cancel");
+				alert.AddButton("Delete");
+				alert.BeginSheetForResponse(this.View.Window, (result) =>
+				{
+				// Should we delete the requested row?
+				if (result == 1001)
+					{
+						// Remove the given row from the dataset
+						SelectedGevolgdeOpleiding.Delete(AppDelegate.Conn);
+						dsGevolgdeOpleidingen.GevolgdeOpleidingen.Remove(SelectedGevolgdeOpleiding);
+				
+						GevolgdeOpleidingenTable.ReloadData();
+					}
+				});
 			}
 
 			Debug.WriteLine("Einde: PersoonController.GevolgdeOpleidingRemoveClicked");
@@ -188,9 +208,28 @@ namespace FataAquana
 			if (selectedRowIndex >= 0)
 			{
 				SelectedAankoop = dsAankopen.Aankopen[selectedRowIndex] as AankoopModel;
-				SelectedAankoop.Delete(AppDelegate.Conn);
 
-				LoadTables();
+				// Configure alert
+				var alert = new NSAlert()
+				{
+					AlertStyle = NSAlertStyle.Informational,
+					InformativeText = $"Weet je zeker dat je de aankoop van {SelectedAankoop.ApparaatNaam} wilt verwijderen?\n\nDit kan niet meer ongedaan gemaakt worden.",
+					MessageText = $"Delete {SelectedAankoop.ApparaatNaam}?",
+				};
+				alert.AddButton("Cancel");
+				alert.AddButton("Delete");
+				alert.BeginSheetForResponse(this.View.Window, (result) =>
+				{
+					// Should we delete the requested row?
+					if (result == 1001)
+					{
+						// Remove the given row from the dataset
+						SelectedAankoop.Delete(AppDelegate.Conn);
+						dsAankopen.Aankopen.Remove(SelectedAankoop);
+
+						AankopenTable.ReloadData();
+					}
+				});
 			}
 
 			Debug.WriteLine("Einde: PersoonController.AankoopRemoveClicked");
@@ -210,7 +249,6 @@ namespace FataAquana
 			}
 			Debug.WriteLine("Einde: PersoonController.AankoopDoubleClicked");
 		}
-
 		#endregion Aankopen
 
 		#region Onderhoud
@@ -233,9 +271,28 @@ namespace FataAquana
 			if (selectedRowIndex >= 0)
 			{
 				SelectedOnderhoud = dsOnderhoud.Onderhoud[selectedRowIndex] as InOnderhoudModel;
-				SelectedOnderhoud.Delete(AppDelegate.Conn);
 
-				LoadTables();
+				// Configure alert
+				var alert = new NSAlert()
+				{
+					AlertStyle = NSAlertStyle.Informational,
+					InformativeText = $"Weet je zeker dat je het onderhoud op {SelectedOnderhoud.ApparaatNaam} wilt verwijderen?\n\nDit kan niet meer ongedaan gemaakt worden.",
+					MessageText = $"Delete {SelectedOnderhoud.ApparaatNaam}?",
+				};
+				alert.AddButton("Cancel");
+				alert.AddButton("Delete");
+				alert.BeginSheetForResponse(this.View.Window, (result) =>
+				{
+					// Should we delete the requested row?
+					if (result == 1001)
+					{
+						// Remove the given row from the dataset
+						SelectedOnderhoud.Delete(AppDelegate.Conn);
+						dsOnderhoud.Onderhoud.Remove(SelectedOnderhoud);
+
+						OnderhoudTable.ReloadData();
+					}
+				});
 			}
 
 			Debug.WriteLine("Einde: PersoonController.OnderhoudRemoveClicked");
@@ -255,7 +312,6 @@ namespace FataAquana
 			}
 			Debug.WriteLine("Einde: PersoonController.OnderhoudDoubleClicked");
 		}
-
 		#endregion Onderhoud
 
 		#region Lidmaatschap
@@ -278,9 +334,28 @@ namespace FataAquana
 			if (selectedRowIndex >= 0)
 			{
 				SelectedLidmaatschap = dsLidmaatschappen.Lidmaatschappen[selectedRowIndex] as ClublidmaatschapModel;
-				SelectedLidmaatschap.Delete(AppDelegate.Conn);
 
-				LoadTables();
+				// Configure alert
+				var alert = new NSAlert()
+				{
+					AlertStyle = NSAlertStyle.Informational,
+					InformativeText = $"Weet je zeker dat je het lidmaatschap op {SelectedLidmaatschap.ClubNaam} wilt verwijderen?\n\nDit kan niet meer ongedaan gemaakt worden.",
+					MessageText = $"Delete {SelectedLidmaatschap.ClubNaam}?",
+				};
+				alert.AddButton("Cancel");
+				alert.AddButton("Delete");
+				alert.BeginSheetForResponse(this.View.Window, (result) =>
+				{
+					// Should we delete the requested row?
+					if (result == 1001)
+					{
+						// Remove the given row from the dataset
+						SelectedLidmaatschap.Delete(AppDelegate.Conn);
+						dsLidmaatschappen.Lidmaatschappen.Remove(SelectedLidmaatschap);
+
+						LidmaatschappenTable.ReloadData();
+					}
+				});
 			}
 
 			Debug.WriteLine("Einde: PersoonController.LidmaatschapRemoveClicked");

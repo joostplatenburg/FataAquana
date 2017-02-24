@@ -88,12 +88,12 @@ namespace FataAquana
 
 			if (LidmaatschapCombobox.DataSource != null)
 			{
-				LidmaatschappenDS comboDS = LidmaatschapCombobox.DataSource as LidmaatschappenDS;
+				ClubsComboDS comboDS = LidmaatschapCombobox.DataSource as ClubsComboDS;
 
-				var selectedLidmaatschap = comboDS.Lidmaatschappen[(int)LidmaatschapCombobox.SelectedIndex];
+				var selectedClub = comboDS.Clubs[(int)LidmaatschapCombobox.SelectedIndex];
 
 				Lidmaatschap.PersoonID = _parentController.Persoon.ID;
-				Lidmaatschap.ClubID = selectedLidmaatschap.ID;
+				Lidmaatschap.ClubID = selectedClub.ID;
 				if (IngeschrevenOpButton.State.Equals(NSCellStateValue.On))
 				{
 					Lidmaatschap.IngeschrevenOp = IngeschrevenOpDate.DateValue;

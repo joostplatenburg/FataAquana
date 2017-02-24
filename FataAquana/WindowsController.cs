@@ -36,10 +36,30 @@ namespace FataAquana
 				if (AppDelegate.Conn != null)
 				{
 					// Als currentview = Personen zoek op Achternaam
+
 					Debug.WriteLine("Zoek: " + Search.ToString());
 
 				}
 			};
 		}
-	}
+
+		// Printing a file
+/*		if (Path.GetExtension (filenames[0]).ToLower() == ".pdf") 
+		{
+		    var fileUrl = NSUrl.FromFilename(filePath);
+
+			PdfDocument aPdfDocument = new PdfDocument(fileUrl);
+			PdfView aPDFView = new PdfView();
+			aPDFView.Document = aPdfDocument;
+		    inv.Window.ContentView.AddSubview (aPDFView);
+		    var pr = NSPrintInfo.SharedPrintInfo;
+			pr.VerticallyCentered = false;
+		    pr.TopMargin = 2.0f;
+		    pr.BottomMargin = 2.0f;
+		    pr.LeftMargin = 1.0f;
+			bn 0pr.RightMargin = 1.0f;
+			aPDFView.Print(this);
+		}
+*/
+}
 }
