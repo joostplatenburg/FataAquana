@@ -13,6 +13,7 @@ namespace FataAquana
 	{
 		private PersoonController _parentController;
 		private ClublidmaatschapModel _lidmaatschap;
+		internal bool IsNieuw = false;
 
 		public List<ClublidmaatschapModel> Lidmaatschappen { get; set; } = new List<ClublidmaatschapModel>();
 
@@ -30,7 +31,9 @@ namespace FataAquana
 			{
 				Lidmaatschap = _parentController.SelectedLidmaatschap;
 
-				if (Lidmaatschap == null) Lidmaatschap = new ClublidmaatschapModel();
+				if (Lidmaatschap == null) { Lidmaatschap = new ClublidmaatschapModel();
+					IsNieuw = true;
+				}
 
 				if (LidmaatschapCombobox != null)
 				{
@@ -103,7 +106,14 @@ namespace FataAquana
 					Lidmaatschap.UitgeschrevenOp = UitgeschrevenOpDate.DateValue;
 				}
 
+				if (IsNieuw)
+				{
 				Lidmaatschap.Create(AppDelegate.Conn);
+									}
+				else {
+					Lidmaatschap.Update(AppDelegate.Conn);
+				}
+
 
 				if (_parentController != null)
 				{

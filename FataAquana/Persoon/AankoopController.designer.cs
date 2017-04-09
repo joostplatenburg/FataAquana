@@ -1,6 +1,6 @@
 // WARNING
 //
-// This file has been generated automatically by Visual Studio to store outlets and
+// This file has been generated automatically by Xamarin Studio to store outlets and
 // actions made in the UI designer. If it is removed, they will be lost.
 // Manual changes to this file may not be handled correctly.
 //
@@ -16,28 +16,22 @@ namespace FataAquana
 		AppKit.NSComboBox ApparatenCombobox { get; set; }
 
 		[Outlet]
-		AppKit.NSButton GekochtOpButton { get; set; }
+		AppKit.NSDatePicker GekochtOpDate { get; set; }
 
 		[Outlet]
-		AppKit.NSDatePicker GekochtOpDate { get; set; }
+		AppKit.NSTextField GekochtOpText { get; set; }
 
 		[Action ("CancelButton:")]
 		partial void CancelButton (Foundation.NSObject sender);
-
-		[Action ("CloseButton:")]
-		partial void CloseButton (Foundation.NSObject sender);
-
-		[Action ("GekochtOpEnable:")]
-		partial void GekochtOpEnable (Foundation.NSObject sender);
 
 		[Action ("SaveButton:")]
 		partial void SaveButton (Foundation.NSObject sender);
 		
 		void ReleaseDesignerOutlets ()
 		{
-			if (GekochtOpButton != null) {
-				GekochtOpButton.Dispose ();
-				GekochtOpButton = null;
+			if (ApparatenCombobox != null) {
+				ApparatenCombobox.Dispose ();
+				ApparatenCombobox = null;
 			}
 
 			if (GekochtOpDate != null) {
@@ -45,9 +39,9 @@ namespace FataAquana
 				GekochtOpDate = null;
 			}
 
-			if (ApparatenCombobox != null) {
-				ApparatenCombobox.Dispose ();
-				ApparatenCombobox = null;
+			if (GekochtOpText != null) {
+				GekochtOpText.Dispose ();
+				GekochtOpText = null;
 			}
 		}
 	}

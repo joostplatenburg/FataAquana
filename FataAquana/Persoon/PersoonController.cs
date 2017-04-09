@@ -69,7 +69,7 @@ namespace FataAquana
 
 		partial void SaveButton(NSButton sender)
 		{
-			Debug.WriteLine("Start: PersoonController.CancelButton");
+			Debug.WriteLine("Start: PersoonController.SaveButton");
 
 			if (_parentController.SelectedPersoon != null)
 			{
@@ -88,7 +88,7 @@ namespace FataAquana
 
 			DismissController(this);
 
-			Debug.WriteLine("Einde: PersoonController.CancelButton");
+			Debug.WriteLine("Einde: PersoonController.SaveButton");
 		}
 
 		partial void CancelButton(NSButton sender)

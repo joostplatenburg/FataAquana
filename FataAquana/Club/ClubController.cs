@@ -4,27 +4,44 @@ using System;
 
 using Foundation;
 using AppKit;
+using System.Diagnostics;
 
 namespace FataAquana
 {
 	public partial class ClubController : NSViewController
 	{
+		private ClubsController _parentController;
 		private ClubModel _club;
 
 		public ClubController (IntPtr handle) : base (handle)
 		{
 		}
 
-		partial void CancelAction(NSButton sender)
-		{
-			DismissViewController(this);
-		}
-
 		public override void AwakeFromNib()
 		{
+			Debug.WriteLine("Start: ClubController.AwakeFromNib");
+
 			base.AwakeFromNib();
+
+			_parentController = this.PresentingViewController as ClubsController;
+
+			if (_parentController != null)
+			{
+				Club = _parentController.SelectedClub;
+
+				if (Club != null)
+				{
+				}
+				else
+				{
+					Club = new ClubModel();
+				}
+			}
+
+			Debug.WriteLine("Einde: ClubController.AwakeFromNib");
 		}
 
+		[Export("Club")]
 		public ClubModel Club
 		{
 			get { return _club; }
@@ -36,5 +53,37 @@ namespace FataAquana
 			}
 		}
 
+		partial void SaveButton(NSButton sender)
+		{
+			Debug.WriteLine("Start: ClubController.SaveButton");
+
+			if (_parentController.SelectedClub != null)
+			{
+				Club.Update(AppDelegate.Conn);
+			}
+			else
+			{
+				Club.Create(AppDelegate.Conn);
+				_parentController.ds.AddClub(Club);
+			}
+
+			if (_parentController != null)
+			{
+				_parentController.ReloadTable();
+			}
+
+			DismissController(this);
+
+			Debug.WriteLine("Einde: ClubController.SaveButton");
+		}
+
+		partial void CancelButton(NSButton sender)
+		{
+			Debug.WriteLine("Start: ClubController.CancelButton");
+
+			DismissController(this);
+
+			Debug.WriteLine("Einde: ClubController.CancelButton");
+		}
 	}
 }

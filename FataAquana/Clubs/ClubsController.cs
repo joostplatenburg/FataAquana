@@ -10,17 +10,11 @@ namespace FataAquana
 {
 	public partial class ClubsController : NSViewController
 	{
-		private ClubsDS ds = null;
+		public ClubModel SelectedClub = null;
+		public ClubsDS ds = null;
 
 		#region Computed Properties
-		// Strongly typed view accessor
-		//public new ClubsView View
-		//{
-		//	get
-		//	{
-		//		return (ClubsView)base.View;
-		//	}
-		//}
+
 		#endregion
 
 		#region Constructors
@@ -55,7 +49,6 @@ namespace FataAquana
 			base.AwakeFromNib();
 
 			// Create the Occupation Table Data Source and populate it
-			//var DataSource = new TableORMDatasource(AppDelegate.Conn);
 			ds = new ClubsDS(AppDelegate.Conn);
 
 			if (ClubsTable != null)
@@ -70,68 +63,63 @@ namespace FataAquana
 		#region Custom Methods
 		partial void ClubAddClicked(NSButton sender)
 		{
-			//var newClub = new ClubModel();
+			Debug.WriteLine("Start: ClubsController.ClubAddClicked");
 
-			//var sheet = new ClubEditorSheetController(newClub, true);
-			//// Wire-up
-			//sheet.ClubModified += (club) =>
-			//{
-			//	// Save club to database
-			//	club.Create(AppDelegate.Conn);
+			SelectedClub = null;
 
-			//	if (ClubsTable != null)
-			//	{
-			//		ds.AddClub(club);
+			PerformSegue("ClubSegue", this);
 
-			//		ReloadTable();
-			//	}
-			//};
-
-			//// Display sheet
-			//sheet.ShowSheet(NSApplication.SharedApplication.KeyWindow);
+			Debug.WriteLine("Einde: ClubsController.ClubAddClicked");
 		}
 
 		partial void ClubRemoveClicked(NSButton sender)
 		{
-			// vragen of je zeker ben
-			var selectedRowIndex = ClubsTable.SelectedRow;
-			SelectedClub = ds.Clubs[(int)selectedRowIndex] as ClubModel;
-			ds.Clubs.Remove(SelectedClub);
-			SelectedClub.Delete(AppDelegate.Conn);
-			ReloadTable();
+			Debug.WriteLine("Start: ClubsController.ClubRemoveClicked");
+
+			if ((int)ClubsTable.SelectedRow >= 0)
+			{
+				SelectedClub = ds.Clubs[(int)ClubsTable.SelectedRow] as ClubModel;
+
+				// Configure alert
+				var alert = new NSAlert()
+				{
+					AlertStyle = NSAlertStyle.Informational,
+					InformativeText = $"Weet je zeker dat je de club {SelectedClub.ClubNaam} wilt verwijderen?\n\nDit kan niet meer ongedaan gemaakt worden.",
+					MessageText = $"Delete {SelectedClub.ClubNaam}?",
+				};
+				alert.AddButton("Cancel");
+				alert.AddButton("Delete");
+				alert.BeginSheetForResponse(this.View.Window, (result) =>
+				{
+					// Should we delete the requested row?
+					if (result == 1001)
+					{
+						// Remove the given row from the dataset
+						SelectedClub.Delete(AppDelegate.Conn);
+						ds.Clubs.Remove(SelectedClub);
+						ReloadTable();
+					}
+				});
+			}
+
+			Debug.WriteLine("Einde: ClubsController.ClubRemoveClicked");
+		}
+
+		[Export("RowDoubleClicked:")]
+		public void RowDoubleClicked(NSObject sender)
+		{
+			Debug.WriteLine("Start: ClubsController.RowDoubleClicked");
+
+			SelectedClub = ds.Clubs[(int)ClubsTable.SelectedRow] as ClubModel;
+
+			PerformSegue("ClubSegue", this);
+
+			Debug.WriteLine("Einde: ClubsController.RowDoubleClicked");
 		}
 
 		public void ReloadTable()
 		{
 			ClubsTable.ReloadData();
-		}
-
-		public ClubModel SelectedClub = new ClubModel();
-
-		[Export("RowDoubleClicked:")]
-		public void RowDoubleClicked(NSObject sender)
-		{
-			//SelectedClub = ds.Clubs[(int)ClubsTable.SelectedRow] as ClubModel;
-
-			//Debug.WriteLine("Clicked: " + SelectedClub.ID + "|" + SelectedClub.ClubNaam);
-
-			////PerformSegue("ClubSeque", this);
-
-			//var sheet = new ClubEditorSheetController(SelectedClub, true);
-			//// Wire-up
-			//sheet.ClubModified += (club) =>
-			//{
-			//	// Save club to database
-			//	club.Update(AppDelegate.Conn);
-
-			//	if (ClubsTable != null)
-			//	{
-			//		ReloadTable();
-			//	}
-			//};
-
-			//// Display sheet
-			//sheet.ShowSheet(NSApplication.SharedApplication.KeyWindow);
 		}
 		#endregion
 	}

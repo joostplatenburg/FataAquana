@@ -15,6 +15,7 @@ namespace FataAquana
 	{
 		private PersoonController _parentController;
 		private GevolgdeOpleidingModel _gevolgdeopleiding;
+		internal bool IsNieuw = false;
 
 		public List<OpleidingModel> Opleidingen { get; set; } = new List<OpleidingModel>();
 
@@ -35,7 +36,11 @@ namespace FataAquana
 			{
 				GevolgdeOpleiding = _parentController.SelectedGevolgdeOpleiding;
 
-				if (GevolgdeOpleiding == null) GevolgdeOpleiding = new GevolgdeOpleidingModel();
+				if (GevolgdeOpleiding == null)
+				{
+					GevolgdeOpleiding = new GevolgdeOpleidingModel();
+					IsNieuw = true;
+				}
 
 				if (OpleidingenCombobox != null)
 				{
@@ -108,7 +113,13 @@ namespace FataAquana
 					GevolgdeOpleiding.VerlopenOp = VerlopenOpDate.DateValue;
 				}
 
-				GevolgdeOpleiding.Create(AppDelegate.Conn);
+				if (IsNieuw)
+				{
+					GevolgdeOpleiding.Create(AppDelegate.Conn);
+				}
+				else {
+					GevolgdeOpleiding.Update(AppDelegate.Conn);
+				}
 
 				if (_parentController != null)
 				{

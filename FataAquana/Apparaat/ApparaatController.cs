@@ -4,13 +4,86 @@ using System;
 
 using Foundation;
 using AppKit;
+using System.Diagnostics;
 
 namespace FataAquana
 {
 	public partial class ApparaatController : NSViewController
 	{
+		private ApparatenController _parentController;
+		private ApparaatModel _apparaat;
+
 		public ApparaatController (IntPtr handle) : base (handle)
 		{
+		}
+
+		public override void AwakeFromNib()
+		{
+			Debug.WriteLine("Start: ApparaatController.AwakeFromNib");
+
+			base.AwakeFromNib();
+
+			_parentController = this.PresentingViewController as ApparatenController;
+
+			if (_parentController != null)
+			{
+				Apparaat = _parentController.SelectedApparaat;
+
+				if (Apparaat != null)
+				{
+				}
+				else
+				{
+					Apparaat = new ApparaatModel();
+				}
+			}
+
+			Debug.WriteLine("Einde: ApparaatController.AwakeFromNib");
+		}
+
+		[Export("Apparaat")]
+		public ApparaatModel Apparaat
+		{
+			get { return _apparaat; }
+			set
+			{
+				WillChangeValue("Apparaat");
+				_apparaat = value;
+				DidChangeValue("Apparaat");
+			}
+		}
+
+		partial void SaveButton(NSButton sender)
+		{
+			Debug.WriteLine("Start: ApparaatController.SaveButton");
+
+			if (_parentController.SelectedApparaat != null)
+			{
+				Apparaat.Update(AppDelegate.Conn);
+			}
+			else
+			{
+				Apparaat.Create(AppDelegate.Conn);
+				_parentController.ds.AddApparaat(Apparaat);
+			}
+
+			if (_parentController != null)
+			{
+				_parentController.ReloadTable();
+			}
+
+			DismissController(this);
+
+			Debug.WriteLine("Einde: ApparaatController.SaveButton");
+		}
+
+		partial void CancelButton(NSButton sender)
+		{
+			Debug.WriteLine("Start: ApparaatController.CancelButton");
+
+			DismissController(this);
+
+			Debug.WriteLine("Einde: ApparaatController.CancelButton");
 		}
 	}
 }

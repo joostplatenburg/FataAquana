@@ -10,17 +10,11 @@ namespace FataAquana
 {
 	public partial class ApparatenController : NSViewController
 	{
-		private ApparatenDS ds = null;
+		public ApparaatModel SelectedApparaat = null;
+		public ApparatenDS ds = null;
 
 		#region Computed Properties
-		// Strongly typed view accessor
-		//public new ApparatenView View
-		//{
-		//	get
-		//	{
-		//		return (ApparatenView)base.View;
-		//	}
-		//}
+
 		#endregion
 
 		#region Constructors
@@ -69,64 +63,63 @@ namespace FataAquana
 		#region Custom Methods
 		partial void ApparaatAddClicked(NSButton sender)
 		{
-			//var newApparaat = new ApparaatModel();
-			//var sheet = new ApparaatEditorSheetController(newApparaat, true);
-			//// Wire-up
-			//sheet.ApparaatModified += (apparaat) =>
-			//{
-			//	// Save person to database
-			//	apparaat.Create(AppDelegate.Conn);
+			Debug.WriteLine("Start: ApparatenController.ApparaatAddClicked");
 
-			//	if (ApparatenTable != null)
-			//	{
-			//		ds.AddApparaat(apparaat);
-			//		ReloadTable();
-			//	}
-			//};
+			SelectedApparaat = null;
 
-			//// Display sheet
-			//sheet.ShowSheet(NSApplication.SharedApplication.KeyWindow);
+			PerformSegue("ApparaatSegue", this);
+
+			Debug.WriteLine("Einde: ApparatenController.ApparaatAddClicked");
 		}
 
 		partial void ApparaatRemoveClicked(NSButton sender)
 		{
-			// vragen of je zeker ben
-			var selectedRowIndex = ApparatenTable.SelectedRow;
-			var selectedApparaat = ds.Apparaten[(int)selectedRowIndex] as ApparaatModel;
-			ds.Apparaten.Remove(selectedApparaat);
-			selectedApparaat.Delete(AppDelegate.Conn);
-			ReloadTable();
-		}
+			Debug.WriteLine("Start: ApparatenController.ApparaatRemoveClicked");
 
-		public void ReloadTable()
-		{
-			ApparatenTable.ReloadData();
+			if ((int)ApparatenTable.SelectedRow >= 0)
+			{
+				SelectedApparaat = ds.Apparaten[(int)ApparatenTable.SelectedRow] as ApparaatModel;
+
+				// Configure alert
+				var alert = new NSAlert()
+				{
+					AlertStyle = NSAlertStyle.Informational,
+					InformativeText = $"Weet je zeker dat je het apparaat {SelectedApparaat.ApparaatNaam} wilt verwijderen?\n\nDit kan niet meer ongedaan gemaakt worden.",
+					MessageText = $"Delete {SelectedApparaat.ApparaatNaam}?",
+				};
+				alert.AddButton("Cancel");
+				alert.AddButton("Delete");
+				alert.BeginSheetForResponse(this.View.Window, (result) =>
+				{
+					// Should we delete the requested row?
+					if (result == 1001)
+					{
+						// Remove the given row from the dataset
+						SelectedApparaat.Delete(AppDelegate.Conn);
+						ds.Apparaten.Remove(SelectedApparaat);
+						ReloadTable();
+					}
+				});
+			}
+
+			Debug.WriteLine("Einde: ApparatenController.ApparaatRemoveClicked");
 		}
 
 		[Export("RowDoubleClicked:")]
 		public void RowDoubleClicked(NSObject sender)
 		{
-			//var tableView = sender as NSTableView;
+			Debug.WriteLine("Start: ApparatenController.RowDoubleClicked");
 
-			//var selectedApparaat = ds.Apparaten[(int)ApparatenTable.SelectedRow] as ApparaatModel;
+			SelectedApparaat = ds.Apparaten[(int)ApparatenTable.SelectedRow] as ApparaatModel;
 
-			//Debug.WriteLine("Clicked: " + selectedApparaat.ID + "|" + selectedApparaat.ApparaatNaam);
+			PerformSegue("ApparaatSegue", this);
 
-			//var sheet = new ApparaatEditorSheetController(selectedApparaat, true);
-			//// Wire-up
-			//sheet.ApparaatModified += (apparaat) =>
-			//{
-			//	// Save person to database
-			//	apparaat.Update(AppDelegate.Conn);
+			Debug.WriteLine("Einde: ApparatenController.RowDoubleClicked");
+		}
 
-			//	if (ApparatenTable != null)
-			//	{
-			//		ReloadTable();
-			//	}
-			//};
-
-			//// Display sheet
-			//sheet.ShowSheet(NSApplication.SharedApplication.KeyWindow);
+		public void ReloadTable()
+		{
+			ApparatenTable.ReloadData();
 		}
 		#endregion
 	}

@@ -67,6 +67,26 @@ namespace FataAquana
 					// Database bestaat al
 					Conn = new SqliteConnection("Data Source=" + url.Path);
 
+					try
+					{
+						Conn.Open();
+
+						var cmd = "ALTER TABLE Apparaat ADD Omschrijving TEXT";
+							
+						using (var c = Conn.CreateCommand())
+						{
+							c.CommandText = cmd;
+							c.CommandType = CommandType.Text;
+							c.ExecuteNonQuery();
+						}
+
+						Conn.Close();
+					}
+					catch
+					{
+						
+					}
+
 					MainView.EnableGroepList();
 				}
 			}

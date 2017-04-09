@@ -38,6 +38,7 @@ namespace FataAquana
 					// Als currentview = Personen zoek op Achternaam
 
 					Debug.WriteLine("Zoek: " + Search.ToString());
+					Debug.WriteLine("Zoekinhoud: " + Zoekveld.AccessibilityValue);
 
 				}
 			};

@@ -76,30 +76,32 @@ namespace FataAquana
 		{
 			Debug.WriteLine("Start: PersonenController.PersoonRemoveClicked");
 
-			var selectedRowIndex = PersonenTable.SelectedRow;
-			SelectedPersoon = dsPersonen.Personen[(int)selectedRowIndex] as PersoonModel;
+			if ((int)PersonenTable.SelectedRow >= 0)
+			{
+				var selectedRowIndex = PersonenTable.SelectedRow;
+				SelectedPersoon = dsPersonen.Personen[(int)PersonenTable.SelectedRow] as PersoonModel;
 
-			// Configure alert
-			var alert = new NSAlert()
-			{
-				AlertStyle = NSAlertStyle.Informational,
-				InformativeText = $"Weet je zeker dat je de persoon {SelectedPersoon.Achternaam} wilt verwijderen?\n\nDit kan niet meer ongedaan gemaakt worden.",
-				MessageText = $"Delete {SelectedPersoon.Achternaam}?",
-			};
-			alert.AddButton("Cancel");
-			alert.AddButton("Delete");
-			alert.BeginSheetForResponse(this.View.Window, (result) =>
-			{
-				// Should we delete the requested row?
-				if (result == 1001)
+				// Configure alert
+				var alert = new NSAlert()
 				{
-					// Remove the given row from the dataset
-					SelectedPersoon.Delete(AppDelegate.Conn);
-					dsPersonen.Personen.Remove(SelectedPersoon);
-					ReloadTable();
-				}
-			});
-
+					AlertStyle = NSAlertStyle.Informational,
+					InformativeText = $"Weet je zeker dat je de persoon {SelectedPersoon.Achternaam} wilt verwijderen?\n\nDit kan niet meer ongedaan gemaakt worden.",
+					MessageText = $"Delete {SelectedPersoon.Achternaam}?",
+				};
+				alert.AddButton("Cancel");
+				alert.AddButton("Delete");
+				alert.BeginSheetForResponse(this.View.Window, (result) =>
+				{
+					// Should we delete the requested row?
+					if (result == 1001)
+					{
+						// Remove the given row from the dataset
+						SelectedPersoon.Delete(AppDelegate.Conn);
+						dsPersonen.Personen.Remove(SelectedPersoon);
+						ReloadTable();
+					}
+				});
+			}
 			Debug.WriteLine("Einde: PersonenController.PersoonRemoveClicked");
 		}
 

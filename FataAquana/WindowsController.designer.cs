@@ -16,13 +16,13 @@ namespace FataAquana
 		AppKit.NSToolbarItem OpenDB { get; set; }
 
 		[Outlet]
-		FataAquana.ActivatableItem OpenDBFile { get; set; }
-
-		[Outlet]
 		AppKit.NSToolbarItem Print { get; set; }
 
 		[Outlet]
 		AppKit.NSToolbarItem Search { get; set; }
+
+		[Outlet]
+		AppKit.NSSearchField Zoekveld { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{
@@ -41,9 +41,9 @@ namespace FataAquana
 				Search = null;
 			}
 
-			if (OpenDBFile != null) {
-				OpenDBFile.Dispose ();
-				OpenDBFile = null;
+			if (Zoekveld != null) {
+				Zoekveld.Dispose ();
+				Zoekveld = null;
 			}
 		}
 	}

@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11762"/>
-        <plugIn identifier="com.apple.WebKitIBPlugin" version="11762"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="12118"/>
+        <plugIn identifier="com.apple.WebKitIBPlugin" version="12118"/>
         <capability name="box content view" minToolsVersion="7.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+        <capability name="stacking Non-gravity area distributions on NSStackView" minToolsVersion="7.0" minSystemVersion="10.11"/>
     </dependencies>
     <scenes>
         <!--Application-->
@@ -665,7 +666,7 @@
                                 </toolbarItem>
                                 <toolbarItem implicitItemIdentifier="9C5A6993-5E11-4900-93EF-1429FA3C18F9" label="Search" paletteLabel="Search" id="CLY-TK-M7n">
                                     <nil key="toolTip"/>
-                                    <size key="minSize" width="200" height="22"/>
+                                    <size key="minSize" width="96" height="22"/>
                                     <size key="maxSize" width="167" height="22"/>
                                     <searchField key="view" wantsLayer="YES" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" textCompletion="NO" id="aM7-O0-o33">
                                         <rect key="frame" x="0.0" y="14" width="96" height="22"/>
@@ -692,6 +693,7 @@
                         <outlet property="OpenDB" destination="An8-1o-aTK" id="O3P-Oq-Rqa"/>
                         <outlet property="Print" destination="Qx9-At-d2w" id="kJ4-Y8-M2e"/>
                         <outlet property="Search" destination="CLY-TK-M7n" id="Sew-Gh-bwU"/>
+                        <outlet property="Zoekveld" destination="aM7-O0-o33" id="6Ht-Ew-deA"/>
                         <segue destination="4di-rw-ysX" kind="relationship" relationship="window.shadowedContentViewController" id="ngs-P3-9q0"/>
                     </connections>
                 </windowController>
@@ -761,7 +763,7 @@
                                                             <rect key="frame" x="1" y="0.0" width="170" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
-                                                                <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bJf-NQ-tlz">
+                                                                <textField verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bJf-NQ-tlz">
                                                                     <rect key="frame" x="0.0" y="0.0" width="166" height="18"/>
                                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="HEADER CELL" id="Tt0-YR-gPz">
@@ -914,7 +916,7 @@
                                                                 <rect key="frame" x="1" y="1" width="199" height="40"/>
                                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                 <subviews>
-                                                                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8zX-lm-QSb">
+                                                                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8zX-lm-QSb">
                                                                         <rect key="frame" x="0.0" y="23" width="100" height="17"/>
                                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                                         <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="tYt-76-aTa">
@@ -947,7 +949,7 @@
                                                                 <rect key="frame" x="203" y="1" width="242" height="40"/>
                                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                 <subviews>
-                                                                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8kp-cf-fVN">
+                                                                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8kp-cf-fVN">
                                                                         <rect key="frame" x="0.0" y="23" width="100" height="17"/>
                                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                                         <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="9kH-Cs-bW3">
@@ -1072,11 +1074,18 @@ Gw
                                         <textField verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8On-79-8Bb">
                                             <rect key="frame" x="135" y="79" width="288" height="22"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="left" drawsBackground="YES" id="gHM-83-2qs">
+                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="gHM-83-2qs">
                                                 <font key="font" metaFont="system"/>
                                                 <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
+                                            <connections>
+                                                <binding destination="8hj-nE-VJh" name="value" keyPath="self.Opleiding.OpleidingNaam" id="7hx-Gb-aKJ">
+                                                    <dictionary key="options">
+                                                        <bool key="NSContinuouslyUpdatesValue" value="YES"/>
+                                                    </dictionary>
+                                                </binding>
+                                            </connections>
                                         </textField>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oQ4-8z-fej">
                                             <rect key="frame" x="18" y="46" width="118" height="17"/>
@@ -1095,6 +1104,13 @@ Gw
                                                 <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
+                                            <connections>
+                                                <binding destination="8hj-nE-VJh" name="value" keyPath="self.Opleiding.Omschrijving" id="Tct-JE-j5y">
+                                                    <dictionary key="options">
+                                                        <bool key="NSContinuouslyUpdatesValue" value="YES"/>
+                                                    </dictionary>
+                                                </binding>
+                                            </connections>
                                         </textField>
                                         <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CCb-7w-yEL">
                                             <rect key="frame" x="266" y="8" width="81" height="32"/>
@@ -1127,13 +1143,15 @@ DQ
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="Omschrijving" destination="x5T-Pc-jpm" id="qQP-0n-gU9"/>
-                        <outlet property="Opleidingnaam" destination="8On-79-8Bb" id="v8L-0j-7JT"/>
+                        <outlet property="Omschrijving" destination="x5T-Pc-jpm" id="8Vu-A2-Juz"/>
+                        <outlet property="Opleidingnaam" destination="8On-79-8Bb" id="yJG-u9-GZH"/>
                     </connections>
                 </viewController>
                 <customObject id="f8H-Sc-BtR" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <userDefaultsController id="41X-U3-2lQ"/>
+                <userDefaultsController id="JMx-he-jjV"/>
             </objects>
-            <point key="canvasLocation" x="97.5" y="3177.5"/>
+            <point key="canvasLocation" x="101" y="3178"/>
         </scene>
         <!--Apparaten Controller-->
         <scene sceneID="U2o-US-Ywr">
@@ -1178,7 +1196,7 @@ DQ
                                                                 <rect key="frame" x="1" y="1" width="199" height="40"/>
                                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                 <subviews>
-                                                                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fqg-my-qdr">
+                                                                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fqg-my-qdr">
                                                                         <rect key="frame" x="0.0" y="23" width="100" height="17"/>
                                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                                         <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="7op-Yc-Tjh">
@@ -1219,7 +1237,7 @@ DQ
                                                                 <rect key="frame" x="203" y="1" width="242" height="40"/>
                                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                 <subviews>
-                                                                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PE6-W9-X4k">
+                                                                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PE6-W9-X4k">
                                                                         <rect key="frame" x="0.0" y="23" width="100" height="17"/>
                                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                                         <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="38R-Z4-ad9">
@@ -1341,6 +1359,13 @@ DQ
                                                 <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
+                                            <connections>
+                                                <binding destination="K3d-tz-s2d" name="value" keyPath="self.Apparaat.ApparaatNaam" id="hWw-Ps-H62">
+                                                    <dictionary key="options">
+                                                        <bool key="NSContinuouslyUpdatesValue" value="YES"/>
+                                                    </dictionary>
+                                                </binding>
+                                            </connections>
                                         </textField>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tLY-0d-fPP">
                                             <rect key="frame" x="18" y="132" width="118" height="17"/>
@@ -1361,6 +1386,13 @@ DQ
                                                 <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
+                                            <connections>
+                                                <binding destination="K3d-tz-s2d" name="value" keyPath="self.Apparaat.Omschrijving" id="bHK-sk-pqg">
+                                                    <dictionary key="options">
+                                                        <bool key="NSContinuouslyUpdatesValue" value="YES"/>
+                                                    </dictionary>
+                                                </binding>
+                                            </connections>
                                         </textField>
                                         <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="pVw-iy-OED">
                                             <rect key="frame" x="370" y="11" width="82" height="32"/>
@@ -1426,8 +1458,9 @@ DQ
                     </connections>
                 </viewController>
                 <customObject id="cg2-Og-hhw" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <userDefaultsController id="D2H-PM-BBA"/>
             </objects>
-            <point key="canvasLocation" x="800" y="3220.5"/>
+            <point key="canvasLocation" x="791" y="3221"/>
         </scene>
         <!--Clubs Controller-->
         <scene sceneID="2FN-x1-AXW">
@@ -1472,7 +1505,7 @@ DQ
                                                                 <rect key="frame" x="1" y="1" width="206" height="40"/>
                                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                 <subviews>
-                                                                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ioI-h2-0VW">
+                                                                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ioI-h2-0VW">
                                                                         <rect key="frame" x="0.0" y="23" width="100" height="17"/>
                                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                                         <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="PqS-AZ-c2H">
@@ -1509,7 +1542,7 @@ DQ
                                                                 <rect key="frame" x="210" y="1" width="203" height="40"/>
                                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                 <subviews>
-                                                                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="29w-i6-i1t">
+                                                                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="29w-i6-i1t">
                                                                         <rect key="frame" x="0.0" y="23" width="100" height="17"/>
                                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                                         <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="Y02-zG-MPS">
@@ -1657,7 +1690,7 @@ DQ
                         <outlet property="ClubsTable" destination="6U1-kE-183" id="kDs-K6-ujn"/>
                         <outlet property="PlaatsColumn" destination="Joh-gi-es4" id="tNH-rr-sOi"/>
                         <outlet property="PostcodeColumn" destination="nEv-Vo-Kr5" id="aug-g1-rN8"/>
-                        <segue destination="zxM-4G-Uqm" kind="sheet" identifier="ClubSeque" id="3Vq-u8-tNQ"/>
+                        <segue destination="zxM-4G-Uqm" kind="sheet" identifier="ClubSegue" id="3Vq-u8-tNQ"/>
                     </connections>
                 </viewController>
                 <customObject id="DLE-IY-EhX" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
@@ -1665,10 +1698,10 @@ DQ
             </objects>
             <point key="canvasLocation" x="1483" y="2706"/>
         </scene>
-        <!--Club Controller-->
+        <!--ClubController-->
         <scene sceneID="zC4-iL-Kvf">
             <objects>
-                <viewController id="zxM-4G-Uqm" customClass="ClubController" sceneMemberID="viewController">
+                <viewController title="ClubController" id="zxM-4G-Uqm" customClass="ClubController" sceneMemberID="viewController">
                     <view key="view" id="DOh-FV-Xhq">
                         <rect key="frame" x="0.0" y="0.0" width="546" height="160"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -1697,6 +1730,13 @@ DQ
                                                 <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
+                                            <connections>
+                                                <binding destination="zxM-4G-Uqm" name="value" keyPath="self.Club.ClubNaam" id="nAn-VA-u9g">
+                                                    <dictionary key="options">
+                                                        <bool key="NSContinuouslyUpdatesValue" value="YES"/>
+                                                    </dictionary>
+                                                </binding>
+                                            </connections>
                                         </textField>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vwg-OV-YrB">
                                             <rect key="frame" x="18" y="86" width="118" height="17"/>
@@ -1715,6 +1755,13 @@ DQ
                                                 <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
+                                            <connections>
+                                                <binding destination="zxM-4G-Uqm" name="value" keyPath="self.Club.Adres" id="yt9-k7-GbB">
+                                                    <dictionary key="options">
+                                                        <bool key="NSContinuouslyUpdatesValue" value="YES"/>
+                                                    </dictionary>
+                                                </binding>
+                                            </connections>
                                         </textField>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BRX-2b-vJx">
                                             <rect key="frame" x="18" y="55" width="118" height="17"/>
@@ -1733,6 +1780,13 @@ DQ
                                                 <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
+                                            <connections>
+                                                <binding destination="zxM-4G-Uqm" name="value" keyPath="self.Club.Postcode" id="RMm-sM-3Sq">
+                                                    <dictionary key="options">
+                                                        <bool key="NSContinuouslyUpdatesValue" value="YES"/>
+                                                    </dictionary>
+                                                </binding>
+                                            </connections>
                                         </textField>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DqJ-Fg-oxE">
                                             <rect key="frame" x="214" y="55" width="74" height="17"/>
@@ -1751,6 +1805,13 @@ DQ
                                                 <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
+                                            <connections>
+                                                <binding destination="zxM-4G-Uqm" name="value" keyPath="self.Club.Plaats" id="lfH-ri-UbQ">
+                                                    <dictionary key="options">
+                                                        <bool key="NSContinuouslyUpdatesValue" value="YES"/>
+                                                    </dictionary>
+                                                </binding>
+                                            </connections>
                                         </textField>
                                         <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SoK-Lo-2Ei">
                                             <rect key="frame" x="448" y="13" width="82" height="32"/>
@@ -1794,6 +1855,7 @@ DQ
                     </connections>
                 </viewController>
                 <customObject id="1iv-n9-ghV" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <userDefaultsController id="fth-P6-hvc"/>
             </objects>
             <point key="canvasLocation" x="1483" y="3196"/>
         </scene>
@@ -1811,11 +1873,11 @@ DQ
                                 <scrollView autohidesScrollers="YES" horizontalLineScroll="42" horizontalPageScroll="10" verticalLineScroll="42" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="57R-Ts-4TK">
                                     <rect key="frame" x="5" y="31" width="643" height="448"/>
                                     <clipView key="contentView" id="oYF-Ck-bKU">
-                                        <rect key="frame" x="1" y="0.0" width="641" height="432"/>
+                                        <rect key="frame" x="1" y="0.0" width="641" height="447"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <subviews>
                                             <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="none" alternatingRowBackgroundColors="YES" columnReordering="NO" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="40" rowSizeStyle="automatic" headerView="tk2-Y1-gWw" viewBased="YES" id="KoD-Q8-lTm">
-                                                <rect key="frame" x="0.0" y="0.0" width="1689" height="409"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="1689" height="424"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <size key="intercellSpacing" width="3" height="2"/>
                                                 <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -1840,7 +1902,7 @@ DQ
                                                                 <rect key="frame" x="1" y="1" width="140" height="40"/>
                                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                 <subviews>
-                                                                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kAl-v7-juh">
+                                                                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kAl-v7-juh">
                                                                         <rect key="frame" x="0.0" y="23" width="100" height="17"/>
                                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                                         <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="ZYN-1c-HAa">
@@ -1874,7 +1936,7 @@ DQ
                                                                 <rect key="frame" x="144" y="1" width="100" height="40"/>
                                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                 <subviews>
-                                                                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2lN-Vg-z9A">
+                                                                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2lN-Vg-z9A">
                                                                         <rect key="frame" x="0.0" y="23" width="100" height="17"/>
                                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                                         <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="ejt-Ui-Zj5">
@@ -1908,7 +1970,7 @@ DQ
                                                                 <rect key="frame" x="247" y="1" width="55" height="40"/>
                                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                 <subviews>
-                                                                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TFc-G9-fNL">
+                                                                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TFc-G9-fNL">
                                                                         <rect key="frame" x="0.0" y="23" width="100" height="17"/>
                                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                                         <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="XMN-rf-bKf">
@@ -1942,7 +2004,7 @@ DQ
                                                                 <rect key="frame" x="305" y="1" width="65" height="40"/>
                                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                 <subviews>
-                                                                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EWy-RK-cJN">
+                                                                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EWy-RK-cJN">
                                                                         <rect key="frame" x="0.0" y="23" width="100" height="17"/>
                                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                                         <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="q7a-cf-lAi">
@@ -1976,7 +2038,7 @@ DQ
                                                                 <rect key="frame" x="373" y="1" width="200" height="40"/>
                                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                 <subviews>
-                                                                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9i9-No-ltN">
+                                                                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9i9-No-ltN">
                                                                         <rect key="frame" x="0.0" y="23" width="100" height="17"/>
                                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                                         <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="H4g-2S-xyl">
@@ -2010,7 +2072,7 @@ DQ
                                                                 <rect key="frame" x="576" y="1" width="60" height="40"/>
                                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                 <subviews>
-                                                                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="x7v-TA-0M5">
+                                                                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="x7v-TA-0M5">
                                                                         <rect key="frame" x="0.0" y="23" width="100" height="17"/>
                                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                                         <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="Aku-E6-LrJ">
@@ -2044,7 +2106,7 @@ DQ
                                                                 <rect key="frame" x="639" y="1" width="120" height="40"/>
                                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                 <subviews>
-                                                                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xil-Cz-p1I">
+                                                                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xil-Cz-p1I">
                                                                         <rect key="frame" x="0.0" y="23" width="100" height="17"/>
                                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                                         <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="ybX-Rh-sxj">
@@ -2078,7 +2140,7 @@ DQ
                                                                 <rect key="frame" x="762" y="1" width="100" height="40"/>
                                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                 <subviews>
-                                                                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7O1-gB-sJl">
+                                                                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7O1-gB-sJl">
                                                                         <rect key="frame" x="0.0" y="23" width="100" height="17"/>
                                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                                         <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="5ff-Ih-U3P">
@@ -2112,7 +2174,7 @@ DQ
                                                                 <rect key="frame" x="865" y="1" width="100" height="40"/>
                                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                 <subviews>
-                                                                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WE2-cP-iOX">
+                                                                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WE2-cP-iOX">
                                                                         <rect key="frame" x="0.0" y="23" width="100" height="17"/>
                                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                                         <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="GgP-A0-CMy">
@@ -2146,7 +2208,7 @@ DQ
                                                                 <rect key="frame" x="968" y="1" width="210" height="40"/>
                                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                 <subviews>
-                                                                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wd3-vl-cQ5">
+                                                                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wd3-vl-cQ5">
                                                                         <rect key="frame" x="0.0" y="23" width="100" height="17"/>
                                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                                         <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="n9t-xW-VeC">
@@ -2180,7 +2242,7 @@ DQ
                                                                 <rect key="frame" x="1181" y="1" width="210" height="40"/>
                                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                 <subviews>
-                                                                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rL5-i0-rtO">
+                                                                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rL5-i0-rtO">
                                                                         <rect key="frame" x="0.0" y="23" width="100" height="17"/>
                                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                                         <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="d9W-6v-hCt">
@@ -2213,7 +2275,7 @@ DQ
                                                                 <rect key="frame" x="1394" y="1" width="200" height="40"/>
                                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                 <subviews>
-                                                                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mQi-K7-SSF">
+                                                                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mQi-K7-SSF">
                                                                         <rect key="frame" x="0.0" y="23" width="100" height="17"/>
                                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                                         <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="QLl-bC-ed8">
@@ -2246,7 +2308,7 @@ DQ
                                                                 <rect key="frame" x="1597" y="1" width="10" height="40"/>
                                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                 <subviews>
-                                                                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jV9-xl-KBA">
+                                                                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jV9-xl-KBA">
                                                                         <rect key="frame" x="0.0" y="23" width="100" height="17"/>
                                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                                         <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="gFQ-yx-rBj">
@@ -2340,7 +2402,7 @@ DQ
                                         </subviews>
                                     </clipView>
                                     <scroller key="horizontalScroller" verticalHuggingPriority="750" horizontal="YES" id="lHK-ce-zHf">
-                                        <rect key="frame" x="1" y="432" width="641" height="15"/>
+                                        <rect key="frame" x="1" y="431" width="641" height="16"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                     </scroller>
                                     <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="plM-GV-cIu">
@@ -2438,13 +2500,6 @@ DQ
                                         <font key="font" metaFont="system"/>
                                         <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                        <connections>
-                                            <binding destination="Y0L-JT-0YR" name="value" keyPath="self.Persoon.Achternaam" id="k1X-us-d7l">
-                                                <dictionary key="options">
-                                                    <bool key="NSContinuouslyUpdatesValue" value="YES"/>
-                                                </dictionary>
-                                            </binding>
-                                        </connections>
                                     </textFieldCell>
                                     <connections>
                                         <binding destination="Y0L-JT-0YR" name="value" keyPath="self.Persoon.Achternaam" id="6FF-XW-ycs">
@@ -2679,10 +2734,9 @@ DQ
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <datePickerCell key="cell" borderStyle="bezel" alignment="left" id="OP9-Dh-bAe">
                                         <font key="font" metaFont="system"/>
-                                        <calendarDate key="date" timeIntervalSinceReferenceDate="-595929600" calendarFormat="%Y-%m-%d %H:%M:%S %z">
-                                            <!--1982-02-12 08:00:00 -0800-->
-                                            <timeZone key="timeZone" name="US/Pacific"/>
-                                        </calendarDate>
+                                        <date key="date" timeIntervalSinceReferenceDate="-595929600">
+                                            <!--1982-02-12 16:00:00 +0000-->
+                                        </date>
                                         <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                     </datePickerCell>
@@ -2859,7 +2913,7 @@ DQ
                                                             </subviews>
                                                         </clipView>
                                                         <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="14g-9x-M8l">
-                                                            <rect key="frame" x="1" y="8" width="0.0" height="15"/>
+                                                            <rect key="frame" x="1" y="7" width="0.0" height="16"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                         </scroller>
                                                         <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="hv0-gf-Yw9">
@@ -2996,7 +3050,7 @@ DQ
                                                             </subviews>
                                                         </clipView>
                                                         <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="MTp-GF-H8j">
-                                                            <rect key="frame" x="1" y="-15" width="0.0" height="15"/>
+                                                            <rect key="frame" x="1" y="-16" width="0.0" height="16"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                         </scroller>
                                                         <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="I9F-Vc-f1Y">
@@ -3161,7 +3215,7 @@ DQ
                                                             </subviews>
                                                         </clipView>
                                                         <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="mpq-7q-5fO">
-                                                            <rect key="frame" x="1" y="-15" width="0.0" height="15"/>
+                                                            <rect key="frame" x="1" y="-16" width="0.0" height="16"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                         </scroller>
                                                         <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="XBi-3t-1FN">
@@ -3326,7 +3380,7 @@ DQ
                                                             </subviews>
                                                         </clipView>
                                                         <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="heZ-dB-QkN">
-                                                            <rect key="frame" x="1" y="-15" width="0.0" height="15"/>
+                                                            <rect key="frame" x="1" y="-16" width="0.0" height="16"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                         </scroller>
                                                         <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="qWB-3B-yOj">
@@ -3463,10 +3517,9 @@ DQ
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
                                     <datePickerCell key="cell" borderStyle="bezel" alignment="left" datePickerStyle="textField" id="heP-ae-gk7">
                                         <font key="font" metaFont="system"/>
-                                        <calendarDate key="date" timeIntervalSinceReferenceDate="-595929600" calendarFormat="%Y-%m-%d %H:%M:%S %z">
-                                            <!--1982-02-12 08:00:00 -0800-->
-                                            <timeZone key="timeZone" name="US/Pacific"/>
-                                        </calendarDate>
+                                        <date key="date" timeIntervalSinceReferenceDate="-595929600">
+                                            <!--1982-02-12 16:00:00 +0000-->
+                                        </date>
                                         <date key="minDate" timeIntervalSinceReferenceDate="-31588528772">
                                             <!--1000-01-01 00:40:28 +0000-->
                                         </date>
@@ -3532,10 +3585,9 @@ DQ
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
                                     <datePickerCell key="cell" borderStyle="bezel" alignment="left" datePickerStyle="textField" id="HLq-oI-gpK">
                                         <font key="font" metaFont="system"/>
-                                        <calendarDate key="date" timeIntervalSinceReferenceDate="-595929600" calendarFormat="%Y-%m-%d %H:%M:%S %z">
-                                            <!--1982-02-12 08:00:00 -0800-->
-                                            <timeZone key="timeZone" name="US/Pacific"/>
-                                        </calendarDate>
+                                        <date key="date" timeIntervalSinceReferenceDate="-595929600">
+                                            <!--1982-02-12 16:00:00 +0000-->
+                                        </date>
                                         <date key="minDate" timeIntervalSinceReferenceDate="-31588528772">
                                             <!--1000-01-01 00:40:28 +0000-->
                                         </date>
@@ -3576,15 +3628,15 @@ DQ
             <objects>
                 <viewController title="AankoopController" showSeguePresentationStyle="single" id="qS2-WN-OV1" customClass="AankoopController" sceneMemberID="viewController">
                     <box key="view" boxType="custom" title="Box" titlePosition="noTitle" id="Cky-vp-Ccd">
-                        <rect key="frame" x="0.0" y="0.0" width="350" height="138"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <rect key="frame" x="0.0" y="0.0" width="350" height="276"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                         <view key="contentView" id="j1M-c2-9IT">
-                            <rect key="frame" x="1" y="1" width="348" height="136"/>
+                            <rect key="frame" x="1" y="1" width="348" height="274"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Tv-ek-ier">
-                                    <rect key="frame" x="15" y="95" width="66" height="20"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <rect key="frame" x="18" y="234" width="67" height="23"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Apparaat:" id="4nd-nh-NxP">
                                         <font key="font" metaFont="system"/>
                                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -3592,28 +3644,68 @@ DQ
                                     </textFieldCell>
                                 </textField>
                                 <comboBox verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="NO" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VQU-NC-1AD">
-                                    <rect key="frame" x="85" y="90" width="245" height="26"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
+                                    <rect key="frame" x="91" y="230" width="240" height="26"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                     <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" completes="NO" numberOfVisibleItems="5" id="zT6-hS-hs6">
                                         <font key="font" metaFont="system"/>
                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                     </comboBoxCell>
                                 </comboBox>
-                                <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gR4-MS-mdJ">
-                                    <rect key="frame" x="15" y="60" width="145" height="20"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                    <buttonCell key="cell" type="check" title="Gekocht Op:" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="XlH-AL-pyE">
-                                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LJi-gj-whZ">
+                                    <rect key="frame" x="18" y="203" width="88" height="17"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Gekocht Op:" id="9Am-QH-ejm">
                                         <font key="font" metaFont="system"/>
-                                    </buttonCell>
+                                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                    </textFieldCell>
+                                </textField>
+                                <textField verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wgi-zV-Miu">
+                                    <rect key="frame" x="189" y="200" width="139" height="22"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="zNh-sz-scm">
+                                        <dateFormatter key="formatter" dateStyle="short" id="d8E-Er-dYx"/>
+                                        <font key="font" metaFont="system"/>
+                                        <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                    </textFieldCell>
                                     <connections>
-                                        <action selector="GekochtOpEnable:" target="qS2-WN-OV1" id="8KM-jW-oGy"/>
+                                        <action selector="CancelButton:" target="qS2-WN-OV1" id="PQu-RS-6Gc"/>
                                     </connections>
-                                </button>
+                                </textField>
+                                <stackView distribution="fill" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" fixedFrame="YES" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0Zh-lv-yvT">
+                                    <rect key="frame" x="189" y="49" width="139" height="148"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                    <subviews>
+                                        <datePicker verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="GeU-Kf-Icb">
+                                            <rect key="frame" x="0.0" y="0.0" width="139" height="148"/>
+                                            <datePickerCell key="cell" state="on" borderStyle="bezel" alignment="left" datePickerStyle="clockAndCalendar" id="qlb-1m-dmU">
+                                                <font key="font" metaFont="system"/>
+                                                <date key="date" timeIntervalSinceReferenceDate="-594720000">
+                                                    <!--1982-02-26 16:00:00 +0000-->
+                                                </date>
+                                                <date key="minDate" timeIntervalSinceReferenceDate="-31588528772">
+                                                    <!--1000-01-01 00:40:28 +0000-->
+                                                </date>
+                                                <date key="maxDate" timeIntervalSinceReferenceDate="252423907200">
+                                                    <!--9999-12-31 00:00:00 +0000-->
+                                                </date>
+                                                <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                            </datePickerCell>
+                                        </datePicker>
+                                    </subviews>
+                                    <visibilityPriorities>
+                                        <integer value="1000"/>
+                                    </visibilityPriorities>
+                                    <customSpacing>
+                                        <real value="3.4028234663852886e+38"/>
+                                    </customSpacing>
+                                </stackView>
                                 <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Nx6-E5-fTE">
-                                    <rect key="frame" x="170" y="15" width="80" height="32"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
+                                    <rect key="frame" x="169" y="9" width="80" height="32"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                     <buttonCell key="cell" type="push" title="Save" bezelStyle="rounded" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="sRk-2s-7My">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                         <font key="font" metaFont="system"/>
@@ -3626,8 +3718,8 @@ DQ
                                     </connections>
                                 </button>
                                 <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cUR-La-joR">
-                                    <rect key="frame" x="250" y="15" width="80" height="32"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
+                                    <rect key="frame" x="254" y="9" width="80" height="32"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                     <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="WKH-sd-KAF">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                         <font key="font" metaFont="system"/>
@@ -3639,38 +3731,19 @@ Gw
                                         <action selector="CancelButton:" target="qS2-WN-OV1" id="kiI-Gs-bAS"/>
                                     </connections>
                                 </button>
-                                <datePicker verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GeU-Kf-Icb">
-                                    <rect key="frame" x="190" y="55" width="140" height="22"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
-                                    <datePickerCell key="cell" borderStyle="bezel" alignment="left" datePickerStyle="textField" id="qlb-1m-dmU">
-                                        <font key="font" metaFont="system"/>
-                                        <calendarDate key="date" timeIntervalSinceReferenceDate="-595929600" calendarFormat="%Y-%m-%d %H:%M:%S %z">
-                                            <!--1982-02-12 08:00:00 -0800-->
-                                            <timeZone key="timeZone" name="US/Pacific"/>
-                                        </calendarDate>
-                                        <date key="minDate" timeIntervalSinceReferenceDate="-31588528772">
-                                            <!--1000-01-01 00:40:28 +0000-->
-                                        </date>
-                                        <date key="maxDate" timeIntervalSinceReferenceDate="252423907200">
-                                            <!--9999-12-31 00:00:00 +0000-->
-                                        </date>
-                                        <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                    </datePickerCell>
-                                </datePicker>
                             </subviews>
                         </view>
                         <color key="fillColor" red="0.40000000600000002" green="1" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
                     </box>
                     <connections>
                         <outlet property="ApparatenCombobox" destination="VQU-NC-1AD" id="uHD-dg-abY"/>
-                        <outlet property="GekochtOpButton" destination="gR4-MS-mdJ" id="jds-rr-v6j"/>
                         <outlet property="GekochtOpDate" destination="GeU-Kf-Icb" id="Hdt-j6-ujZ"/>
+                        <outlet property="GekochtOpText" destination="wgi-zV-Miu" id="VF4-hX-vv9"/>
                     </connections>
                 </viewController>
                 <customObject id="Qb8-Lu-UCY" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-787" y="3990"/>
+            <point key="canvasLocation" x="-787" y="4059"/>
         </scene>
         <!--OnderhoudController-->
         <scene sceneID="3Kw-2r-660">
@@ -3697,10 +3770,9 @@ Gw
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
                                     <datePickerCell key="cell" borderStyle="bezel" alignment="left" datePickerStyle="textField" id="vPm-Zb-aFv">
                                         <font key="font" metaFont="system"/>
-                                        <calendarDate key="date" timeIntervalSinceReferenceDate="-595929600" calendarFormat="%Y-%m-%d %H:%M:%S %z">
-                                            <!--1982-02-12 08:00:00 -0800-->
-                                            <timeZone key="timeZone" name="US/Pacific"/>
-                                        </calendarDate>
+                                        <date key="date" timeIntervalSinceReferenceDate="-595929600">
+                                            <!--1982-02-12 16:00:00 +0000-->
+                                        </date>
                                         <date key="minDate" timeIntervalSinceReferenceDate="-31588528772">
                                             <!--1000-01-01 00:40:28 +0000-->
                                         </date>
@@ -3752,10 +3824,9 @@ DQ
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
                                     <datePickerCell key="cell" borderStyle="bezel" alignment="left" datePickerStyle="textField" id="htX-TN-RCb">
                                         <font key="font" metaFont="system"/>
-                                        <calendarDate key="date" timeIntervalSinceReferenceDate="-595929600" calendarFormat="%Y-%m-%d %H:%M:%S %z">
-                                            <!--1982-02-12 08:00:00 -0800-->
-                                            <timeZone key="timeZone" name="US/Pacific"/>
-                                        </calendarDate>
+                                        <date key="date" timeIntervalSinceReferenceDate="-595929600">
+                                            <!--1982-02-12 16:00:00 +0000-->
+                                        </date>
                                         <date key="minDate" timeIntervalSinceReferenceDate="-31588528772">
                                             <!--1000-01-01 00:40:28 +0000-->
                                         </date>
@@ -3850,10 +3921,9 @@ Gw
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
                                     <datePickerCell key="cell" borderStyle="bezel" alignment="left" datePickerStyle="textField" id="I1Y-Qn-8WS">
                                         <font key="font" metaFont="system"/>
-                                        <calendarDate key="date" timeIntervalSinceReferenceDate="-595929600" calendarFormat="%Y-%m-%d %H:%M:%S %z">
-                                            <!--1982-02-12 08:00:00 -0800-->
-                                            <timeZone key="timeZone" name="US/Pacific"/>
-                                        </calendarDate>
+                                        <date key="date" timeIntervalSinceReferenceDate="-595929600">
+                                            <!--1982-02-12 16:00:00 +0000-->
+                                        </date>
                                         <date key="minDate" timeIntervalSinceReferenceDate="-31588528772">
                                             <!--1000-01-01 00:40:28 +0000-->
                                         </date>
@@ -3880,10 +3950,9 @@ Gw
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
                                     <datePickerCell key="cell" borderStyle="bezel" alignment="left" datePickerStyle="textField" id="FQ6-sN-zjt">
                                         <font key="font" metaFont="system"/>
-                                        <calendarDate key="date" timeIntervalSinceReferenceDate="-595929600" calendarFormat="%Y-%m-%d %H:%M:%S %z">
-                                            <!--1982-02-12 08:00:00 -0800-->
-                                            <timeZone key="timeZone" name="US/Pacific"/>
-                                        </calendarDate>
+                                        <date key="date" timeIntervalSinceReferenceDate="-595929600">
+                                            <!--1982-02-12 16:00:00 +0000-->
+                                        </date>
                                         <date key="minDate" timeIntervalSinceReferenceDate="-31588528772">
                                             <!--1000-01-01 00:40:28 +0000-->
                                         </date>
@@ -3946,8 +4015,8 @@ DQ
                         <rect key="frame" x="0.0" y="0.0" width="446" height="581"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <webView maintainsBackForwardList="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FgD-ag-8Aa">
-                                <rect key="frame" x="20" y="20" width="406" height="541"/>
+                            <webView misplaced="YES" maintainsBackForwardList="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FgD-ag-8Aa">
+                                <rect key="frame" x="17" y="20" width="406" height="541"/>
                                 <webPreferences key="preferences" defaultFontSize="16" defaultFixedFontSize="13" minimumFontSize="0" plugInsEnabled="NO" javaEnabled="NO" javaScriptEnabled="NO" javaScriptCanOpenWindowsAutomatically="NO" allowsAnimatedImages="NO" allowsAnimatedImageLooping="NO">
                                     <nil key="identifier"/>
                                 </webPreferences>

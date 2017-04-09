@@ -13,6 +13,7 @@ namespace FataAquana
 	{
 		private PersoonController _parentController;
 		private AankoopModel _aankoop;
+		internal bool IsNieuw = false;
 
 		public List<AankoopModel> Aankopen { get; set; } = new List<AankoopModel>();
 
@@ -33,7 +34,19 @@ namespace FataAquana
 			{
 				Aankoop = _parentController.SelectedAankoop;
 
-				if (Aankoop == null) Aankoop = new AankoopModel();
+				if (Aankoop == null)
+				{
+					Aankoop = new AankoopModel();
+					GekochtOpDate.DateValue = AppDelegate.DateTimeToNSDate(DateTime.Now);
+					GekochtOpText.StringValue = String.Empty;
+					IsNieuw = true;
+				}
+				else {
+					GekochtOpText.StringValue = GekochtOpDate.DateValue.ToString();
+				}
+			
+				Debug.WriteLine("GekochtOpDate: " + GekochtOpDate.DateValue);
+				Debug.WriteLine("GekochtOpText: " + GekochtOpText.StringValue);
 
 				if (ApparatenCombobox != null)
 				{
@@ -46,12 +59,6 @@ namespace FataAquana
 						var index = ApparatenCombobox.DataSource.IndexOfItem(ApparatenCombobox, Aankoop.ApparaatNaam);
 						ApparatenCombobox.SelectItem(index);
 					}
-				}
-
-				if (GekochtOpButton != null)
-				{
-					GekochtOpButton.State = NSCellStateValue.Off;
-					GekochtOpDate.Enabled = false;
 				}
 			}
 			Debug.WriteLine("Start: AankoopController.AwakeFromNib");
@@ -70,13 +77,16 @@ namespace FataAquana
 		}
 		#endregion
 
-		partial void CloseButton(NSObject sender)
+		partial void CancelButton(NSObject sender)
 		{
-			Debug.WriteLine("Start: AankoopController.CloseButton");
+			Debug.WriteLine("Start: AankoopController.CancelButton");
+
+			Debug.WriteLine("GekochtOpDate: " + GekochtOpDate.DateValue);
+			Debug.WriteLine("GekochtOpText: " + GekochtOpText.StringValue);
 
 			DismissController(this);
 
-			Debug.WriteLine("Einde: AankoopController.CloseButton");
+			Debug.WriteLine("Einde: AankoopController.CancelButton");
 		}
 
 		partial void SaveButton(NSObject sender)
@@ -91,12 +101,19 @@ namespace FataAquana
 
 				Aankoop.PersoonID = _parentController.Persoon.ID;
 				Aankoop.ApparaatID = selectedAankoop.ID;
-				if (GekochtOpButton.State.Equals(NSCellStateValue.On))
+
+				Debug.WriteLine("GekochtOpDate: " + GekochtOpDate.DateValue);
+				Debug.WriteLine("GekochtOpText: " + GekochtOpText.StringValue);
+
+				if (IsNieuw)
 				{
-					Aankoop.GekochtOp = GekochtOpDate.DateValue;
+					Aankoop.Create(AppDelegate.Conn);
+				}
+				else 
+				{
+					Aankoop.Update(AppDelegate.Conn);
 				}
 
-				Aankoop.Create(AppDelegate.Conn);
 
 				if (_parentController != null)
 				{
@@ -107,18 +124,6 @@ namespace FataAquana
 			DismissController(this);
 
 			Debug.WriteLine("Einde: AankoopController.SaveButton");
-		}
-
-		partial void GekochtOpEnable(NSObject sender)
-		{
-			if (GekochtOpButton.State.Equals(NSCellStateValue.On))
-			{
-				GekochtOpDate.Enabled = true;
-			}
-			else
-			{
-				GekochtOpDate.Enabled = false;
-			}
 		}
 	}
 }

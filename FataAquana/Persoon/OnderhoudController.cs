@@ -13,6 +13,7 @@ namespace FataAquana
 	{
 		private PersoonController _parentController;
 		private InOnderhoudModel _onderhoud;
+		internal bool IsNieuw = false;
 
 		public List<InOnderhoudModel> InOnderhoud { get; set; } = new List<InOnderhoudModel>();
 
@@ -30,7 +31,10 @@ namespace FataAquana
 			{
 				Onderhoud = _parentController.SelectedOnderhoud;
 
-				if (Onderhoud == null) Onderhoud = new InOnderhoudModel();
+				if (Onderhoud == null) { 
+					Onderhoud = new InOnderhoudModel();
+					IsNieuw = true;
+				}
 
 				if (OnderhoudCombobox != null)
 				{
@@ -103,7 +107,14 @@ namespace FataAquana
 					Onderhoud.RetourOp = RetourOpDate.DateValue;
 				}
 
+				if (IsNieuw)
+				{
 				Onderhoud.Create(AppDelegate.Conn);
+									}
+				else {
+					Onderhoud.Update(AppDelegate.Conn);
+				}
+
 
 				if (_parentController != null)
 				{
