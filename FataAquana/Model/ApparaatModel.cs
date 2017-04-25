@@ -91,7 +91,7 @@ namespace FataAquana
 			}
 
 			// Execute query
-			conn.Open();
+			if (conn.State != ConnectionState.Open) { conn.Open(); }
 			using (var command = conn.CreateCommand())
 			{
 				// Create new command
@@ -117,7 +117,7 @@ namespace FataAquana
 			_conn = null;
 
 			// Execute query
-			conn.Open();
+			if (conn.State != ConnectionState.Open) { conn.Open(); }
 			using (var command = conn.CreateCommand())
 			{
 				// Create new command
@@ -186,7 +186,7 @@ namespace FataAquana
 			_conn = null;
 
 			// Execute query
-			conn.Open();
+			if (conn.State != ConnectionState.Open) { conn.Open(); }
 			using (var command = conn.CreateCommand())
 			{
 				// Create new command
