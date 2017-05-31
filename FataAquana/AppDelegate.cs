@@ -1,5 +1,6 @@
 using System;
 using System.Data;
+using System.Diagnostics;
 using System.IO;
 using AppKit;
 using Foundation;
@@ -71,20 +72,29 @@ namespace FataAquana
 					{
 						Conn.Open();
 
-						var cmd = "ALTER TABLE Apparaat ADD Omschrijving TEXT";
-							
-						using (var c = Conn.CreateCommand())
-						{
-							c.CommandText = cmd;
-							c.CommandType = CommandType.Text;
-							c.ExecuteNonQuery();
-						}
-
-						Conn.Close();
-					}
-					catch
-					{
+                        VoegColumnToe(Conn, "Apparaat", "Omschrijving", "Text");
+                        VoegColumnToe(Conn, "Aankoop", "GekochtOpText", "Text");
 						
+                        VoegColumnToe(Conn, "Clublidmaatschap", "IngeschrevenOpText", "Text");
+						VoegColumnToe(Conn, "Clublidmaatschap", "UitgeschrevenOpText", "Text");
+
+                        VoegColumnToe(Conn, "GevolgdeOpleiding", "GeslaagdOpText", "Text");
+                        VoegColumnToe(Conn, "GevolgdeOpleiding", "VerlopenOpText", "Text");
+					
+                        VoegColumnToe(Conn, "InOnderhoud", "OntvangenOpText", "Text");
+                        VoegColumnToe(Conn, "InOnderhoud", "RetourOpText", "Text");
+
+						VoegColumnToe(Conn, "Persoon", "GeboortedatumText", "Text");
+
+						VoegColumnToe(Conn, "WerkPeriode", "GestartOpText", "Text");
+						VoegColumnToe(Conn, "WerkPeriode", "GestoptOpText", "Text");
+						
+
+                        Conn.Close();
+					}
+					catch(Exception e)
+					{
+                        Debug.WriteLine(e.Message);
 					}
 
 					MainView.EnableGroepList();
@@ -97,7 +107,27 @@ namespace FataAquana
 			return Conn;
 		}
 
-		public static DateTime NSDateToDateTime(NSDate date)
+        private static void VoegColumnToe(SqliteConnection conn, string tablename, string columnname, string columntype)
+        {
+            try
+            {
+                var cmd = string.Format("ALTER TABLE {0} ADD {1} {2}", tablename, columnname, columntype);
+
+				using (var c = Conn.CreateCommand())
+				{
+					c.CommandText = cmd;
+					c.CommandType = CommandType.Text;
+					c.ExecuteNonQuery();
+				}
+
+			}
+            catch(Exception e)
+            {
+				Debug.WriteLine(e.Message);
+			}
+        }
+
+        public static DateTime NSDateToDateTime(NSDate date)
 		{
 			// NSDate has a wider range than DateTime, so clip
 			// the converted date to DateTime.Min|MaxValue.
