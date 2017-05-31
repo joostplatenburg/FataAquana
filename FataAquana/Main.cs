@@ -1,4 +1,5 @@
-﻿using AppKit;
+﻿using System.Diagnostics;
+using AppKit;
 
 namespace FataAquana
 {
@@ -6,8 +7,15 @@ namespace FataAquana
 	{
 		static void Main(string[] args)
 		{
-			NSApplication.Init();
-			NSApplication.Main(args);
+			try
+			{
+				NSApplication.Init();
+				NSApplication.Main(args);
+			}
+			catch (System.Exception ex)
+			{
+				Debug.WriteLine(ex.Message);
+			}
 		}
 	}
 }

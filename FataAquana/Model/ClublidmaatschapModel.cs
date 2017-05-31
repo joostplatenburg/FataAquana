@@ -9,12 +9,14 @@ namespace FataAquana
 	public class ClublidmaatschapModel : NSObject
 	{
 		#region Private Variables
-		private string _ID = "";
-		private string _persoonID = "";
-		private string _clubID = "";
-		private string _clubNaam = "";
+		private string _ID = string.Empty;
+		private string _persoonID = string.Empty;
+		private string _clubID = string.Empty;
+		private string _clubNaam = string.Empty;
 		private NSDate _ingeschrevenOp = new NSDate();
+		private string _ingeschrevenOpText = string.Empty;
 		private NSDate _uitgeschrevenOp = new NSDate();
+		private string _uitgeschrevenOpText = string.Empty;
 
 		private SqliteConnection _conn = null;
 		#endregion
@@ -95,6 +97,21 @@ namespace FataAquana
 			}
 		}
 
+		[Export("IngeschrevenOpText")]
+		public string IngeschrevenOpText
+		{
+			get { return _ingeschrevenOpText; }
+			set
+			{
+				WillChangeValue("IngeschrevenOpText");
+				_ingeschrevenOpText = value;
+				DidChangeValue("IngeschrevenOpText");
+
+				// Save changes to database
+				if (_conn != null) Update(_conn);
+			}
+		}
+
 		[Export("UitgeschrevenOp")]
 		public NSDate UitgeschrevenOp
 		{
@@ -104,6 +121,21 @@ namespace FataAquana
 				WillChangeValue("UitgeschrevenOp");
 				_uitgeschrevenOp = value;
 				DidChangeValue("UitgeschrevenOp");
+
+				// Save changes to database
+				if (_conn != null) Update(_conn);
+			}
+		}
+
+		[Export("UitgeschrevenOpText")]
+		public string UitgeschrevenOpText
+		{
+			get { return _uitgeschrevenOpText; }
+			set
+			{
+				WillChangeValue("UitgeschrevenOpText");
+				_uitgeschrevenOpText = value;
+				DidChangeValue("UitgeschrevenOpText");
 
 				// Save changes to database
 				if (_conn != null) Update(_conn);

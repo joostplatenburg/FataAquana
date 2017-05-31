@@ -18,29 +18,30 @@ namespace FataAquana
 	public class PersoonModel : NSObject
 	{
 		#region Private Variables
-		private string _ID = "";
-		private string _achternaam = "";
-		private string _voornamen = "";
-		private string _tussenvoegsel = "";
-		private string _initialen = "";
+		private string _ID = string.Empty;
+		private string _achternaam = string.Empty;
+		private string _voornamen = string.Empty;
+		private string _tussenvoegsel = string.Empty;
+		private string _initialen = string.Empty;
 
-		private string _adres = "";
-		private string _postcode = "";
-		private string _woonplaats = "";
-		private string _telefoon = "";
-		private string _mobiel = "";
-		private string _email = "";
+		private string _adres = string.Empty;
+		private string _postcode = string.Empty;
+		private string _woonplaats = string.Empty;
+		private string _telefoon = string.Empty;
+		private string _mobiel = string.Empty;
+		private string _email = string.Empty;
 		private NSDate _geboortedatum = new NSDate();
-		private string _imagepath = "";
+        private string _geboortedatumtext = string.Empty;
+		private string _imagepath = string.Empty;
 
 		private NSMutableArray _gevolgdeopleidingen = new NSMutableArray();
-		private string _gevolgdeopleidingenstring = "";
+		private string _gevolgdeopleidingenstring = string.Empty;
 		private NSMutableArray _aankopen = new NSMutableArray();
-		private string _aankopenstring = "";
+		private string _aankopenstring = string.Empty;
 		private NSMutableArray _inonderhoud = new NSMutableArray();
-		private string _inonderhoudstring = "";
+		private string _inonderhoudstring = string.Empty;
 		private NSMutableArray _lidmaatschappen = new NSMutableArray();
-		private string _lidmaatschappenstring = "";
+		private string _lidmaatschappenstring = string.Empty;
 
 		private SqliteConnection _conn = null;
 		#endregion
@@ -98,6 +99,21 @@ namespace FataAquana
 				WillChangeValue("Geboortedatum");
 				_geboortedatum = value;
 				DidChangeValue("Geboortedatum");
+
+				// Save changes to database
+				if (_conn != null) Update(_conn);
+			}
+		}
+
+		[Export("GeboortedatumText")]
+		public string GeboortedatumText
+		{
+			get { return _geboortedatumtext; }
+			set
+			{
+				WillChangeValue("GeboortedatumText");
+				_geboortedatumtext = value;
+				DidChangeValue("GeboortedatumText");
 
 				// Save changes to database
 				if (_conn != null) Update(_conn);

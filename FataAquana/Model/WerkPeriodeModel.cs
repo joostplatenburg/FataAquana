@@ -9,12 +9,14 @@ namespace FataAquana
 	public class WerkPeriodeModel : NSObject
 	{
 		#region Private Variables
-		private string _ID = "";
-		private string _persoonID = "";
-		private string _bedrijfID = "";
+		private string _ID = string.Empty;
+		private string _persoonID = string.Empty;
+		private string _bedrijfID = string.Empty;
 		private string _bedrijfNaam = string.Empty;
 		private NSDate _gestartOp = new NSDate();
+		private string _gestartOpText = string.Empty;
 		private NSDate _gestoptOp = new NSDate();
+		private string _gestoptOpText = string.Empty;
 
 		private SqliteConnection _conn = null;
 		#endregion
@@ -95,6 +97,21 @@ namespace FataAquana
 			}
 		}
 
+		[Export("GestartOpText")]
+		public string GestartOpText
+		{
+			get { return _gestartOpText; }
+			set
+			{
+				WillChangeValue("GestartOpText");
+				_gestartOpText = value;
+				DidChangeValue("GestartOpText");
+
+				// Save changes to database
+				if (_conn != null) Update(_conn);
+			}
+		}
+
 		[Export("GestoptOp")]
 		public NSDate GestoptOp
 		{
@@ -104,6 +121,21 @@ namespace FataAquana
 				WillChangeValue("GestoptOp");
 				_gestoptOp = value;
 				DidChangeValue("GestoptOp");
+
+				// Save changes to database
+				if (_conn != null) Update(_conn);
+			}
+		}
+
+		[Export("GestoptOpText")]
+		public string GestoptOpText
+		{
+			get { return _gestoptOpText; }
+			set
+			{
+				WillChangeValue("GestoptOpText");
+				_gestoptOpText = value;
+				DidChangeValue("GestoptOpText");
 
 				// Save changes to database
 				if (_conn != null) Update(_conn);

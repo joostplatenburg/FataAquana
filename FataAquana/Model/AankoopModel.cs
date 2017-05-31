@@ -9,11 +9,12 @@ namespace FataAquana
 	public class AankoopModel : NSObject
 	{
 		#region Private Variables
-		private string _ID = "";
-		private string _apparaatNaam = "";
-		private string _persoonID = "";
-		private string _apparaatID = "";
+		private string _ID = string.Empty;
+		private string _apparaatNaam = string.Empty;
+		private string _persoonID = string.Empty;
+		private string _apparaatID = string.Empty;
 		private NSDate _gekochtOp = new NSDate();
+		private string _gekochtOpText = string.Empty;
 
 		private SqliteConnection _conn = null;
 		#endregion
@@ -88,6 +89,21 @@ namespace FataAquana
 				WillChangeValue("GekochtOp");
 				_gekochtOp = value;
 				DidChangeValue("GekochtOp");
+
+				// Save changes to database
+				if (_conn != null) Update(_conn);
+			}
+		}
+
+		[Export("GekochtOpText")]
+		public string GekochtOpText
+		{
+			get { return _gekochtOpText; }
+			set
+			{
+				WillChangeValue("GekochtOpText");
+				_gekochtOpText = value;
+				DidChangeValue("GekochtOpText");
 
 				// Save changes to database
 				if (_conn != null) Update(_conn);

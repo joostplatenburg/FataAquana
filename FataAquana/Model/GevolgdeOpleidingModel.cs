@@ -15,7 +15,9 @@ namespace FataAquana
 		private string _opleidingID = string.Empty;
 		private string _opleidingNaam = string.Empty;
 		private NSDate _geslaagdOp = new NSDate();
+		private string _geslaagdOpText = string.Empty;
 		private NSDate _verlopenOp = new NSDate();
+		private string _verlopenOpText = string.Empty;
 
 		private SqliteConnection _conn = null;
 		#endregion
@@ -101,6 +103,21 @@ namespace FataAquana
 			}
 		}
 
+		[Export("GeslaagdOpText")]
+		public string GeslaagdOpText
+		{
+			get { return _geslaagdOpText; }
+			set
+			{
+				WillChangeValue("GeslaagdOpText");
+				_geslaagdOpText = value;
+				DidChangeValue("GeslaagdOpText");
+
+				// Save changes to database
+				if (_conn != null) Update(_conn);
+			}
+		}
+
 		[Export("VerlopenOp")]
 		public NSDate VerlopenOp
 		{
@@ -110,6 +127,21 @@ namespace FataAquana
 				WillChangeValue("VerlopenOp");
 				_verlopenOp = value;
 				DidChangeValue("VerlopenOp");
+
+				// Save changes to database
+				if (_conn != null) Update(_conn);
+			}
+		}
+
+		[Export("VerlopenOpText")]
+		public string VerlopenOpText
+		{
+			get { return _verlopenOpText; }
+			set
+			{
+				WillChangeValue("VerlopenOpText");
+				_verlopenOpText = value;
+				DidChangeValue("VerlopenOpText");
 
 				// Save changes to database
 				if (_conn != null) Update(_conn);

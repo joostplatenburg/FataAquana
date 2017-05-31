@@ -14,7 +14,9 @@ namespace FataAquana
 		private string _persoonID = string.Empty;
 		private string _apparaatID = string.Empty;
 		private NSDate _ontvangenOp = new NSDate();
+		private string _ontvangenOpText = string.Empty;
 		private NSDate _retourOp = new NSDate();
+		private string _retourOpText = string.Empty;
 
 		private SqliteConnection _conn = null;
 		#endregion
@@ -95,6 +97,21 @@ namespace FataAquana
 			}
 		}
 
+		[Export("OntvangenOpText")]
+		public string OntvangenOpText
+		{
+			get { return _ontvangenOpText; }
+			set
+			{
+				WillChangeValue("OntvangenOpText");
+				_ontvangenOpText = value;
+				DidChangeValue("OntvangenOpText");
+
+				// Save changes to database
+				if (_conn != null) Update(_conn);
+			}
+		}
+
 		[Export("RetourOp")]
 		public NSDate RetourOp
 		{
@@ -104,6 +121,21 @@ namespace FataAquana
 				WillChangeValue("RetourOp");
 				_retourOp = value;
 				DidChangeValue("RetourOp");
+
+				// Save changes to database
+				if (_conn != null) Update(_conn);
+			}
+		}
+
+		[Export("RetourOpText")]
+		public string RetourOpText
+		{
+			get { return _retourOpText; }
+			set
+			{
+				WillChangeValue("RetourOpText");
+				_retourOpText = value;
+				DidChangeValue("RetourOpText");
 
 				// Save changes to database
 				if (_conn != null) Update(_conn);
