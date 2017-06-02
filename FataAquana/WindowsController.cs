@@ -26,10 +26,16 @@ namespace FataAquana
 
 				OpenDB.Enabled = false;
 
+                CopyEmailadressen.Enabled = true;
 				Search.Enabled = true;
 				Print.Enabled = true;
 			};
 
+            CopyEmailadressen.Enabled = false;
+            CopyEmailadressen.Activated += (sender, e) => 
+            {
+                AppDelegate.CopyEmailadressen();
+            };
 			Search.Enabled = false;
 			Search.Activated += (sender, e) =>
 			{

@@ -253,7 +253,9 @@ namespace FataAquana
 			set
 			{
 				WillChangeValue("GevolgdeOpleidingen");
+				WillChangeValue("GevolgdeOpleidingenString");
 				_gevolgdeopleidingen = value;
+				DidChangeValue("GevolgdeOpleidingenString");
 				DidChangeValue("GevolgdeOpleidingen");
 			}
 		}
@@ -276,7 +278,9 @@ namespace FataAquana
 			set
 			{
 				WillChangeValue("Aankopen");
+				WillChangeValue("AankopenString");
 				_aankopen = value;
+				DidChangeValue("AankopenString");
 				DidChangeValue("Aankopen");
 			}
 		}
@@ -299,7 +303,9 @@ namespace FataAquana
 			set
 			{
 				WillChangeValue("InOnderhoud");
+				WillChangeValue("InOnderhoudString");
 				_inonderhoud = value;
+				DidChangeValue("InOnderhoudString");
 				DidChangeValue("InOnderhoud");
 			}
 		}
@@ -323,7 +329,9 @@ namespace FataAquana
 			set
 			{
 				WillChangeValue("Lidmaatschappen");
+				WillChangeValue("LidmaatschappenString");
 				_lidmaatschappen = value;
+				DidChangeValue("LidmaatschappenString");
 				DidChangeValue("Lidmaatschappen");
 			}
 		}
@@ -506,7 +514,7 @@ namespace FataAquana
 
 										gevopl.Load(conn, idGO);
 
-										GevolgdeOpleidingenString = gevopl.OpleidingNaam + ", " + GevolgdeOpleidingenString;
+                                        GevolgdeOpleidingenString = string.Format("{0} ({1:yyyy-mm-dd}), {2}", gevopl.OpleidingNaam, AppDelegate.NSDateToDateTime(gevopl.GeslaagdOp), GevolgdeOpleidingenString);
 										GevolgdeOpleidingen.Add(gevopl);
 									}
 									GevolgdeOpleidingenString = GevolgdeOpleidingenString.Substring(0, (GevolgdeOpleidingenString.Length - 2));

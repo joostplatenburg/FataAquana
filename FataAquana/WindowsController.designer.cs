@@ -13,6 +13,9 @@ namespace FataAquana
 	partial class WindowsController
 	{
 		[Outlet]
+		AppKit.NSToolbarItem CopyEmailadressen { get; set; }
+
+		[Outlet]
 		AppKit.NSToolbarItem OpenDB { get; set; }
 
 		[Outlet]
@@ -29,6 +32,11 @@ namespace FataAquana
 			if (OpenDB != null) {
 				OpenDB.Dispose ();
 				OpenDB = null;
+			}
+
+			if (CopyEmailadressen != null) {
+				CopyEmailadressen.Dispose ();
+				CopyEmailadressen = null;
 			}
 
 			if (Print != null) {

@@ -107,6 +107,20 @@ namespace FataAquana
 			return Conn;
 		}
 
+        internal static void CopyEmailadressen()
+        {
+            Debug.WriteLine("CopyEmailadressen clicked");
+
+            var s = "Test string email adres jplatenb@dxc.com";
+
+            NSPasteboard pasteboard = NSPasteboard.GeneralPasteboard;
+
+            pasteboard.ClearContents();
+
+            //pasteboard.WriteObjects(s as INSPasteboardWriting[]);
+        }
+
+
         private static void VoegColumnToe(SqliteConnection conn, string tablename, string columnname, string columntype)
         {
             try

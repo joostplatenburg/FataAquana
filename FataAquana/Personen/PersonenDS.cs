@@ -44,30 +44,30 @@ namespace FataAquana
 				case "Achternaam":
 					if (ascending)
 					{
-						Personen.Sort((x, y) => x.Achternaam.CompareTo(y.Achternaam));
+						Personen.Sort((x, y) => string.Compare(x.Achternaam, y.Achternaam, StringComparison.Ordinal));
 					}
 					else {
-						Personen.Sort((x, y) => -1 * x.Achternaam.CompareTo(y.Achternaam));
-					}
+                        Personen.Sort((x, y) => -1 * string.Compare(x.Achternaam, y.Achternaam, StringComparison.Ordinal));
+                    }
 					break;
 				case "Adres":
 					if (ascending)
 					{
-						Personen.Sort((x, y) => x.Adres.CompareTo(y.Adres));
+						Personen.Sort((x, y) => string.Compare(x.Adres, y.Adres, StringComparison.Ordinal));
 					}
 					else
 					{
-						Personen.Sort((x, y) => -1 * x.Adres.CompareTo(y.Adres));
+                        Personen.Sort((x, y) => -1 * string.Compare(x.Adres, y.Adres, StringComparison.Ordinal));
 					}
 					break;
 				case "Email":
 					if (ascending)
 					{
-						Personen.Sort((x, y) => x.Email.CompareTo(y.Email));
+						Personen.Sort((x, y) => string.Compare(x.Email, y.Email, StringComparison.Ordinal));
 					}
 					else
 					{
-						Personen.Sort((x, y) => -1 * x.Email.CompareTo(y.Email));
+						Personen.Sort((x, y) => -1 * string.Compare(x.Email, y.Email, StringComparison.Ordinal));
 					}
 					break;
 				case "Geboortedatum":
@@ -83,71 +83,111 @@ namespace FataAquana
 				case "Initialen":
 					if (ascending)
 					{
-						Personen.Sort((x, y) => x.Initialen.CompareTo(y.Initialen));
+						Personen.Sort((x, y) => string.Compare(x.Initialen, y.Initialen, StringComparison.Ordinal));
 					}
 					else
 					{
-						Personen.Sort((x, y) => -1 * x.Initialen.CompareTo(y.Initialen));
+						Personen.Sort((x, y) => -1 * string.Compare(x.Initialen, y.Initialen, StringComparison.Ordinal));
 					}
 					break;
 				case "Mobiel":
 					if (ascending)
 					{
-						Personen.Sort((x, y) => x.Mobiel.CompareTo(y.Mobiel));
+						Personen.Sort((x, y) => string.Compare(x.Mobiel, y.Mobiel, StringComparison.Ordinal));
 					}
 					else
 					{
-						Personen.Sort((x, y) => -1 * x.Mobiel.CompareTo(y.Mobiel));
+						Personen.Sort((x, y) => -1 * string.Compare(x.Mobiel, y.Mobiel, StringComparison.Ordinal));
 					}
 					break;
 				case "Postcode":
 					if (ascending)
 					{
-						Personen.Sort((x, y) => x.Postcode.CompareTo(y.Postcode));
+						Personen.Sort((x, y) => string.Compare(x.Postcode, y.Postcode, StringComparison.Ordinal));
 					}
 					else
 					{
-						Personen.Sort((x, y) => -1 * x.Postcode.CompareTo(y.Postcode));
+                        Personen.Sort((x, y) => -1 * string.Compare(x.Postcode, y.Postcode, StringComparison.Ordinal));
 					}
 					break;
 				case "Telefoon":
 					if (ascending)
 					{
-						Personen.Sort((x, y) => x.Telefoon.CompareTo(y.Telefoon));
+						Personen.Sort((x, y) => string.Compare(x.Telefoon, y.Telefoon, StringComparison.Ordinal));
 					}
 					else
 					{
-						Personen.Sort((x, y) => -1 * x.Telefoon.CompareTo(y.Telefoon));
+						Personen.Sort((x, y) => -1 * string.Compare(x.Telefoon, y.Telefoon, StringComparison.Ordinal));
 					}
 					break;
 				case "Tussenvoegsel":
 					if (ascending)
 					{
-						Personen.Sort((x, y) => x.Tussenvoegsel.CompareTo(y.Tussenvoegsel));
+						Personen.Sort((x, y) => string.Compare(x.Tussenvoegsel, y.Tussenvoegsel, StringComparison.Ordinal));
 					}
 					else
 					{
-						Personen.Sort((x, y) => -1 * x.Tussenvoegsel.CompareTo(y.Tussenvoegsel));
+						Personen.Sort((x, y) => -1 * string.Compare(x.Tussenvoegsel, y.Tussenvoegsel, StringComparison.Ordinal));
 					}
 					break;
 				case "Voornamen":
 					if (ascending)
 					{
-						Personen.Sort((x, y) => x.Voornamen.CompareTo(y.Voornamen));
+						Personen.Sort((x, y) => string.Compare(x.Voornamen, y.Voornamen, StringComparison.Ordinal));
 					}
 					else
 					{
-						Personen.Sort((x, y) => -1 * x.Voornamen.CompareTo(y.Voornamen));
+						Personen.Sort((x, y) => -1 * string.Compare(x.Voornamen, y.Voornamen, StringComparison.Ordinal));
 					}
 					break;
 				case "Woonplaats":
 					if (ascending)
 					{
-						Personen.Sort((x, y) => x.Woonplaats.CompareTo(y.Woonplaats));
+						Personen.Sort((x, y) => string.Compare(x.Woonplaats, y.Woonplaats, StringComparison.Ordinal));
 					}
 					else
 					{
-						Personen.Sort((x, y) => -1 * x.Woonplaats.CompareTo(y.Woonplaats));
+						Personen.Sort((x, y) => -1 * string.Compare(x.Woonplaats, y.Woonplaats, StringComparison.Ordinal));
+					}
+					break;
+				case "OpleidingenString":
+					if (ascending)
+					{
+						Personen.Sort((x, y) => string.Compare(x.GevolgdeOpleidingenString, y.GevolgdeOpleidingenString, StringComparison.Ordinal));
+					}
+					else
+					{
+						Personen.Sort((x, y) => -1 * string.Compare(x.GevolgdeOpleidingenString, y.GevolgdeOpleidingenString, StringComparison.Ordinal));
+					}
+					break;
+				case "AankopenString":
+					if (ascending)
+					{
+						Personen.Sort((x, y) => string.Compare(x.AankopenString, y.AankopenString, StringComparison.Ordinal));
+					}
+					else
+					{
+						Personen.Sort((x, y) => -1 * string.Compare(x.AankopenString, y.AankopenString, StringComparison.Ordinal));
+					}
+					break;
+				case "InOnderhoudString":
+					if (ascending)
+					{
+						Personen.Sort((x, y) => string.Compare(x.InOnderhoudString, y.InOnderhoudString, StringComparison.Ordinal));
+					}
+					else
+					{
+						Personen.Sort((x, y) => -1 * string.Compare(x.InOnderhoudString, y.InOnderhoudString, StringComparison.Ordinal));
+					}
+					break;
+				case "LidmaatschappenString":
+					if (ascending)
+					{
+						Personen.Sort((x, y) => string.Compare(x.LidmaatschappenString, y.LidmaatschappenString, StringComparison.Ordinal));
+					}
+					else
+					{
+						Personen.Sort((x, y) => -1 * string.Compare(x.LidmaatschappenString, y.LidmaatschappenString, StringComparison.Ordinal));
 					}
 					break;
 			}

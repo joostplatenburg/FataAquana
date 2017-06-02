@@ -101,7 +101,7 @@ namespace FataAquana
 					break;
 				case "Opleidingen":
 					view.StringValue = DataSource.Personen[(int)row].GevolgdeOpleidingenString;
-					tableColumn.Width = 120;
+					tableColumn.Width = 360;
 					break;
 				case "Aankopen":
 					view.StringValue = DataSource.Personen[(int)row].AankopenString;
