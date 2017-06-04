@@ -14,9 +14,7 @@ namespace FataAquana
 		private string _persoonID = string.Empty;
 		private string _apparaatID = string.Empty;
 		private NSDate _ontvangenOp = new NSDate();
-		private string _ontvangenOpText = string.Empty;
 		private NSDate _retourOp = new NSDate();
-		private string _retourOpText = string.Empty;
 
 		private SqliteConnection _conn = null;
 		#endregion
@@ -34,6 +32,8 @@ namespace FataAquana
 			get { return _ID; }
 			set
 			{
+                if (_ID == value) return;
+
 				WillChangeValue("ID");
 				_ID = value;
 				DidChangeValue("ID");
@@ -46,6 +46,8 @@ namespace FataAquana
 			get { return _apparaatNaam; }
 			set
 			{
+                if (_apparaatNaam == value) return;
+
 				WillChangeValue("ApparaatNaam");
 				_apparaatNaam = value;
 				DidChangeValue("ApparaatNaam");
@@ -58,6 +60,8 @@ namespace FataAquana
 			get { return _persoonID; }
 			set
 			{
+				if (_persoonID == value) return;
+
 				WillChangeValue("PersoonID");
 				_persoonID = value;
 				DidChangeValue("PersoonID");
@@ -73,6 +77,8 @@ namespace FataAquana
 			get { return _apparaatID; }
 			set
 			{
+				if (_apparaatID == value) return;
+
 				WillChangeValue("ApparaatID");
 				_apparaatID = value;
 				DidChangeValue("ApparaatID");
@@ -88,24 +94,11 @@ namespace FataAquana
 			get { return _ontvangenOp; }
 			set
 			{
+				if (_ontvangenOp == value) return;
+
 				WillChangeValue("OntvangenOp");
 				_ontvangenOp = value;
 				DidChangeValue("OntvangenOp");
-
-				// Save changes to database
-				if (_conn != null) Update(_conn);
-			}
-		}
-
-		[Export("OntvangenOpText")]
-		public string OntvangenOpText
-		{
-			get { return _ontvangenOpText; }
-			set
-			{
-				WillChangeValue("OntvangenOpText");
-				_ontvangenOpText = value;
-				DidChangeValue("OntvangenOpText");
 
 				// Save changes to database
 				if (_conn != null) Update(_conn);
@@ -118,24 +111,11 @@ namespace FataAquana
 			get { return _retourOp; }
 			set
 			{
+				if (_retourOp == value) return;
+
 				WillChangeValue("RetourOp");
 				_retourOp = value;
 				DidChangeValue("RetourOp");
-
-				// Save changes to database
-				if (_conn != null) Update(_conn);
-			}
-		}
-
-		[Export("RetourOpText")]
-		public string RetourOpText
-		{
-			get { return _retourOpText; }
-			set
-			{
-				WillChangeValue("RetourOpText");
-				_retourOpText = value;
-				DidChangeValue("RetourOpText");
 
 				// Save changes to database
 				if (_conn != null) Update(_conn);
@@ -255,8 +235,10 @@ namespace FataAquana
 						ID = (string)reader[0];
 						PersoonID = (string)reader[1];
 						ApparaatID = (string)reader[2];
-						OntvangenOp = AppDelegate.DateTimeToNSDate((DateTime)reader[3]);
-						RetourOp = AppDelegate.DateTimeToNSDate((DateTime)reader[4]);
+                        try { OntvangenOp = AppDelegate.DateTimeToNSDate((DateTime)reader[3]); }
+                        catch { }
+                        try { RetourOp = AppDelegate.DateTimeToNSDate((DateTime)reader[4]); }
+                        catch { }
 						ApparaatNaam = (string)reader[5];
 					}
 				}

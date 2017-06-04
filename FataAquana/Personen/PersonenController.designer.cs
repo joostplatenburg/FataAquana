@@ -113,11 +113,6 @@ namespace FataAquana
 				OnderhoudColumn = null;
 			}
 
-			if (OpleidingenColumn != null) {
-				OpleidingenColumn.Dispose ();
-				OpleidingenColumn = null;
-			}
-
 			if (PersonenTable != null) {
 				PersonenTable.Dispose ();
 				PersonenTable = null;
@@ -146,6 +141,11 @@ namespace FataAquana
 			if (WoonplaatsColumn != null) {
 				WoonplaatsColumn.Dispose ();
 				WoonplaatsColumn = null;
+			}
+
+			if (OpleidingenColumn != null) {
+				OpleidingenColumn.Dispose ();
+				OpleidingenColumn = null;
 			}
 		}
 	}

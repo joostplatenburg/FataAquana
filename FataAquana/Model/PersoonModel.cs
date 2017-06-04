@@ -31,8 +31,7 @@ namespace FataAquana
 		private string _mobiel = string.Empty;
 		private string _email = string.Empty;
 		private NSDate _geboortedatum = new NSDate();
-        private string _geboortedatumtext = string.Empty;
-		private string _imagepath = string.Empty;
+        private string _imagepath = string.Empty;
 
 		private NSMutableArray _gevolgdeopleidingen = new NSMutableArray();
 		private string _gevolgdeopleidingenstring = string.Empty;
@@ -57,8 +56,10 @@ namespace FataAquana
 			get { return _ID; }
 			set
 			{
+                if (_ID == value) return;
+
 				WillChangeValue("ID");
-				_ID = value;
+                _ID = value;
 				DidChangeValue("ID");
 			}
 		}
@@ -68,7 +69,9 @@ namespace FataAquana
 			get { return _achternaam; }
 			set
 			{
-				WillChangeValue("Achternaam");
+                if (_achternaam == value) return;
+
+                WillChangeValue("Achternaam");
 				_achternaam = value;
 				DidChangeValue("Achternaam");
 
@@ -82,6 +85,8 @@ namespace FataAquana
 			get { return _adres; }
 			set
 			{
+                if (_adres == value) return;
+
 				WillChangeValue("Adres");
 				_adres = value;
 				DidChangeValue("Adres");
@@ -96,24 +101,11 @@ namespace FataAquana
 			get { return _geboortedatum; }
 			set
 			{
+				if (_geboortedatum == value) return;
+
 				WillChangeValue("Geboortedatum");
 				_geboortedatum = value;
 				DidChangeValue("Geboortedatum");
-
-				// Save changes to database
-				if (_conn != null) Update(_conn);
-			}
-		}
-
-		[Export("GeboortedatumText")]
-		public string GeboortedatumText
-		{
-			get { return _geboortedatumtext; }
-			set
-			{
-				WillChangeValue("GeboortedatumText");
-				_geboortedatumtext = value;
-				DidChangeValue("GeboortedatumText");
 
 				// Save changes to database
 				if (_conn != null) Update(_conn);
@@ -125,6 +117,8 @@ namespace FataAquana
 			get { return _imagepath; }
 			set
 			{
+				if (_imagepath == value) return;
+
 				WillChangeValue("Imagepath");
 				_imagepath = value;
 				DidChangeValue("Imagepath");
@@ -139,6 +133,8 @@ namespace FataAquana
 			get { return _initialen; }
 			set
 			{
+				if (_initialen == value) return;
+
 				WillChangeValue("Initialen");
 				_initialen = value;
 				DidChangeValue("Initialen");
@@ -153,6 +149,8 @@ namespace FataAquana
 			get { return _postcode; }
 			set
 			{
+				if (_postcode == value) return;
+
 				WillChangeValue("Postcode");
 				_postcode = value;
 				DidChangeValue("Postcode");
@@ -167,6 +165,8 @@ namespace FataAquana
 			get { return _tussenvoegsel; }
 			set
 			{
+				if (_tussenvoegsel == value) return;
+
 				WillChangeValue("Tussenvoegsel");
 				_tussenvoegsel = value;
 				DidChangeValue("Tussenvoegsel");
@@ -181,6 +181,8 @@ namespace FataAquana
 			get { return _voornamen; }
 			set
 			{
+				if (_voornamen == value) return;
+
 				WillChangeValue("Voornamen");
 				_voornamen = value;
 				DidChangeValue("Voornamen");
@@ -195,6 +197,8 @@ namespace FataAquana
 			get { return _woonplaats; }
 			set
 			{
+				if (_woonplaats == value) return;
+
 				WillChangeValue("Woonplaats");
 				_woonplaats = value;
 				DidChangeValue("Woonplaats");
@@ -209,6 +213,8 @@ namespace FataAquana
 			get { return _telefoon; }
 			set
 			{
+				if (_telefoon == value) return;
+
 				WillChangeValue("Telefoon");
 				_telefoon = value;
 				DidChangeValue("Telefoon");
@@ -223,6 +229,8 @@ namespace FataAquana
 			get { return _mobiel; }
 			set
 			{
+				if (_mobiel == value) return;
+
 				WillChangeValue("Mobiel");
 				_mobiel = value;
 				DidChangeValue("Mobiel");
@@ -237,6 +245,8 @@ namespace FataAquana
 			get { return _email; }
 			set
 			{
+				if (_email == value) return;
+
 				WillChangeValue("Email");
 				_email = value;
 				DidChangeValue("Email");
@@ -252,6 +262,8 @@ namespace FataAquana
 			get { return _gevolgdeopleidingen; }
 			set
 			{
+				if (_gevolgdeopleidingen == value) return;
+
 				WillChangeValue("GevolgdeOpleidingen");
 				WillChangeValue("GevolgdeOpleidingenString");
 				_gevolgdeopleidingen = value;
@@ -265,6 +277,8 @@ namespace FataAquana
 		{
 			get { return _gevolgdeopleidingenstring; }
 			set {
+				if (_gevolgdeopleidingenstring == value) return;
+
 				WillChangeValue("GevolgdeOpleidingenString");
 				_gevolgdeopleidingenstring = value;
 				DidChangeValue("GevolgdeOpleidingenString");
@@ -277,6 +291,8 @@ namespace FataAquana
 			get { return _aankopen; }
 			set
 			{
+				if (_aankopen == value) return;
+
 				WillChangeValue("Aankopen");
 				WillChangeValue("AankopenString");
 				_aankopen = value;
@@ -290,6 +306,8 @@ namespace FataAquana
 		{
 			get { return _aankopenstring; }
 			set {
+				if (_aankopenstring == value) return;
+
 				WillChangeValue("AankopenString");
 				_aankopenstring = value;
 				DidChangeValue("AankopenString");
@@ -302,6 +320,8 @@ namespace FataAquana
 			get { return _inonderhoud; }
 			set
 			{
+				if (_inonderhoud == value) return;
+
 				WillChangeValue("InOnderhoud");
 				WillChangeValue("InOnderhoudString");
 				_inonderhoud = value;
@@ -316,6 +336,8 @@ namespace FataAquana
 			get { return _inonderhoudstring; }
 			set
 			{
+				if (_inonderhoudstring == value) return;
+
 				WillChangeValue("InOnderhoudString");
 				_inonderhoudstring = value;
 				DidChangeValue("InOnderhoudString");
@@ -328,6 +350,8 @@ namespace FataAquana
 			get { return _lidmaatschappen; }
 			set
 			{
+				if (_lidmaatschappen == value) return;
+
 				WillChangeValue("Lidmaatschappen");
 				WillChangeValue("LidmaatschappenString");
 				_lidmaatschappen = value;
@@ -342,6 +366,8 @@ namespace FataAquana
 			get { return _lidmaatschappenstring; }
 			set
 			{
+				if (_lidmaatschappenstring == value) return;
+
 				WillChangeValue("LidmaatschappenString");
 				_lidmaatschappenstring = value;
 				DidChangeValue("LidmaatschappenString");
@@ -496,65 +522,11 @@ namespace FataAquana
 						Voornamen = (string)reader["Voornamen"];
 						Woonplaats = (string)reader["Woonplaats"];
 
-						// ook de 'gevolgde opleidingen' laden
-						using (var commandGO = conn.CreateCommand())
-						{
-							try
-							{
-								// Create new command
-								commandGO.CommandText = "SELECT DISTINCT ID FROM [GevolgdeOpleiding] WHERE PersoonID = '" + ID + "'";
-								using (var readerGO = commandGO.ExecuteReader())
-								{
-									GevolgdeOpleidingenString = string.Empty;
+                        // ook de 'gevolgde opleidingen' laden
+                        LoadGevolgdeOpleidingen(conn, ID);
 
-									while (readerGO.Read())
-									{
-										var gevopl = new GevolgdeOpleidingModel();
-										var idGO = (string)readerGO["ID"];
-
-										gevopl.Load(conn, idGO);
-
-                                        GevolgdeOpleidingenString = string.Format("{0} ({1:yyyy-mm-dd}), {2}", gevopl.OpleidingNaam, AppDelegate.NSDateToDateTime(gevopl.GeslaagdOp), GevolgdeOpleidingenString);
-										GevolgdeOpleidingen.Add(gevopl);
-									}
-									GevolgdeOpleidingenString = GevolgdeOpleidingenString.Substring(0, (GevolgdeOpleidingenString.Length - 2));
-								}
-							}
-							catch (Exception Exception)
-							{
-								Debug.WriteLine(Exception.Message);
-							}
-						}
-
-						// ook de 'aankopen' laden
-						using (var commandAK = conn.CreateCommand())
-						{
-							try
-							{
-								// Create new command
-								commandAK.CommandText = "SELECT DISTINCT ID FROM [Aankoop] WHERE PersoonID = '" + ID + "'";
-								using (var readerAK = commandAK.ExecuteReader())
-								{
-									AankopenString = string.Empty;
-
-									while (readerAK.Read())
-									{
-										var aankoop = new AankoopModel();
-										var idAK = (string)readerAK["ID"];
-
-										aankoop.Load(conn, idAK);
-
-										AankopenString = aankoop.ApparaatNaam + ", " + AankopenString;
-										Aankopen.Add(aankoop);
-									}
-									AankopenString = AankopenString.Substring(0, (AankopenString.Length - 2));
-								}
-							}
-							catch (Exception Exception)
-							{
-								Debug.WriteLine(Exception.Message);
-							}
-						}
+                        // ook de 'aankopen' laden
+                        LoadAankopen(conn, ID);
 
 						// ook de 'onderhoud' laden
 						//						var onderhoudArray = new OnderhoudArrayController();
@@ -578,7 +550,125 @@ namespace FataAquana
 			_conn = conn;
 		}
 
-		public void Delete(SqliteConnection conn)
+        public void LoadGevolgdeOpleidingen(SqliteConnection conn, string id)
+        {
+			bool shouldClose = false;
+			GevolgdeOpleidingenString = string.Empty;
+
+			// clear last connection to preventcirculair call to update
+			_conn = null;
+
+			// Is the database already open?
+			if (conn.State != ConnectionState.Open)
+			{
+				shouldClose = true;
+				conn.Open();
+			}
+
+			using (var commandGO = conn.CreateCommand())
+			{
+				try
+				{
+					// Create new command
+					commandGO.CommandText = "SELECT DISTINCT ID FROM [GevolgdeOpleiding] WHERE PersoonID = '" + ID + "'";
+					using (var readerGO = commandGO.ExecuteReader())
+					{
+						while (readerGO.Read())
+						{
+							var gevopl = new GevolgdeOpleidingModel();
+							var idGO = (string)readerGO["ID"];
+
+							gevopl.Load(conn, idGO);
+
+							GevolgdeOpleidingenString = string.Format("{0} ({1:yyyy-mm-dd}), {2}", gevopl.OpleidingNaam, AppDelegate.NSDateToDateTime(gevopl.GeslaagdOp), GevolgdeOpleidingenString);
+							GevolgdeOpleidingen.Add(gevopl);
+						}
+
+                        if (GevolgdeOpleidingenString.Length > 2)
+                        {
+                            GevolgdeOpleidingenString = GevolgdeOpleidingenString.Substring(0, (GevolgdeOpleidingenString.Length - 2));
+                        } else {
+                            GevolgdeOpleidingenString = "<GEEN>";
+                        }
+					}
+				}
+				catch (Exception Exception)
+				{
+					Debug.WriteLine(Exception.Message);
+				}
+			}
+
+            Debug.WriteLine(ID + ": " + GevolgdeOpleidingenString);
+
+            if (shouldClose)
+			{
+				conn.Close();
+			}
+
+			// Save last connection
+			_conn = conn;
+		}
+
+		public void LoadAankopen(SqliteConnection conn, string id)
+		{
+			bool shouldClose = false;
+			AankopenString = string.Empty;
+
+			// clear last connection to preventcirculair call to update
+			_conn = null;
+
+			// Is the database already open?
+			if (conn.State != ConnectionState.Open)
+			{
+				shouldClose = true;
+				conn.Open();
+			}
+
+			using (var commandAK = conn.CreateCommand())
+			{
+				try
+				{
+					// Create new command
+					commandAK.CommandText = "SELECT DISTINCT ID FROM [Aankoop] WHERE PersoonID = '" + ID + "'";
+					using (var readerAK = commandAK.ExecuteReader())
+					{
+						AankopenString = string.Empty;
+
+						while (readerAK.Read())
+						{
+							var aankoop = new AankoopModel();
+							var idAK = (string)readerAK["ID"];
+
+							aankoop.Load(conn, idAK);
+
+							AankopenString = aankoop.ApparaatNaam + ", " + AankopenString;
+							Aankopen.Add(aankoop);
+						}
+
+                        if (AankopenString.Length > 2)
+                        {
+                            AankopenString = AankopenString.Substring(0, (AankopenString.Length - 2));
+
+                            //Debug.WriteLine(string.Format("Aankopen bij {0}: {1}", ID, AankopenString));
+                        }
+					}
+				}
+				catch (Exception Exception)
+				{
+					Debug.WriteLine(Exception.Message);
+				}
+			}
+
+			if (shouldClose)
+			{
+				conn.Close();
+			}
+
+			// Save last connection
+			_conn = conn;
+		}
+		
+        public void Delete(SqliteConnection conn)
 		{
 			// clear last connection to preventcirculair call to update
 			_conn = null;

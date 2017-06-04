@@ -14,7 +14,6 @@ namespace FataAquana
 		private string _persoonID = string.Empty;
 		private string _apparaatID = string.Empty;
 		private NSDate _gekochtOp = new NSDate();
-		private string _gekochtOpText = string.Empty;
 
 		private SqliteConnection _conn = null;
 		#endregion
@@ -32,6 +31,8 @@ namespace FataAquana
 			get { return _ID; }
 			set
 			{
+                if (_ID == value) return;
+
 				WillChangeValue("ID");
 				_ID = value;
 				DidChangeValue("ID");
@@ -44,6 +45,8 @@ namespace FataAquana
 			get { return _apparaatNaam; }
 			set
 			{
+                if (_apparaatNaam == value) return;
+
 				WillChangeValue("ApparaatNaam");
 				_apparaatNaam = value;
 				DidChangeValue("ApparaatNaam");
@@ -56,6 +59,8 @@ namespace FataAquana
 			get { return _persoonID; }
 			set
 			{
+                if (_persoonID == value) return;
+
 				WillChangeValue("PersoonID");
 				_persoonID = value;
 				DidChangeValue("PersoonID");
@@ -71,6 +76,8 @@ namespace FataAquana
 			get { return _apparaatID; }
 			set
 			{
+                if (_apparaatID == value) return;
+
 				WillChangeValue("ApparaatID");
 				_apparaatID = value;
 				DidChangeValue("ApparaatID");
@@ -86,24 +93,11 @@ namespace FataAquana
 			get { return _gekochtOp; }
 			set
 			{
+                if (_gekochtOp == value) return;
+
 				WillChangeValue("GekochtOp");
 				_gekochtOp = value;
 				DidChangeValue("GekochtOp");
-
-				// Save changes to database
-				if (_conn != null) Update(_conn);
-			}
-		}
-
-		[Export("GekochtOpText")]
-		public string GekochtOpText
-		{
-			get { return _gekochtOpText; }
-			set
-			{
-				WillChangeValue("GekochtOpText");
-				_gekochtOpText = value;
-				DidChangeValue("GekochtOpText");
 
 				// Save changes to database
 				if (_conn != null) Update(_conn);
@@ -220,7 +214,8 @@ namespace FataAquana
 						ID = (string)reader[0];
 						PersoonID = (string)reader[1];
 						ApparaatID = (string)reader[2];
-						GekochtOp = AppDelegate.DateTimeToNSDate((DateTime)reader[3]);
+                        try { GekochtOp = AppDelegate.DateTimeToNSDate((DateTime)reader[3]); }
+                        catch { }
 						ApparaatNaam = (string)reader[4];
 					}
 				}

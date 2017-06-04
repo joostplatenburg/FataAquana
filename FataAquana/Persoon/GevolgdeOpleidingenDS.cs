@@ -41,13 +41,13 @@ namespace FataAquana
 			// Take action based on key
 			switch (key)
 			{
-				case "OpleidingNaam":
+				case "Opleidingnaam":
 					if (ascending)
 					{
-						GevolgdeOpleidingen.Sort((x, y) => x.OpleidingNaam.CompareTo(y.OpleidingNaam));
+						GevolgdeOpleidingen.Sort((x, y) => string.Compare(x.OpleidingNaam, y.OpleidingNaam, StringComparison.CurrentCulture));
 					}
 					else {
-						GevolgdeOpleidingen.Sort((x, y) => -1 * x.OpleidingNaam.CompareTo(y.OpleidingNaam));
+						GevolgdeOpleidingen.Sort((x, y) => -1 * string.Compare(x.OpleidingNaam, y.OpleidingNaam, StringComparison.CurrentCulture));
 					}
 					break;
 				case "GeslaagdOp":
@@ -94,6 +94,8 @@ namespace FataAquana
 
 		void LoadGevolgdeOpleidingen(SqliteConnection conn, string PersoonID)
 		{
+            GevolgdeOpleidingen.Clear();
+
 			bool shouldClose = false;
 
 			// Is the database already open?

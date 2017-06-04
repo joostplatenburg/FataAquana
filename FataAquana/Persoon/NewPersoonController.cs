@@ -4,13 +4,117 @@ using System;
 
 using Foundation;
 using AppKit;
+using System.Diagnostics;
 
 namespace FataAquana
 {
 	public partial class NewPersoonController : NSViewController
 	{
-		public NewPersoonController (IntPtr handle) : base (handle)
-		{
+		#region private variables
+		private PersonenController _parentController;
+		private PersoonModel _persoon;
+   		#endregion
+
+		#region Constructors
+		public NewPersoonController(IntPtr handle) : base (handle)
+        {
 		}
+		#endregion
+
+		public override void AwakeFromNib()
+		{
+			Debug.WriteLine("Start: NewPersoonController.AwakeFromNib");
+
+			base.AwakeFromNib();
+
+			_parentController = this.PresentingViewController as PersonenController;
+			if (_parentController != null)
+			{
+				Persoon = new PersoonModel();
+			}
+
+			Debug.WriteLine("Einde: NewPersoonController.AwakeFromNib");
+		}
+
+		[Export("Persoon")]
+		public PersoonModel Persoon
+		{
+			get { return _persoon; }
+			set
+			{
+                if (_persoon == value) return;
+                
+				WillChangeValue("Persoon");
+				_persoon = value;
+				DidChangeValue("Persoon");
+			}
+		}
+
+		partial void SaveButton(NSButton sender)
+		{
+			Debug.WriteLine("Start: NewPersoonController.SaveButton");
+
+			Persoon.Create(AppDelegate.Conn);
+
+            _parentController.dsPersonen.AddPersoon(Persoon);
+
+			if (_parentController != null)
+			{
+				_parentController.ReloadTable();
+			}
+
+			DismissController(this);
+
+			Debug.WriteLine("Einde: NewPersoonController.SaveButton");
+		}
+
+		partial void CancelButton(NSButton sender)
+		{
+			Debug.WriteLine("Start: NewPersoonController.CancelButton");
+
+			DismissController(this);
+
+			Debug.WriteLine("Einde: NewPersoonController.CancelButton");
+		}
+
+		#region Actions
+		[Action("WijzigFotoClicked:")]
+		public void WijzigFotoClicked(NSObject sender)
+		{
+			Debug.WriteLine("Start: NewPersoonController.WijzigFotoClicked");
+
+			var dlg = NSOpenPanel.OpenPanel;
+			dlg.CanChooseFiles = true;
+			dlg.CanChooseDirectories = false;
+			dlg.AllowedFileTypes = new string[] { "jpg", "jpeg", "png", "tiff" };
+
+			if (dlg.RunModal() == 1)
+			{
+				// Nab the first file
+				var url = dlg.Urls[0];
+
+				if (url != null)
+				{
+					var path = url.Path;
+					Persoon.Imagepath = url.Path;
+				}
+			}
+		}
+
+		#endregion
+
+		#region Events
+		public delegate void PersonModifiedDelegate(PersoonModel persoon);
+		public event PersonModifiedDelegate PersonModified;
+
+		internal void RaisePersonModified(PersoonModel persoon)
+		{
+			Debug.WriteLine("Start: PersoonController.RaisePersonModified");
+
+			if (this.PersonModified != null) this.PersonModified(persoon);
+
+			Debug.WriteLine("Einde: PersoonController.RaisePersonModified");
+		}
+		#endregion
 	}
 }

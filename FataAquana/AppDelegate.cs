@@ -72,25 +72,41 @@ namespace FataAquana
 					{
 						Conn.Open();
 
-                        VoegColumnToe(Conn, "Apparaat", "Omschrijving", "Text");
-                        VoegColumnToe(Conn, "Aankoop", "GekochtOpText", "Text");
-						
-                        VoegColumnToe(Conn, "Clublidmaatschap", "IngeschrevenOpText", "Text");
-						VoegColumnToe(Conn, "Clublidmaatschap", "UitgeschrevenOpText", "Text");
+                        //VoegColumnToe(Conn, "Apparaat", "Omschrijving", "Text");
 
-                        VoegColumnToe(Conn, "GevolgdeOpleiding", "GeslaagdOpText", "Text");
-                        VoegColumnToe(Conn, "GevolgdeOpleiding", "VerlopenOpText", "Text");
-					
-                        VoegColumnToe(Conn, "InOnderhoud", "OntvangenOpText", "Text");
-                        VoegColumnToe(Conn, "InOnderhoud", "RetourOpText", "Text");
+						//VoegColumnToe(Conn, "Aankoop", "GekochtOpText", "Text");
 
-						VoegColumnToe(Conn, "Persoon", "GeboortedatumText", "Text");
+						//VoegColumnToe(Conn, "Clublidmaatschap", "IngeschrevenOpText", "Text");
+						//VoegColumnToe(Conn, "Clublidmaatschap", "UitgeschrevenOpText", "Text");
 
-						VoegColumnToe(Conn, "WerkPeriode", "GestartOpText", "Text");
-						VoegColumnToe(Conn, "WerkPeriode", "GestoptOpText", "Text");
-						
+						//VoegColumnToe(Conn, "GevolgdeOpleiding", "GeslaagdOpText", "Text");
+						//VoegColumnToe(Conn, "GevolgdeOpleiding", "VerlopenOpText", "Text");
 
-                        Conn.Close();
+						//VoegColumnToe(Conn, "InOnderhoud", "OntvangenOpText", "Text");
+						//VoegColumnToe(Conn, "InOnderhoud", "RetourOpText", "Text");
+
+						//VoegColumnToe(Conn, "Persoon", "GeboortedatumText", "Text");
+
+						//VoegColumnToe(Conn, "WerkPeriode", "GestartOpText", "Text");
+						//VoegColumnToe(Conn, "WerkPeriode", "GestoptOpText", "Text");
+
+						//VerwijderColumn(Conn, "Aankoop", "GekochtOpText");
+
+						//VerwijderColumn(Conn, "Clublidmaatschap", "IngeschrevenOpText");
+						//VerwijderColumn(Conn, "Clublidmaatschap", "UitgeschrevenOpText");
+
+						//VerwijderColumn(Conn, "GevolgdeOpleiding", "GeslaagdOpText");
+						//VerwijderColumn(Conn, "GevolgdeOpleiding", "VerlopenOpText");
+
+						//VerwijderColumn(Conn, "InOnderhoud", "OntvangenOpText");
+						//VerwijderColumn(Conn, "InOnderhoud", "RetourOpText");
+
+						//VerwijderColumn(Conn, "Persoon", "GeboortedatumText");
+
+						//VerwijderColumn(Conn, "WerkPeriode", "GestartOpText");
+						//VerwijderColumn(Conn, "WerkPeriode", "GestoptOpText");
+
+						Conn.Close();
 					}
 					catch(Exception e)
 					{
@@ -111,21 +127,33 @@ namespace FataAquana
         {
             Debug.WriteLine("CopyEmailadressen clicked");
 
-            var s = "Test string email adres jplatenb@dxc.com";
+            // Only act when rows selected.
 
-            NSPasteboard pasteboard = NSPasteboard.GeneralPasteboard;
+            Debug.WriteLine("Test " + MainView.Description);
 
-            pasteboard.ClearContents();
+            //NSString s = "Test string email adres jplatenb@dxc.com";
 
-            //pasteboard.WriteObjects(s as INSPasteboardWriting[]);
-        }
+   //         NSPasteboard pasteboard = NSPasteboard.GeneralPasteboard;
+
+   //         pasteboard.ClearContents();
+
+			////Debug.WriteLine(MainView.SplitViewItems[1].ViewController.NibName);
+
+			////pasteboard.WriteObjects("Test string email adres jplatenb@dxc.com");
+			//// Using a Pasteboard Item
+			//NSPasteboardItem item = new NSPasteboardItem();
+			//string[] writableTypes = { "joost@platenburg.eu" };
+
+			//// Save to pasteboard
+			//pasteboard.WriteObjects(new NSPasteboardItem[] { item });
+		}
 
 
-        private static void VoegColumnToe(SqliteConnection conn, string tablename, string columnname, string columntype)
-        {
-            try
-            {
-                var cmd = string.Format("ALTER TABLE {0} ADD {1} {2}", tablename, columnname, columntype);
+		private static void VoegColumnToe(SqliteConnection conn, string tablename, string columnname, string columntype)
+		{
+			try
+			{
+				var cmd = string.Format("ALTER TABLE {0} ADD {1} {2}", tablename, columnname, columntype);
 
 				using (var c = Conn.CreateCommand())
 				{
@@ -135,13 +163,33 @@ namespace FataAquana
 				}
 
 			}
-            catch(Exception e)
-            {
+			catch (Exception e)
+			{
 				Debug.WriteLine(e.Message);
 			}
-        }
+		}
 
-        public static DateTime NSDateToDateTime(NSDate date)
+		private static void VerwijderColumn(SqliteConnection conn, string tablename, string columnname)
+		{
+			try
+			{
+				var cmd = string.Format("ALTER TABLE {0} DROP COLUMN {1}", tablename, columnname);
+
+				using (var c = Conn.CreateCommand())
+				{
+					c.CommandText = cmd;
+					c.CommandType = CommandType.Text;
+					c.ExecuteNonQuery();
+				}
+
+			}
+			catch (Exception e)
+			{
+				Debug.WriteLine(e.Message);
+			}
+		}
+
+		public static DateTime NSDateToDateTime(NSDate date)
 		{
 			// NSDate has a wider range than DateTime, so clip
 			// the converted date to DateTime.Min|MaxValue.

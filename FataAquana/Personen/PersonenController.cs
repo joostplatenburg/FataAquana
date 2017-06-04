@@ -48,11 +48,11 @@ namespace FataAquana
 		{
 			base.AwakeFromNib();
 
-			// Create the Personen Table Data Source and populate it
-			dsPersonen = new PersonenDS(AppDelegate.Conn);
-
 			if (PersonenTable != null)
 			{
+				// Create the Personen Table Data Source and populate it
+				dsPersonen = new PersonenDS(AppDelegate.Conn);
+
 				// Populate the Product Table
 				PersonenTable.DataSource = dsPersonen;
 				PersonenTable.Delegate = new PersonenDelegate(this, dsPersonen);
@@ -67,7 +67,7 @@ namespace FataAquana
 
 			SelectedPersoon = null;
 
-			PerformSegue("PersoonSegue", this);
+			PerformSegue("PersoonNewSegue", this);
 
 			Debug.WriteLine("Einde: PersonenController.PersoonAddClicked");
 		}

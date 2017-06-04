@@ -29,6 +29,8 @@ namespace FataAquana
 			get { return _ID; }
 			set
 			{
+                if (_ID == value) return;
+
 				WillChangeValue("ID");
 				_ID = value;
 				DidChangeValue("ID");
@@ -41,6 +43,8 @@ namespace FataAquana
 			get { return _opleidingnaam; }
 			set
 			{
+                if (_opleidingnaam == value) return;
+
 				WillChangeValue("OpleidingNaam");
 				_opleidingnaam = value;
 				DidChangeValue("OpleidingNaam");
@@ -56,6 +60,8 @@ namespace FataAquana
 			get { return _omschrijving; }
 			set
 			{
+                if (_omschrijving == value) return;
+
 				WillChangeValue("Omschrijving");
 				_omschrijving = value;
 				DidChangeValue("Omschrijving");

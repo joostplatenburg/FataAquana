@@ -12,7 +12,7 @@ namespace FataAquana
 
 		#region Private Variables
 		private PersonenDS DataSource;
-		private PersonenController Controller;
+		//private PersonenController Controller;
 		#endregion
 
 		#region Constructors
@@ -26,7 +26,7 @@ namespace FataAquana
 		{
 			// Initialize
 			this.DataSource = dataSource;
-			this.Controller = controller;
+		//	this.Controller = controller;
 		}
 		#endregion
 
@@ -44,7 +44,7 @@ namespace FataAquana
 				view.BackgroundColor = NSColor.Clear;
 				view.Bordered = false;
 				view.Selectable = false;
-				view.Editable = true;
+                view.Editable = false;
 			}
 
 			// Setup view based on the column selected
@@ -105,58 +105,36 @@ namespace FataAquana
 					break;
 				case "Aankopen":
 					view.StringValue = DataSource.Personen[(int)row].AankopenString;
-					tableColumn.Width = 120;
+					tableColumn.Width = 360;
 					break;
 				case "Onderhoud":
 					view.StringValue = DataSource.Personen[(int)row].InOnderhoudString;
-					tableColumn.Width = 120;
+					tableColumn.Width = 360;
 					break;
 				case "Lidmaatschappen":
 					view.StringValue = DataSource.Personen[(int)row].LidmaatschappenString;
-					tableColumn.Width = 120;
+					tableColumn.Width = 360;
 					break;
 			}
 			return view;
 		}
 
-		public override void MouseDownInHeaderOfTableColumn(NSTableView tableView, NSTableColumn tableColumn)
-		{
-			//base.MouseDownInHeaderOfTableColumn(tableView, tableColumn);
-
-			Debug.WriteLine(tableColumn.Title + " ("+ tableColumn.Width + ")");
-
-			for (int i = 0; i < tableView.ColumnCount; i++)
-			//foreach (NSTableColumn tc in tableView.TableColumns())
-			{
-				//Debug.WriteLine(GetSizeToFitColumnWidth(tableView, i));
-			}
-		}
-
-		public override void ColumnDidResize(Foundation.NSNotification notification)
-		{
-			//base.ColumnDidResize(notification);
-		}
-
 		public override bool ShouldSelectRow(NSTableView tableView, nint row)
 		{
-			//Debug.WriteLine("Selected row: " + row);
+            //Debug.WriteLine("Selected row: " + row);
 
-			//AppDelegate.MainView.RaisePersoonSelected(row);
+            //AppDelegate.MainView.RaisePersoonSelected(row);
 
-			var selectedRowIndex = tableView.SelectedRow;
-			var selectedAchternaam = DataSource.Personen[(int)row].Achternaam;
+            //var selectedRowIndex = tableView.SelectedRow;
+            //var selectedAchternaam = DataSource.Personen[(int)row].Achternaam;
 
-			return true;
-		}
-
-		public override bool SelectionShouldChange(NSTableView tableView)
-		{
-			//base.SelectionShouldChange(tableView);
-
-			//Debug.WriteLine("Selection row: " + tableView.SelectedRow);
+            var selectedrows = tableView.SelectedRows;
+            Debug.WriteLine("Selected row count: " + tableView.SelectedRowCount);
 
 			return true;
 		}
+
+
 		#endregion
 	}
 }

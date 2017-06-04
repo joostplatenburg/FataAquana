@@ -15,9 +15,7 @@ namespace FataAquana
 		private string _opleidingID = string.Empty;
 		private string _opleidingNaam = string.Empty;
 		private NSDate _geslaagdOp = new NSDate();
-		private string _geslaagdOpText = string.Empty;
 		private NSDate _verlopenOp = new NSDate();
-		private string _verlopenOpText = string.Empty;
 
 		private SqliteConnection _conn = null;
 		#endregion
@@ -35,6 +33,8 @@ namespace FataAquana
 			get { return _ID; }
 			set
 			{
+                if (_ID == value) return;
+
 				WillChangeValue("ID");
 				_ID = value;
 				DidChangeValue("ID");
@@ -47,6 +47,8 @@ namespace FataAquana
 			get { return _persoonID; }
 			set
 			{
+                if (_persoonID == value) return;
+
 				WillChangeValue("PersoonID");
 				_persoonID = value;
 				DidChangeValue("PersoonID");
@@ -62,6 +64,8 @@ namespace FataAquana
 			get { return _opleidingID; }
 			set
 			{
+                if(_opleidingID == value) return;
+
 				WillChangeValue("OpleidingID");
 				_opleidingID = value;
 
@@ -82,6 +86,8 @@ namespace FataAquana
 			get { return _opleidingNaam; }
 			set
 			{
+                if (_opleidingNaam == value) return;
+
 				WillChangeValue("OpleidingNaam");
 				_opleidingNaam = value;
 				DidChangeValue("OpleidingNaam");
@@ -94,24 +100,11 @@ namespace FataAquana
 			get { return _geslaagdOp; }
 			set
 			{
-				WillChangeValue("GeslaagdOp");
+                if (_geslaagdOp == value) return;
+
+                WillChangeValue("GeslaagdOp");
 				_geslaagdOp = value;
 				DidChangeValue("GeslaagdOp");
-
-				// Save changes to database
-				if (_conn != null) Update(_conn);
-			}
-		}
-
-		[Export("GeslaagdOpText")]
-		public string GeslaagdOpText
-		{
-			get { return _geslaagdOpText; }
-			set
-			{
-				WillChangeValue("GeslaagdOpText");
-				_geslaagdOpText = value;
-				DidChangeValue("GeslaagdOpText");
 
 				// Save changes to database
 				if (_conn != null) Update(_conn);
@@ -124,6 +117,8 @@ namespace FataAquana
 			get { return _verlopenOp; }
 			set
 			{
+                if (_verlopenOp == value) return;
+
 				WillChangeValue("VerlopenOp");
 				_verlopenOp = value;
 				DidChangeValue("VerlopenOp");
@@ -132,22 +127,7 @@ namespace FataAquana
 				if (_conn != null) Update(_conn);
 			}
 		}
-
-		[Export("VerlopenOpText")]
-		public string VerlopenOpText
-		{
-			get { return _verlopenOpText; }
-			set
-			{
-				WillChangeValue("VerlopenOpText");
-				_verlopenOpText = value;
-				DidChangeValue("VerlopenOpText");
-
-				// Save changes to database
-				if (_conn != null) Update(_conn);
-			}
-		}
-		#endregion
+        #endregion
 
 		#region Constructors
 		public GevolgdeOpleidingModel()
@@ -230,7 +210,7 @@ namespace FataAquana
 
 		public void Load(SqliteConnection conn, string id)
 		{
-			Debug.WriteLine("GevolgdeOpleidingModel: " + id);
+			//Debug.WriteLine("GevolgdeOpleidingModel.Load: " + id);
 
 			bool shouldClose = false;
 
@@ -249,8 +229,9 @@ namespace FataAquana
 			{
 				// Create new command
 				command.CommandText = "SELECT GevolgdeOpleiding.ID, PersoonID, OpleidingID, GeslaagdOp, VerlopenOp, OpleidingNaam " +
-					"FROM GevolgdeOpleiding LEFT JOIN Opleiding ON Opleiding.ID = GevolgdeOpleiding.OpleidingID " +
-					"WHERE GevolgdeOpleiding.ID = @COL1";
+					                    "FROM GevolgdeOpleiding " +
+                                        "LEFT JOIN Opleiding ON Opleiding.ID = GevolgdeOpleiding.OpleidingID " +
+					                    "WHERE GevolgdeOpleiding.ID = @COL1";
 
 				// Populate with data from the record
 				command.Parameters.AddWithValue("@COL1", id);
@@ -265,8 +246,10 @@ namespace FataAquana
 							ID = (string)reader[0];
 							PersoonID = (string)reader[1];
 							OpleidingID = (string)reader[2];
-							GeslaagdOp = AppDelegate.DateTimeToNSDate((DateTime)reader[3]);
-							VerlopenOp = AppDelegate.DateTimeToNSDate((DateTime)reader[4]);
+                            try { GeslaagdOp = AppDelegate.DateTimeToNSDate((DateTime)reader[3]); }
+                            catch { }
+                            try { VerlopenOp = AppDelegate.DateTimeToNSDate((DateTime)reader[4]); }
+							catch { }
 							OpleidingNaam = (string)reader[5];
 						}
 					}

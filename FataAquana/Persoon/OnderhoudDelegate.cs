@@ -61,28 +61,7 @@ namespace FataAquana
 			return view;
 		}
 
-		public override void MouseDownInHeaderOfTableColumn(NSTableView tableView, NSTableColumn tableColumn)
-		{
-			Debug.WriteLine("Start: OnderhoudDelegate.MouseDownInHeaderOfTableColumn");
-
-			//base.MouseDownInHeaderOfTableColumn(tableView, tableColumn);
-
-			Debug.WriteLine(tableColumn.Title + " ("+ tableColumn.Width + ")");
-
-			for (int i = 0; i < tableView.ColumnCount; i++)
-			//foreach (NSTableColumn tc in tableView.TableColumns())
-			{
-				//Debug.WriteLine(GetSizeToFitColumnWidth(tableView, i));
-			}
-			Debug.WriteLine("Einde: OnderhoudDelegate.MouseDownInHeaderOfTableColumn");
-		}
-
-		public override void ColumnDidResize(Foundation.NSNotification notification)
-		{
-			//base.ColumnDidResize(notification);
-		}
-
-		public override bool ShouldSelectRow(NSTableView tableView, nint row)
+        public override bool ShouldSelectRow(NSTableView tableView, nint row)
 		{
 			Debug.WriteLine("Start: OnderhoudDelegate.ShouldSelectRow(" + row + ")");
 
@@ -92,18 +71,6 @@ namespace FataAquana
 			var selectedAchternaam = DataSource.Onderhoud[(int)row].ApparaatNaam;
 
 			Debug.WriteLine("Einde: OnderhoudDelegate.ShouldSelectRow");
-
-			return true;
-		}
-
-		public override bool SelectionShouldChange(NSTableView tableView)
-		{
-			//Debug.WriteLine("Start: OnderhoudDelegate.SelectionShouldChange");
-			//base.SelectionShouldChange(tableView);
-
-			//Debug.WriteLine("Selection row: " + tableView.SelectedRow);
-
-			//Debug.WriteLine("Einde: OnderhoudDelegate.SelectionShouldChange");
 
 			return true;
 		}

@@ -1,6 +1,6 @@
 // WARNING
 //
-// This file has been generated automatically by Xamarin Studio to store outlets and
+// This file has been generated automatically by Visual Studio to store outlets and
 // actions made in the UI designer. If it is removed, they will be lost.
 // Manual changes to this file may not be handled correctly.
 //
@@ -28,9 +28,6 @@ namespace FataAquana
 		AppKit.NSTableColumn GekochtOp { get; set; }
 
 		[Outlet]
-		AppKit.NSTableColumn GeslaagdOp { get; set; }
-
-		[Outlet]
 		AppKit.NSTableView GevolgdeOpleidingenTable { get; set; }
 
 		[Outlet]
@@ -46,16 +43,10 @@ namespace FataAquana
 		AppKit.NSTableColumn OntvangenOp { get; set; }
 
 		[Outlet]
-		AppKit.NSTableColumn Opleidingnaam { get; set; }
-
-		[Outlet]
 		AppKit.NSTableColumn RetourOp { get; set; }
 
 		[Outlet]
 		AppKit.NSTableColumn UitgeschrevenOp { get; set; }
-
-		[Outlet]
-		AppKit.NSTableColumn VerlopenOp { get; set; }
 
 		[Action ("CancelButton:")]
 		partial void CancelButton (AppKit.NSButton sender);
@@ -93,11 +84,6 @@ namespace FataAquana
 				GekochtOp = null;
 			}
 
-			if (GeslaagdOp != null) {
-				GeslaagdOp.Dispose ();
-				GeslaagdOp = null;
-			}
-
 			if (GevolgdeOpleidingenTable != null) {
 				GevolgdeOpleidingenTable.Dispose ();
 				GevolgdeOpleidingenTable = null;
@@ -123,11 +109,6 @@ namespace FataAquana
 				OntvangenOp = null;
 			}
 
-			if (Opleidingnaam != null) {
-				Opleidingnaam.Dispose ();
-				Opleidingnaam = null;
-			}
-
 			if (RetourOp != null) {
 				RetourOp.Dispose ();
 				RetourOp = null;
@@ -136,11 +117,6 @@ namespace FataAquana
 			if (UitgeschrevenOp != null) {
 				UitgeschrevenOp.Dispose ();
 				UitgeschrevenOp = null;
-			}
-
-			if (VerlopenOp != null) {
-				VerlopenOp.Dispose ();
-				VerlopenOp = null;
 			}
 		}
 	}

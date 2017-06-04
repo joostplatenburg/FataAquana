@@ -69,24 +69,6 @@ namespace FataAquana
 			return view;
 		}
 
-		public override void MouseDownInHeaderOfTableColumn(NSTableView tableView, NSTableColumn tableColumn)
-		{
-			//base.MouseDownInHeaderOfTableColumn(tableView, tableColumn);
-
-			Debug.WriteLine(tableColumn.Title + " ("+ tableColumn.Width + ")");
-
-			for (int i = 0; i < tableView.ColumnCount; i++)
-			//foreach (NSTableColumn tc in tableView.TableColumns())
-			{
-				//Debug.WriteLine(GetSizeToFitColumnWidth(tableView, i));
-			}
-		}
-
-		public override void ColumnDidResize(Foundation.NSNotification notification)
-		{
-			//base.ColumnDidResize(notification);
-		}
-
 		public override bool ShouldSelectRow(NSTableView tableView, nint row)
 		{
 			//Debug.WriteLine("Selected row: " + row);
@@ -95,15 +77,6 @@ namespace FataAquana
 
 			var selectedRowIndex = tableView.SelectedRow;
 			var selectedAchternaam = DataSource.GevolgdeOpleidingen[(int)row].OpleidingNaam;
-
-			return true;
-		}
-
-		public override bool SelectionShouldChange(NSTableView tableView)
-		{
-			//base.SelectionShouldChange(tableView);
-
-			//Debug.WriteLine("Selection row: " + tableView.SelectedRow);
 
 			return true;
 		}

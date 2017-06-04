@@ -12,7 +12,13 @@ namespace FataAquana
 	[Register ("NewPersoonController")]
 	partial class NewPersoonController
 	{
-		
+
+		[Action("CancelButton:")]
+		partial void CancelButton(AppKit.NSButton sender);
+
+		[Action("SaveButton:")]
+		partial void SaveButton(AppKit.NSButton sender);
+
 		void ReleaseDesignerOutlets ()
 		{
 		}

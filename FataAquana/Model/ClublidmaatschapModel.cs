@@ -14,9 +14,7 @@ namespace FataAquana
 		private string _clubID = string.Empty;
 		private string _clubNaam = string.Empty;
 		private NSDate _ingeschrevenOp = new NSDate();
-		private string _ingeschrevenOpText = string.Empty;
 		private NSDate _uitgeschrevenOp = new NSDate();
-		private string _uitgeschrevenOpText = string.Empty;
 
 		private SqliteConnection _conn = null;
 		#endregion
@@ -34,6 +32,8 @@ namespace FataAquana
 			get { return _ID; }
 			set
 			{
+                if (_ID == value) return;
+
 				WillChangeValue("ID");
 				_ID = value;
 				DidChangeValue("ID");
@@ -46,6 +46,8 @@ namespace FataAquana
 			get { return _persoonID; }
 			set
 			{
+                if (_persoonID == value) return;
+
 				WillChangeValue("PersoonID");
 				_persoonID = value;
 				DidChangeValue("PersoonID");
@@ -61,6 +63,8 @@ namespace FataAquana
 			get { return _clubID; }
 			set
 			{
+                if (_clubID == value) return;
+
 				WillChangeValue("ClubID");
 				_clubID = value;
 				DidChangeValue("ClubID");
@@ -76,6 +80,8 @@ namespace FataAquana
 			get { return _clubNaam; }
 			set
 			{
+                if (_clubNaam == value) return;
+
 				WillChangeValue("ClubNaam");
 				_clubNaam = value;
 				DidChangeValue("ClubNaam");
@@ -88,24 +94,11 @@ namespace FataAquana
 			get { return _ingeschrevenOp; }
 			set
 			{
+                if (_ingeschrevenOp == value) return;
+
 				WillChangeValue("IngeschrevenOp");
 				_ingeschrevenOp = value;
 				DidChangeValue("IngeschrevenOp");
-
-				// Save changes to database
-				if (_conn != null) Update(_conn);
-			}
-		}
-
-		[Export("IngeschrevenOpText")]
-		public string IngeschrevenOpText
-		{
-			get { return _ingeschrevenOpText; }
-			set
-			{
-				WillChangeValue("IngeschrevenOpText");
-				_ingeschrevenOpText = value;
-				DidChangeValue("IngeschrevenOpText");
 
 				// Save changes to database
 				if (_conn != null) Update(_conn);
@@ -118,24 +111,11 @@ namespace FataAquana
 			get { return _uitgeschrevenOp; }
 			set
 			{
-				WillChangeValue("UitgeschrevenOp");
+                if (_uitgeschrevenOp == value) return;
+
+                WillChangeValue("UitgeschrevenOp");
 				_uitgeschrevenOp = value;
 				DidChangeValue("UitgeschrevenOp");
-
-				// Save changes to database
-				if (_conn != null) Update(_conn);
-			}
-		}
-
-		[Export("UitgeschrevenOpText")]
-		public string UitgeschrevenOpText
-		{
-			get { return _uitgeschrevenOpText; }
-			set
-			{
-				WillChangeValue("UitgeschrevenOpText");
-				_uitgeschrevenOpText = value;
-				DidChangeValue("UitgeschrevenOpText");
 
 				// Save changes to database
 				if (_conn != null) Update(_conn);
@@ -257,8 +237,10 @@ namespace FataAquana
 						ID = (string)reader[0];
 						PersoonID = (string)reader[1];
 						ClubID = (string)reader[2];
-						IngeschrevenOp = AppDelegate.DateTimeToNSDate((DateTime)reader[3]);
-						UitgeschrevenOp = AppDelegate.DateTimeToNSDate((DateTime)reader[4]);
+                        try { IngeschrevenOp = AppDelegate.DateTimeToNSDate((DateTime)reader[3]); }
+                        catch { }
+                        try { UitgeschrevenOp = AppDelegate.DateTimeToNSDate((DateTime)reader[4]); }
+                        catch { }
 						ClubNaam = (string)reader[5];
 					}
 				}

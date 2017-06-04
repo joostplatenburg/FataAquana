@@ -396,49 +396,50 @@ namespace FataAquana
 		{
 			Debug.WriteLine("Start: PersoonController.LoadTables");
 
-			if (dsGevolgdeOpleidingen != null)
+            if (GevolgdeOpleidingenTable != null)
 			{
-				dsGevolgdeOpleidingen.GevolgdeOpleidingen.Clear();
-			}
-			dsGevolgdeOpleidingen = new GevolgdeOpleidingenDS(AppDelegate.Conn, Persoon);
-			if (GevolgdeOpleidingenTable != null)
-			{
+				if (dsGevolgdeOpleidingen != null)
+				{
+					dsGevolgdeOpleidingen.GevolgdeOpleidingen.Clear();
+				}
+		
+                dsGevolgdeOpleidingen = new GevolgdeOpleidingenDS(AppDelegate.Conn, Persoon);
 				// Populate the Product Table
 				GevolgdeOpleidingenTable.DataSource = dsGevolgdeOpleidingen;
 				GevolgdeOpleidingenTable.Delegate = new GevolgdeOpleidingenDelegate(dsGevolgdeOpleidingen);
 			}
 
-			if (dsAankopen != null)
-			{
-				dsAankopen.Aankopen.Clear();
-			}
-			dsAankopen = new AankopenDS(AppDelegate.Conn, Persoon);
 			if (AankopenTable != null)
 			{
+				if (dsAankopen != null)
+				{
+					dsAankopen.Aankopen.Clear();
+				}
+				dsAankopen = new AankopenDS(AppDelegate.Conn, Persoon);
 				// Populate the Product Table
 				AankopenTable.DataSource = dsAankopen;
 				AankopenTable.Delegate = new AankopenDelegate(dsAankopen);
 			}
 
-			if (dsOnderhoud != null)
-			{
-				dsOnderhoud.Onderhoud.Clear();
-			}
-			dsOnderhoud = new OnderhoudDS(AppDelegate.Conn, Persoon);
 			if (OnderhoudTable != null)
 			{
+				if (dsOnderhoud != null)
+				{
+					dsOnderhoud.Onderhoud.Clear();
+				}
+				dsOnderhoud = new OnderhoudDS(AppDelegate.Conn, Persoon);
 				// Populate the Product Table
 				OnderhoudTable.DataSource = dsOnderhoud;
 				OnderhoudTable.Delegate = new OnderhoudDelegate(dsOnderhoud);
 			}
 
-			if (dsLidmaatschappen != null)
-			{
-				dsLidmaatschappen.Lidmaatschappen.Clear();
-			}
-			dsLidmaatschappen = new LidmaatschappenDS(AppDelegate.Conn, Persoon);
 			if (LidmaatschappenTable != null)
 			{
+				if (dsLidmaatschappen != null)
+				{
+					dsLidmaatschappen.Lidmaatschappen.Clear();
+				}
+				dsLidmaatschappen = new LidmaatschappenDS(AppDelegate.Conn, Persoon);
 				// Populate the Product Table
 				LidmaatschappenTable.DataSource = dsLidmaatschappen;
 				LidmaatschappenTable.Delegate = new LidmaatschappenDelegate(dsLidmaatschappen);
