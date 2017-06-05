@@ -41,9 +41,9 @@ namespace FataAquana
 			{
 				view = new NSTextField();
 				view.Identifier = CellIdentifier;
-				view.BackgroundColor = NSColor.Clear;
-				view.Bordered = false;
-				view.Selectable = false;
+				view.BackgroundColor = NSColor.White;
+                view.Bordered = false;
+                view.Selectable = false;
                 view.Editable = false;
 			}
 

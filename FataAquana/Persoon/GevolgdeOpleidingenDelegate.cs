@@ -41,10 +41,10 @@ namespace FataAquana
 			{
 				view = new NSTextField();
 				view.Identifier = CellIdentifier;
-				view.BackgroundColor = NSColor.Clear;
+				view.BackgroundColor = NSColor.White;
 				view.Bordered = false;
 				view.Selectable = false;
-				view.Editable = true;
+                view.Editable = false;
 			}
 
 			DateTime dt;

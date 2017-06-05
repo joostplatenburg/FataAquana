@@ -6,6 +6,7 @@ using Foundation;
 using AppKit;
 using System.Collections.Generic;
 using System.Diagnostics;
+using Mono;
 
 namespace FataAquana
 {
@@ -541,6 +542,8 @@ namespace FataAquana
 				}
 			}
 
+            ////Debug.WriteLine("Joost: " + GevolgdeOpleidingenString);
+
 			if (shouldClose)
 			{
 				conn.Close();
@@ -553,7 +556,7 @@ namespace FataAquana
         public void LoadGevolgdeOpleidingen(SqliteConnection conn, string id)
         {
 			bool shouldClose = false;
-			GevolgdeOpleidingenString = string.Empty;
+			_gevolgdeopleidingenstring = string.Empty;
 
 			// clear last connection to preventcirculair call to update
 			_conn = null;
@@ -580,16 +583,14 @@ namespace FataAquana
 
 							gevopl.Load(conn, idGO);
 
-							GevolgdeOpleidingenString = string.Format("{0} ({1:yyyy-mm-dd}), {2}", gevopl.OpleidingNaam, AppDelegate.NSDateToDateTime(gevopl.GeslaagdOp), GevolgdeOpleidingenString);
+							_gevolgdeopleidingenstring = string.Format("{0} ({1:yyyy-mm-dd}), {2}", gevopl.OpleidingNaam, AppDelegate.NSDateToDateTime(gevopl.GeslaagdOp), GevolgdeOpleidingenString);
 							GevolgdeOpleidingen.Add(gevopl);
 						}
 
-                        if (GevolgdeOpleidingenString.Length > 2)
-                        {
-                            GevolgdeOpleidingenString = GevolgdeOpleidingenString.Substring(0, (GevolgdeOpleidingenString.Length - 2));
-                        } else {
-                            GevolgdeOpleidingenString = "<GEEN>";
-                        }
+						if (_gevolgdeopleidingenstring.Length > 2)
+						{
+						    _gevolgdeopleidingenstring = _gevolgdeopleidingenstring.Substring(0, (_gevolgdeopleidingenstring.Length - 2));
+						} 
 					}
 				}
 				catch (Exception Exception)
@@ -598,7 +599,7 @@ namespace FataAquana
 				}
 			}
 
-            Debug.WriteLine(ID + ": " + GevolgdeOpleidingenString);
+            ////Debug.WriteLine(ID + ": " + GevolgdeOpleidingenString);
 
             if (shouldClose)
 			{

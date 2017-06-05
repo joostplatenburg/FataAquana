@@ -53,19 +53,19 @@ namespace FataAquana
 				case "Opleidingnaam":
 					if (ascending)
 					{
-						Opleidingen.Sort((x, y) => x.OpleidingNaam.CompareTo(y.OpleidingNaam));
+						Opleidingen.Sort((x, y) => string.Compare(x.OpleidingNaam, y.OpleidingNaam, StringComparison.CurrentCulture));
 					}
 					else {
-						Opleidingen.Sort((x, y) => -1 * x.OpleidingNaam.CompareTo(y.OpleidingNaam));
+						Opleidingen.Sort((x, y) => string.Compare(y.OpleidingNaam, x.OpleidingNaam, StringComparison.CurrentCulture));
 					}
 					break;
 				case "Omschrijving":
 					if (ascending)
 					{
-						Opleidingen.Sort((x, y) => x.Omschrijving.CompareTo(y.Omschrijving));
+						Opleidingen.Sort((x, y) => string.Compare(x.Omschrijving, y.Omschrijving, StringComparison.CurrentCulture));
 					}
 					else {
-						Opleidingen.Sort((x, y) => -1 * x.Omschrijving.CompareTo(y.Omschrijving));
+						Opleidingen.Sort((x, y) => string.Compare(y.Omschrijving, x.Omschrijving, StringComparison.CurrentCulture));
 					}
 					break;
 				//case "UitgeschrevenOp":
