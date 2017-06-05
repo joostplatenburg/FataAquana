@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16F73" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
+        <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="12118"/>
         <plugIn identifier="com.apple.WebKitIBPlugin" version="12118"/>
         <capability name="box content view" minToolsVersion="7.0"/>
@@ -658,7 +659,7 @@
                         <toolbar key="toolbar" implicitIdentifier="4BC73BBF-4494-45BA-A3D5-370BF66A04D6" autosavesConfiguration="NO" allowsUserCustomization="NO" displayMode="iconOnly" sizeMode="small" id="SUj-He-LmP">
                             <allowedToolbarItems>
                                 <toolbarItem implicitItemIdentifier="B3DF14C5-4557-4823-9083-3F79B053AB73" label="Open DB File" paletteLabel="Open DB File" tag="-1" image="folder_document" selectable="YES" id="An8-1o-aTK"/>
-                                <toolbarItem implicitItemIdentifier="16B5163D-B770-4DB0-8A7B-B1E2E8FF485B" label="Copy Emailadressen" paletteLabel="Copy Emailadressen" tag="-1" image="NSBonjour" selectable="YES" id="oan-0T-dJn"/>
+                                <toolbarItem implicitItemIdentifier="16B5163D-B770-4DB0-8A7B-B1E2E8FF485B" label="Copy Emailadressen" paletteLabel="Copy Emailadressen" tag="-1" image="clipboard_add" selectable="YES" id="oan-0T-dJn"/>
                                 <toolbarItem implicitItemIdentifier="NSToolbarPrintItem" id="Qx9-At-d2w"/>
                                 <toolbarItem implicitItemIdentifier="9C5A6993-5E11-4900-93EF-1429FA3C18F9" label="Search" paletteLabel="Search" id="CLY-TK-M7n">
                                     <nil key="toolTip"/>
@@ -4368,7 +4369,7 @@ DQ
     </scenes>
     <resources>
         <image name="NSActionTemplate" width="14" height="14"/>
-        <image name="NSBonjour" width="32" height="32"/>
+        <image name="clipboard_add" width="129.80281066894531" height="129.80281066894531"/>
         <image name="folder_document" width="128" height="128"/>
         <image name="user1" width="128" height="128"/>
     </resources>

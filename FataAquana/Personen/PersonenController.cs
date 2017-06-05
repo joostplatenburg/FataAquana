@@ -12,6 +12,7 @@ namespace FataAquana
 	{
 		public PersoonModel SelectedPersoon = null;
 		public PersonenDS dsPersonen = null;
+        public NSTableView personentable = null;
 
 		#region Computed Properties
 
@@ -40,6 +41,7 @@ namespace FataAquana
 		// Shared initialization code
 		void Initialize()
 		{
+            AppDelegate.personencontroller = this;
 		}
 		#endregion
 
@@ -50,6 +52,7 @@ namespace FataAquana
 
 			if (PersonenTable != null)
 			{
+                personentable = PersonenTable;
 				// Create the Personen Table Data Source and populate it
 				dsPersonen = new PersonenDS(AppDelegate.Conn);
 

@@ -121,15 +121,10 @@ namespace FataAquana
 
 		public override bool ShouldSelectRow(NSTableView tableView, nint row)
 		{
-            //Debug.WriteLine("Selected row: " + row);
 
-            //AppDelegate.MainView.RaisePersoonSelected(row);
+			// var selectedRowIndex = tableView.SelectedRow;
 
-            //var selectedRowIndex = tableView.SelectedRow;
-            //var selectedAchternaam = DataSource.Personen[(int)row].Achternaam;
-
-            var selectedrows = tableView.SelectedRows;
-            Debug.WriteLine("Selected row count: " + tableView.SelectedRowCount);
+			//var selectedAchternaam = DataSource.Personen[(int)row].Achternaam;
 
 			return true;
 		}

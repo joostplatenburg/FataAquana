@@ -14,6 +14,7 @@ namespace FataAquana
 		public static SqliteConnection Conn = null;
 
 		public static SplitViewController MainView = null;
+        public static PersonenController personencontroller = null;
 
 		public AppDelegate()
 		{
@@ -75,35 +76,25 @@ namespace FataAquana
                         //VoegColumnToe(Conn, "Apparaat", "Omschrijving", "Text");
 
 						//VoegColumnToe(Conn, "Aankoop", "GekochtOpText", "Text");
-
-						//VoegColumnToe(Conn, "Clublidmaatschap", "IngeschrevenOpText", "Text");
+                        //VoegColumnToe(Conn, "Clublidmaatschap", "IngeschrevenOpText", "Text");
 						//VoegColumnToe(Conn, "Clublidmaatschap", "UitgeschrevenOpText", "Text");
-
-						//VoegColumnToe(Conn, "GevolgdeOpleiding", "GeslaagdOpText", "Text");
+                        //VoegColumnToe(Conn, "GevolgdeOpleiding", "GeslaagdOpText", "Text");
 						//VoegColumnToe(Conn, "GevolgdeOpleiding", "VerlopenOpText", "Text");
-
-						//VoegColumnToe(Conn, "InOnderhoud", "OntvangenOpText", "Text");
+                        //VoegColumnToe(Conn, "InOnderhoud", "OntvangenOpText", "Text");
 						//VoegColumnToe(Conn, "InOnderhoud", "RetourOpText", "Text");
-
-						//VoegColumnToe(Conn, "Persoon", "GeboortedatumText", "Text");
-
-						//VoegColumnToe(Conn, "WerkPeriode", "GestartOpText", "Text");
+                        //VoegColumnToe(Conn, "Persoon", "GeboortedatumText", "Text");
+                        //VoegColumnToe(Conn, "WerkPeriode", "GestartOpText", "Text");
 						//VoegColumnToe(Conn, "WerkPeriode", "GestoptOpText", "Text");
 
-						//VerwijderColumn(Conn, "Aankoop", "GekochtOpText");
-
-						//VerwijderColumn(Conn, "Clublidmaatschap", "IngeschrevenOpText");
+                        //VerwijderColumn(Conn, "Aankoop", "GekochtOpText");
+                        //VerwijderColumn(Conn, "Clublidmaatschap", "IngeschrevenOpText");
 						//VerwijderColumn(Conn, "Clublidmaatschap", "UitgeschrevenOpText");
-
-						//VerwijderColumn(Conn, "GevolgdeOpleiding", "GeslaagdOpText");
+                        //VerwijderColumn(Conn, "GevolgdeOpleiding", "GeslaagdOpText");
 						//VerwijderColumn(Conn, "GevolgdeOpleiding", "VerlopenOpText");
-
-						//VerwijderColumn(Conn, "InOnderhoud", "OntvangenOpText");
+                        //VerwijderColumn(Conn, "InOnderhoud", "OntvangenOpText");
 						//VerwijderColumn(Conn, "InOnderhoud", "RetourOpText");
-
-						//VerwijderColumn(Conn, "Persoon", "GeboortedatumText");
-
-						//VerwijderColumn(Conn, "WerkPeriode", "GestartOpText");
+                        //VerwijderColumn(Conn, "Persoon", "GeboortedatumText");
+                        //VerwijderColumn(Conn, "WerkPeriode", "GestartOpText");
 						//VerwijderColumn(Conn, "WerkPeriode", "GestoptOpText");
 
 						Conn.Close();
@@ -123,31 +114,39 @@ namespace FataAquana
 			return Conn;
 		}
 
-        internal static void CopyEmailadressen()
+        public static void CopyEmailadressen()
         {
             Debug.WriteLine("CopyEmailadressen clicked");
 
             // Only act when rows selected.
 
-            Debug.WriteLine("Test " + MainView.Description);
+            var emailadressen = string.Empty;
 
-            //NSString s = "Test string email adres jplatenb@dxc.com";
+			if (personencontroller != null) {
+                Debug.WriteLine("Aantal geselecteerd: " + personencontroller.personentable.SelectedRows.Count);
 
-   //         NSPasteboard pasteboard = NSPasteboard.GeneralPasteboard;
+				PersonenDS ds = personencontroller.personentable.DataSource as PersonenDS;
 
-   //         pasteboard.ClearContents();
+				//var row = personencontroller.personentable.SelectedRows[0];
+				foreach(var row in personencontroller.personentable.SelectedRows)
+                {
+                    emailadressen = emailadressen + ds.Personen[(int)row].Email + ", ";
+                }
 
-			////Debug.WriteLine(MainView.SplitViewItems[1].ViewController.NibName);
+                if (emailadressen.Length > 2) {
+                    emailadressen = emailadressen.Substring(0, emailadressen.Length - 2);
+                }
+            }
 
-			////pasteboard.WriteObjects("Test string email adres jplatenb@dxc.com");
-			//// Using a Pasteboard Item
-			//NSPasteboardItem item = new NSPasteboardItem();
-			//string[] writableTypes = { "joost@platenburg.eu" };
-
-			//// Save to pasteboard
-			//pasteboard.WriteObjects(new NSPasteboardItem[] { item });
+            SetClipboardText(emailadressen);
 		}
 
+		private static string[] pboardTypes = new string[] { "NSStringPboardType" };
+		public static void SetClipboardText(string text)
+		{
+			NSPasteboard.GeneralPasteboard.DeclareTypes(pboardTypes, null);
+			NSPasteboard.GeneralPasteboard.SetStringForType(text, pboardTypes[0]);
+		}
 
 		private static void VoegColumnToe(SqliteConnection conn, string tablename, string columnname, string columntype)
 		{

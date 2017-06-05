@@ -276,14 +276,26 @@ namespace FataAquana
 		[Export("GevolgdeOpleidingenString")]
 		public string GevolgdeOpleidingenString
 		{
-			get { return _gevolgdeopleidingenstring; }
-			set {
-				if (_gevolgdeopleidingenstring == value) return;
+			get {
+                if (GevolgdeOpleidingen.Count > 0)
+                {
+                    _gevolgdeopleidingenstring = string.Empty;
 
-				WillChangeValue("GevolgdeOpleidingenString");
-				_gevolgdeopleidingenstring = value;
-				DidChangeValue("GevolgdeOpleidingenString");
-			}
+                    foreach (var obj in NSArray.FromArray<NSObject>(GevolgdeOpleidingen))
+                    {
+                        var gevopl = obj as GevolgdeOpleidingModel;
+                        DateTime dt = AppDelegate.NSDateToDateTime(gevopl.GeslaagdOp);
+                        _gevolgdeopleidingenstring = string.Format("{0} ({1:yyyy-MM-dd}), {2}", gevopl.OpleidingNaam, dt, _gevolgdeopleidingenstring);
+                    }
+
+                    if (_gevolgdeopleidingenstring.Length > 2)
+    				{
+	    				_gevolgdeopleidingenstring = _gevolgdeopleidingenstring.Substring(0, (_gevolgdeopleidingenstring.Length - 2));
+		    		}
+				}
+
+                return _gevolgdeopleidingenstring; 
+            }
 		}
 
 		[Export("Aankopen")]
@@ -305,13 +317,26 @@ namespace FataAquana
 		[Export("AankopenString")]
 		public string AankopenString
 		{
-			get { return _aankopenstring; }
-			set {
-				if (_aankopenstring == value) return;
+			get
+			{
+				if (Aankopen.Count > 0)
+				{
+					_aankopenstring = string.Empty;
 
-				WillChangeValue("AankopenString");
-				_aankopenstring = value;
-				DidChangeValue("AankopenString");
+					foreach (var obj in NSArray.FromArray<NSObject>(Aankopen))
+					{
+						var aankoop = obj as AankoopModel;
+						DateTime dt = AppDelegate.NSDateToDateTime(aankoop.GekochtOp);
+						_aankopenstring = string.Format("{0} ({1:yyyy-MM-dd}), {2}", aankoop.ApparaatNaam, dt, _aankopenstring);
+					}
+
+					if (_aankopenstring.Length > 2)
+					{
+						_aankopenstring = _aankopenstring.Substring(0, (_aankopenstring.Length - 2));
+					}
+				}
+
+				return _aankopenstring;
 			}
 		}
 
@@ -335,14 +360,6 @@ namespace FataAquana
 		public string InOnderhoudString
 		{
 			get { return _inonderhoudstring; }
-			set
-			{
-				if (_inonderhoudstring == value) return;
-
-				WillChangeValue("InOnderhoudString");
-				_inonderhoudstring = value;
-				DidChangeValue("InOnderhoudString");
-			}
 		}
 
 		[Export("Lidmaatschappen")]
@@ -365,14 +382,6 @@ namespace FataAquana
 		public string LidmaatschappenString
 		{
 			get { return _lidmaatschappenstring; }
-			set
-			{
-				if (_lidmaatschappenstring == value) return;
-
-				WillChangeValue("LidmaatschappenString");
-				_lidmaatschappenstring = value;
-				DidChangeValue("LidmaatschappenString");
-			}
 		}
 		#endregion
 
@@ -556,7 +565,6 @@ namespace FataAquana
         public void LoadGevolgdeOpleidingen(SqliteConnection conn, string id)
         {
 			bool shouldClose = false;
-			_gevolgdeopleidingenstring = string.Empty;
 
 			// clear last connection to preventcirculair call to update
 			_conn = null;
@@ -583,14 +591,8 @@ namespace FataAquana
 
 							gevopl.Load(conn, idGO);
 
-							_gevolgdeopleidingenstring = string.Format("{0} ({1:yyyy-mm-dd}), {2}", gevopl.OpleidingNaam, AppDelegate.NSDateToDateTime(gevopl.GeslaagdOp), GevolgdeOpleidingenString);
 							GevolgdeOpleidingen.Add(gevopl);
 						}
-
-						if (_gevolgdeopleidingenstring.Length > 2)
-						{
-						    _gevolgdeopleidingenstring = _gevolgdeopleidingenstring.Substring(0, (_gevolgdeopleidingenstring.Length - 2));
-						} 
 					}
 				}
 				catch (Exception Exception)
@@ -598,8 +600,6 @@ namespace FataAquana
 					Debug.WriteLine(Exception.Message);
 				}
 			}
-
-            ////Debug.WriteLine(ID + ": " + GevolgdeOpleidingenString);
 
             if (shouldClose)
 			{
@@ -613,7 +613,6 @@ namespace FataAquana
 		public void LoadAankopen(SqliteConnection conn, string id)
 		{
 			bool shouldClose = false;
-			AankopenString = string.Empty;
 
 			// clear last connection to preventcirculair call to update
 			_conn = null;
@@ -633,8 +632,6 @@ namespace FataAquana
 					commandAK.CommandText = "SELECT DISTINCT ID FROM [Aankoop] WHERE PersoonID = '" + ID + "'";
 					using (var readerAK = commandAK.ExecuteReader())
 					{
-						AankopenString = string.Empty;
-
 						while (readerAK.Read())
 						{
 							var aankoop = new AankoopModel();
@@ -642,16 +639,8 @@ namespace FataAquana
 
 							aankoop.Load(conn, idAK);
 
-							AankopenString = aankoop.ApparaatNaam + ", " + AankopenString;
 							Aankopen.Add(aankoop);
 						}
-
-                        if (AankopenString.Length > 2)
-                        {
-                            AankopenString = AankopenString.Substring(0, (AankopenString.Length - 2));
-
-                            //Debug.WriteLine(string.Format("Aankopen bij {0}: {1}", ID, AankopenString));
-                        }
 					}
 				}
 				catch (Exception Exception)

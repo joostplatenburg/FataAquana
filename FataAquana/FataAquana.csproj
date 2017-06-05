@@ -139,7 +139,6 @@
     <Compile Include="WindowsController.designer.cs">
       <DependentUpon>WindowsController.cs</DependentUpon>
     </Compile>
-    <Compile Include="ActivatableItem.cs" />
     <Compile Include="Persoon\GevolgdeOpleidingenDS.cs" />
     <Compile Include="Enum\PersoonsTabellen.cs" />
     <Compile Include="SplitViewController.cs" />
@@ -226,6 +225,7 @@
     <BundleResource Include="Resources\icons\FataAquana_32x32%402x.png" />
     <BundleResource Include="Resources\icons\FataAquana_512x512.png" />
     <BundleResource Include="Resources\icons\FataAquana_512x512%402x.png" />
+    <BundleResource Include="Resources\clipboard_add.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Mac\Xamarin.Mac.CSharp.targets" />
 </Project>

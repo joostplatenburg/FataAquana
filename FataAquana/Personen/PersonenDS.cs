@@ -195,9 +195,6 @@ namespace FataAquana
 
 		public override void SortDescriptorsChanged(NSTableView tableView, NSSortDescriptor[] oldDescriptors)
 		{
-			Debug.WriteLine("SortDescriptors0: " + tableView.SortDescriptors[0]);
-            //Debug.WriteLine("OldDescriptors0: " + oldDescriptors[0]);
-
 			// Sort the data
 			if (oldDescriptors.Length > 0)
 			{
