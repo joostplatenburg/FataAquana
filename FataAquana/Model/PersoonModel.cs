@@ -359,7 +359,26 @@ namespace FataAquana
 		[Export("InOnderhoudString")]
 		public string InOnderhoudString
 		{
-			get { return _inonderhoudstring; }
+			get { 
+                if (InOnderhoud.Count > 0)
+                {
+                    _inonderhoudstring = string.Empty;
+
+                    foreach (var obj in NSArray.FromArray<NSObject>(InOnderhoud))
+                    {
+                        var inonderhoud = obj as InOnderhoudModel;
+							DateTime dt = AppDelegate.NSDateToDateTime(inonderhoud.OntvangenOp);
+							_inonderhoudstring = string.Format("{0} ({1:yyyy-MM-dd}), {2}", inonderhoud.ApparaatNaam, dt, _inonderhoudstring);
+						}
+
+                    if (_inonderhoudstring.Length > 2)
+                    {
+                        _inonderhoudstring = _inonderhoudstring.Substring(0, (_inonderhoudstring.Length - 2));
+                    }
+                }
+
+                return _inonderhoudstring;
+            }
 		}
 
 		[Export("Lidmaatschappen")]
@@ -381,7 +400,26 @@ namespace FataAquana
 		[Export("LidmaatschappenString")]
 		public string LidmaatschappenString
 		{
-			get { return _lidmaatschappenstring; }
+			get { 
+                if (Lidmaatschappen.Count > 0)
+                {
+					_lidmaatschappenstring = string.Empty;
+
+					foreach (var obj in NSArray.FromArray<NSObject>(Lidmaatschappen))
+					{
+						var lidmaatschap = obj as ClublidmaatschapModel;
+						DateTime dt = AppDelegate.NSDateToDateTime(lidmaatschap.IngeschrevenOp);
+						_lidmaatschappenstring = string.Format("{0} ({1:yyyy-MM-dd}), {2}", lidmaatschap.ClubNaam, dt, _lidmaatschappenstring);
+					}
+
+					if (_lidmaatschappenstring.Length > 2)
+					{
+						_lidmaatschappenstring = _lidmaatschappenstring.Substring(0, (_lidmaatschappenstring.Length - 2));
+					}
+				}
+
+                return _lidmaatschappenstring;
+}
 		}
 		#endregion
 

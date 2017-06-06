@@ -52,7 +52,7 @@ namespace FataAquana
 
 			if (PersonenTable != null)
 			{
-                personentable = PersonenTable;
+				personentable = PersonenTable;
 				// Create the Personen Table Data Source and populate it
 				dsPersonen = new PersonenDS(AppDelegate.Conn);
 
@@ -60,6 +60,7 @@ namespace FataAquana
 				PersonenTable.DataSource = dsPersonen;
 				PersonenTable.Delegate = new PersonenDelegate(this, dsPersonen);
 			}
+
 		}
 		#endregion
 	
@@ -122,7 +123,22 @@ namespace FataAquana
 
 		public void ReloadTable()
 		{
-			PersonenTable.ReloadData();
+			Debug.WriteLine("Start: PersonenController.ReloadTable");
+
+			if (PersonenTable != null)
+			{
+				personentable = PersonenTable;
+				// Create the Personen Table Data Source and populate it
+				dsPersonen = new PersonenDS(AppDelegate.Conn);
+
+				// Populate the Product Table
+				PersonenTable.DataSource = dsPersonen;
+				PersonenTable.Delegate = new PersonenDelegate(this, dsPersonen);
+			}
+
+            PersonenTable.ReloadData();
+			
+            Debug.WriteLine("Einde: PersonenController.ReloadTable");
 		}
 		#endregion
 	}

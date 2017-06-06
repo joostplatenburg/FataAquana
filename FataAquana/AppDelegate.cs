@@ -31,7 +31,7 @@ namespace FataAquana
 			// Insert code here to tear down your application
 		}
 
-		public static SqliteConnection GetDatabaseConnection()
+        public static SqliteConnection GetDatabaseConnection()
 		{
 			var dlg = NSOpenPanel.OpenPanel;
 

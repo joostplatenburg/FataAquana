@@ -73,6 +73,9 @@ namespace FataAquana
 
 			if (_parentController.SelectedPersoon != null)
 			{
+				//Persoon.LoadGevolgdeOpleidingen(AppDelegate.Conn, Persoon.ID);
+                //Persoon.LoadAankopen(AppDelegate.Conn, Persoon.ID);
+
 				Persoon.Update(AppDelegate.Conn);
 			}
 			else
