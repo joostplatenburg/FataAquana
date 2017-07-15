@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16F73" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
+        <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="12118"/>
         <plugIn identifier="com.apple.WebKitIBPlugin" version="12118"/>
         <capability name="box content view" minToolsVersion="7.0"/>
@@ -707,7 +708,7 @@
                         <splitViewItem canCollapse="YES" holdingPriority="260" behavior="sidebar" id="tyd-7d-ZPO" userLabel="Left Controller"/>
                         <splitViewItem holdingPriority="255" behavior="contentList" id="lLP-RY-eaX" userLabel="Right Controller"/>
                     </splitViewItems>
-                    <splitView key="splitView" dividerStyle="thin" vertical="YES" id="Rer-PD-Qh7">
+                    <splitView key="splitView" wantsLayer="YES" dividerStyle="thin" vertical="YES" id="Rer-PD-Qh7">
                         <rect key="frame" x="-161" y="0.0" width="1146" height="544"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </splitView>
