@@ -31,7 +31,12 @@ namespace FataAquana
 			// Insert code here to tear down your application
 		}
 
-        public static SqliteConnection GetDatabaseConnection()
+        partial void GetDatabaseConnection(NSMenuItem sender)
+        {
+            Conn = GetDatabaseConnection();
+        }
+
+		public static SqliteConnection GetDatabaseConnection()
 		{
 			var dlg = NSOpenPanel.OpenPanel;
 
@@ -73,31 +78,25 @@ namespace FataAquana
 					{
 						Conn.Open();
 
-                        //VoegColumnToe(Conn, "Apparaat", "Omschrijving", "Text");
+                        VoegColumnToe(Conn, "Apparaat", "Omschrijving", "Text");
+                        VoegColumnToe(Conn, "Aankoop", "GekochtOpText", "Text");
+						
+                        VoegColumnToe(Conn, "Clublidmaatschap", "IngeschrevenOpText", "Text");
+						VoegColumnToe(Conn, "Clublidmaatschap", "UitgeschrevenOpText", "Text");
 
-						//VoegColumnToe(Conn, "Aankoop", "GekochtOpText", "Text");
-                        //VoegColumnToe(Conn, "Clublidmaatschap", "IngeschrevenOpText", "Text");
-						//VoegColumnToe(Conn, "Clublidmaatschap", "UitgeschrevenOpText", "Text");
-                        //VoegColumnToe(Conn, "GevolgdeOpleiding", "GeslaagdOpText", "Text");
-						//VoegColumnToe(Conn, "GevolgdeOpleiding", "VerlopenOpText", "Text");
-                        //VoegColumnToe(Conn, "InOnderhoud", "OntvangenOpText", "Text");
-						//VoegColumnToe(Conn, "InOnderhoud", "RetourOpText", "Text");
-                        //VoegColumnToe(Conn, "Persoon", "GeboortedatumText", "Text");
-                        //VoegColumnToe(Conn, "WerkPeriode", "GestartOpText", "Text");
-						//VoegColumnToe(Conn, "WerkPeriode", "GestoptOpText", "Text");
+                        VoegColumnToe(Conn, "GevolgdeOpleiding", "GeslaagdOpText", "Text");
+                        VoegColumnToe(Conn, "GevolgdeOpleiding", "VerlopenOpText", "Text");
+					
+                        VoegColumnToe(Conn, "InOnderhoud", "OntvangenOpText", "Text");
+                        VoegColumnToe(Conn, "InOnderhoud", "RetourOpText", "Text");
 
-                        //VerwijderColumn(Conn, "Aankoop", "GekochtOpText");
-                        //VerwijderColumn(Conn, "Clublidmaatschap", "IngeschrevenOpText");
-						//VerwijderColumn(Conn, "Clublidmaatschap", "UitgeschrevenOpText");
-                        //VerwijderColumn(Conn, "GevolgdeOpleiding", "GeslaagdOpText");
-						//VerwijderColumn(Conn, "GevolgdeOpleiding", "VerlopenOpText");
-                        //VerwijderColumn(Conn, "InOnderhoud", "OntvangenOpText");
-						//VerwijderColumn(Conn, "InOnderhoud", "RetourOpText");
-                        //VerwijderColumn(Conn, "Persoon", "GeboortedatumText");
-                        //VerwijderColumn(Conn, "WerkPeriode", "GestartOpText");
-						//VerwijderColumn(Conn, "WerkPeriode", "GestoptOpText");
+						VoegColumnToe(Conn, "Persoon", "GeboortedatumText", "Text");
 
-						Conn.Close();
+						VoegColumnToe(Conn, "WerkPeriode", "GestartOpText", "Text");
+						VoegColumnToe(Conn, "WerkPeriode", "GestoptOpText", "Text");
+						
+
+                        Conn.Close();
 					}
 					catch(Exception e)
 					{
@@ -116,30 +115,31 @@ namespace FataAquana
 
         public static void CopyEmailadressen()
         {
-            Debug.WriteLine("CopyEmailadressen clicked");
+			Debug.WriteLine("CopyEmailadressen clicked");
 
-            // Only act when rows selected.
+			// Only act when rows selected.
 
-            var emailadressen = string.Empty;
+			var emailadressen = string.Empty;
 
-			if (personencontroller != null) {
-                Debug.WriteLine("Aantal geselecteerd: " + personencontroller.personentable.SelectedRows.Count);
+			if (personencontroller != null)
+			{
+				Debug.WriteLine("Aantal geselecteerd: " + personencontroller.personentable.SelectedRows.Count);
 
 				PersonenDS ds = personencontroller.personentable.DataSource as PersonenDS;
 
-				//var row = personencontroller.personentable.SelectedRows[0];
-				foreach(var row in personencontroller.personentable.SelectedRows)
-                {
-                    emailadressen = emailadressen + ds.Personen[(int)row].Email + ", ";
-                }
+				foreach (var row in personencontroller.personentable.SelectedRows)
+				{
+					emailadressen = emailadressen + ds.Personen[(int)row].Email + ", ";
+				}
+			}
 
-                if (emailadressen.Length > 2) {
-                    emailadressen = emailadressen.Substring(0, emailadressen.Length - 2);
-                }
-            }
+			if (emailadressen.Length > 2)
+			{
+				emailadressen = emailadressen.Substring(0, emailadressen.Length - 2);
+			}
 
-            SetClipboardText(emailadressen);
-		}
+			SetClipboardText(emailadressen);
+    	}
 
 		private static string[] pboardTypes = new string[] { "NSStringPboardType" };
 		public static void SetClipboardText(string text)
@@ -148,11 +148,11 @@ namespace FataAquana
 			NSPasteboard.GeneralPasteboard.SetStringForType(text, pboardTypes[0]);
 		}
 
-		private static void VoegColumnToe(SqliteConnection conn, string tablename, string columnname, string columntype)
-		{
-			try
-			{
-				var cmd = string.Format("ALTER TABLE {0} ADD {1} {2}", tablename, columnname, columntype);
+        private static void VoegColumnToe(SqliteConnection conn, string tablename, string columnname, string columntype)
+        {
+            try
+            {
+                var cmd = string.Format("ALTER TABLE {0} ADD {1} {2}", tablename, columnname, columntype);
 
 				using (var c = Conn.CreateCommand())
 				{
@@ -160,26 +160,19 @@ namespace FataAquana
 					c.CommandType = CommandType.Text;
 					c.ExecuteNonQuery();
 				}
-
 			}
-			catch (Exception e)
-			{
+            catch(Exception e)
+            {
 				Debug.WriteLine(e.Message);
 			}
-		}
+        }
+
 
 		private static void VerwijderColumn(SqliteConnection conn, string tablename, string columnname)
 		{
 			try
 			{
 				var cmd = string.Format("ALTER TABLE {0} DROP COLUMN {1}", tablename, columnname);
-
-				using (var c = Conn.CreateCommand())
-				{
-					c.CommandText = cmd;
-					c.CommandType = CommandType.Text;
-					c.ExecuteNonQuery();
-				}
 
 			}
 			catch (Exception e)
@@ -200,7 +193,7 @@ namespace FataAquana
 			return (DateTime)date;
 		}
 
-		public static NSDate DateTimeToNSDate(DateTime date)
+        public static NSDate DateTimeToNSDate(DateTime date)
 		{
 			if (date.Kind == DateTimeKind.Unspecified)
 				date = DateTime.SpecifyKind(date, DateTimeKind.Utc /* or DateTimeKind.Local, this depends on each app */);
