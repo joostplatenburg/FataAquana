@@ -47,7 +47,8 @@ namespace FataAquana
                 view.Editable = false;
 			}
 
-			// Setup view based on the column selected
+            // Setup view based on the column selected
+            Debug.WriteLine(tableColumn.Title);
 			switch (tableColumn.Title)
 			{
 				case "Achternaam":
@@ -72,7 +73,7 @@ namespace FataAquana
 					tableColumn.Width = 210;
 					break;
 				case "Initialen":
-					view.StringValue = DataSource.Personen[(int)row].Initialen;
+                    view.StringValue = MakeSpaceIfNull(DataSource.Personen[(int)row].Initialen);
 					tableColumn.Width = 65;
 					break;
 				case "Mobiel":
@@ -129,7 +130,11 @@ namespace FataAquana
 			return true;
 		}
 
+        private string MakeSpaceIfNull(string instring) {
+            if (instring == null) return string.Empty;
 
+            return instring;
+        }
 		#endregion
 	}
 }

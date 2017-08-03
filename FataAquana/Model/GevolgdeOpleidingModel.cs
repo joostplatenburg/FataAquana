@@ -243,14 +243,14 @@ namespace FataAquana
 						while (reader.Read())
 						{
 							// Pull values back into class
-							ID = (string)reader[0];
-							PersoonID = (string)reader[1];
-							OpleidingID = (string)reader[2];
+							ID = reader[0] as string;
+							PersoonID = reader[1] as string;
+							OpleidingID = reader[2] as string;
                             try { GeslaagdOp = AppDelegate.DateTimeToNSDate((DateTime)reader[3]); }
                             catch { }
                             try { VerlopenOp = AppDelegate.DateTimeToNSDate((DateTime)reader[4]); }
 							catch { }
-							OpleidingNaam = (string)reader[5];
+							OpleidingNaam = reader[5] as string;
 						}
 					}
 					catch (Exception ex)

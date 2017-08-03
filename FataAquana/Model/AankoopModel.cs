@@ -211,12 +211,12 @@ namespace FataAquana
 					while(reader.Read())
 					{
 						// Pull values back into class
-						ID = (string)reader[0];
-						PersoonID = (string)reader[1];
-						ApparaatID = (string)reader[2];
+						ID = reader[0] as string;
+						PersoonID = reader[1] as string;
+						ApparaatID = reader[2] as string;
                         try { GekochtOp = AppDelegate.DateTimeToNSDate((DateTime)reader[3]); }
                         catch { }
-						ApparaatNaam = (string)reader[4];
+						ApparaatNaam = reader[4] as string;
 					}
 				}
 			}
