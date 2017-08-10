@@ -40,7 +40,7 @@
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
     <EnableCodeSigning>true</EnableCodeSigning>
-    <CodeSigningKey>3rd Party Mac Developer Application: J.A. Platenburg (YLT7AFC7PN)</CodeSigningKey>
+    <CodeSigningKey>Developer ID Application: J.A. Platenburg (YLT7AFC7PN)</CodeSigningKey>
     <CreatePackage>true</CreatePackage>
     <EnablePackageSigning>false</EnablePackageSigning>
     <IncludeMonoRuntime>true</IncludeMonoRuntime>

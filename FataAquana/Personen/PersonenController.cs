@@ -102,7 +102,7 @@ namespace FataAquana
 						// Remove the given row from the dataset
 						SelectedPersoon.Delete(AppDelegate.Conn);
 						dsPersonen.Personen.Remove(SelectedPersoon);
-						ReloadTable();
+                        ReloadTable();
 					}
 				});
 			}
@@ -125,8 +125,9 @@ namespace FataAquana
 		{
 			Debug.WriteLine("Start: PersonenController.ReloadTable");
 
-			if (PersonenTable != null)
-			{
+            if (PersonenTable != null)
+            {
+                /*
 				personentable = PersonenTable;
 				// Create the Personen Table Data Source and populate it
 				dsPersonen = new PersonenDS(AppDelegate.Conn);
@@ -134,10 +135,12 @@ namespace FataAquana
 				// Populate the Product Table
 				PersonenTable.DataSource = dsPersonen;
 				PersonenTable.Delegate = new PersonenDelegate(this, dsPersonen);
-			}
+				*/
 
-            PersonenTable.ReloadData();
-			
+
+                PersonenTable.ReloadData();
+            }
+
             Debug.WriteLine("Einde: PersonenController.ReloadTable");
 		}
 		#endregion

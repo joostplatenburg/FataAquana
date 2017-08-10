@@ -81,6 +81,7 @@ namespace FataAquana
                         VoegColumnToe(Conn, "Apparaat", "Omschrijving", "Text");
                         VoegColumnToe(Conn, "Aankoop", "GekochtOpText", "Text");
 						
+                        /*
                         VoegColumnToe(Conn, "Clublidmaatschap", "IngeschrevenOpText", "Text");
 						VoegColumnToe(Conn, "Clublidmaatschap", "UitgeschrevenOpText", "Text");
 
@@ -94,7 +95,7 @@ namespace FataAquana
 
 						VoegColumnToe(Conn, "WerkPeriode", "GestartOpText", "Text");
 						VoegColumnToe(Conn, "WerkPeriode", "GestoptOpText", "Text");
-						
+						*/
 
                         Conn.Close();
 					}

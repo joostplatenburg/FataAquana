@@ -48,8 +48,7 @@ namespace FataAquana
 			}
 
             // Setup view based on the column selected
-            Debug.WriteLine(tableColumn.Title);
-			switch (tableColumn.Title)
+            switch (tableColumn.Title)
 			{
 				case "Achternaam":
 					view.StringValue = DataSource.Personen[(int)row].Achternaam;
